@@ -11,32 +11,34 @@ const Banners = () => {
   ];
 
   return (
-    <div className="h-[514px] md:h-[526px] mt-3 md:px-5 relative w-full">
-      {bannerImages.length > 0 ? (
-        <Carousel infiniteLoop showThumbs={false}>
-          {bannerImages.map((url, index) => (
-            <div key={index}>
-              <div
-                style={{
-                  width: "100%", // Set a fixed width
-                  height: "100%", // Set a fixed height
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  src={url}
-                  alt={`Banner ${index + 1}`}
-                  style={{ maxWidth: "100%", maxHeight: "60%" }}
-                />
-              </div>
-            </div>
-          ))}
-        </Carousel>
-      ) : (
-        <p>No banner images found.</p>
-      )}
+    <div className="container">
+      <div className="row">
+        <div className="col-md-12">
+          {bannerImages.length > 0 ? (
+            <Carousel showThumbs={true} showStatus={false} infiniteLoop autoPlay>
+              {bannerImages.map((url, index) => (
+                <div key={index}>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <img
+                      src={url}
+                      alt={`Banner ${index + 1}`}
+                      style={{ maxWidth: "100%", maxHeight: "100%" }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </Carousel>
+          ) : (
+            <p>No banner images found.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

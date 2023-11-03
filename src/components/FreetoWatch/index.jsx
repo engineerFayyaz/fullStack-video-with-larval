@@ -37,7 +37,7 @@ function FreetoWatch() {
 
   return (
     <>
-      <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full" style={{marginTop:"437px"}}>
+      <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full" style={{marginTop:"513px"}}>
         <Text
           className="text-white-A700 text-xl w-auto"
           size="txtOpenSansRomanBold20WhiteA700"
