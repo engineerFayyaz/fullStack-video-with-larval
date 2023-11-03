@@ -6,6 +6,14 @@ import { Button, Img, List, PagerIndicator, RatingBar, Text } from "components";
 import FreetoWatch from "components/FreetoWatch";
 import TopTen from "components/TopTen";
 import Action from "components/Action/Index";
+import Adventure from "components/Adventure";
+import Talk from "components/Talk";
+import SciFi from "components/SciFi";
+import NewsUpdates from "components/NewsUpdates";
+import Music from "components/Music";
+import Religious from "components/Religious";
+import Emotinal from "components/Emotinal";
+import Banners from "components/Banners";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -36,7 +44,7 @@ const HomePage = () => {
               </div>
               <Button
                 className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[83px]"
-                onClick={() => navigate("/desktop188")}
+                onClick={() => navigate("/movies")}
                 leftIcon={
                   <Img
                     className="h-[22px] mb-px mr-2"
@@ -51,7 +59,7 @@ const HomePage = () => {
               </Button>
               <Button
                 className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[100px]"
-                onClick={() => navigate("/desktop189")}
+                onClick={() => navigate("/Channels")}
                 leftIcon={
                   <Img
                     className="h-[22px] mt-px mr-2"
@@ -73,7 +81,7 @@ const HomePage = () => {
                 <Text
                   className="common-pointer text-base text-white-A700 w-auto"
                   size="txtOpenSansRomanRegular16"
-                  onClick={() => navigate("/desktopthirtyseven")}
+                  onClick={() => navigate("/MyChannels")}
                 >
                   My Channel
                 </Text>
@@ -106,264 +114,30 @@ const HomePage = () => {
           </div>
         </header>
         <div className="h-[514px] md:h-[526px] mt-3 md:px-5 relative w-full">
-          <Img
-            className="h-[514px] m-auto object-cover w-full"
-            src="images/img_lucifers1.png"
-            alt="lucifersOne"
-          />
-          <PagerIndicator
-            className="absolute bottom-[2%] flex h-6 inset-x-[0] justify-center mx-auto w-[194px]"
-            count={6}
-            activeCss="inline-block cursor-pointer rounded-[50%] h-6 border-gray-100 border-2 border-solid bg-gray-100 w-6 relative"
-            activeIndex={1}
-            inactiveCss="inline-block cursor-pointer rounded-[50%] h-6 border-gray-100 border-2 border-solid w-6 relative"
-            selectedWrapperCss="inline-block mx-[5.00px]"
-            unselectedWrapperCss="inline-block mx-[5.00px]"
-          />
-          <div className="absolute bottom-[13%] flex flex-col items-start justify-start left-[2%] w-[33%]">
-            <Text
-              className="text-base text-gray-100 text-right"
-              size="txtOpenSansRomanBold16Gray100"
-            >
-              HBO
-            </Text>
-            <div className="flex flex-col font-poppins mt-3.5 relative w-full">
-              <Text
-                className="mx-auto sm:text-[40px] md:text-[46px] text-[50px] text-gray-100"
-                size="txtPoppinsBlack50"
-              >
-                Meg 2: The Trench
-              </Text>
-              <div className="flex flex-row font-opensans gap-[53px] items-start justify-start mt-[-6.72px] w-[72%] z-[1]">
-                <Text
-                  className="text-base text-gray-100 text-right"
-                  size="txtOpenSansRomanBold16Gray100"
-                >
-                  Resolution:4k
-                </Text>
-                <Text
-                  className="text-base text-gray-100 text-right"
-                  size="txtOpenSansRomanBold16Gray100"
-                >
-                  Runtime: 1 hr, 37 min
-                </Text>
-              </div>
-            </div>
-            <div className="flex flex-row font-poppins gap-5 items-center justify-start mt-[17px] w-[53%] md:w-full">
-              <div className="flex flex-row items-center justify-evenly w-[78%]">
-                <RatingBar
-                  className="flex justify-between w-[190px]"
-                  value={5}
-                  starCount={5}
-                  activeColor="#f1c644"
-                  size={30}
-                ></RatingBar>
-              </div>
-              <Text
-                className="text-white-A700 text-xl"
-                size="txtPoppinsRegular20WhiteA700"
-              >
-                5/5
-              </Text>
-            </div>
-          </div>
+
+
+          <Banners/>
+          
         </div>
         <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
          <FreetoWatch/>
           <TopTen/>
           <Action/>
+          <Adventure/>
+          <Talk/>
+          <SciFi/>
+          <NewsUpdates/>
+         <Music/>
+         <Religious/>
+         <Emotinal/>
           <List
             className="flex flex-col gap-8 items-center w-full"
             orientation="vertical"
           >
             
-            <div className="flex flex-1 flex-col gap-4 justify-start w-full">
-              <div className="flex flex-row gap-1 items-center justify-start md:ml-[0] ml-[17px] w-auto">
-                <Text
-                  className="text-white-A700 text-xl w-auto"
-                  size="txtOpenSansRomanBold20WhiteA700"
-                >
-                  Adventure
-                </Text>
-                <Img
-                  className="h-6 w-6"
-                  src="images/img_arrowright.svg"
-                  alt="arrowright"
-                />
-              </div>
-              <div className="flex flex-col items-center justify-start w-full">
-                <div className="flex flex-col items-center justify-start w-full">
-                  <div className="flex md:flex-col flex-row gap-5 items-center justify-between w-full">
-                    <div className="md:flex-1 gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-[47%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_300x210.png"
-                        alt="faj2uifuuaul6u"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_mv5bntfinzblyme_300x210.png"
-                        alt="mv5bntfinzblyme"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_yae6uvqijdn411_300x210.png"
-                        alt="yae6uvqijdn411"
-                      />
-                    </div>
-                    <div className="md:flex-1 gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-center w-[47%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_1.png"
-                        alt="faj2uifuuaul6u_One"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_mv5bntfinzblyme_300x210.png"
-                        alt="mv5bntfinzblyme_One"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_yae6uvqijdn411_1.png"
-                        alt="yae6uvqijdn411_One"
-                      />
-                    </div>
-                    <div className="flex md:flex-1 flex-col items-center justify-start w-[4%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_300x52.png"
-                        alt="faj2uifuuaul6u_Two"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-1 flex-col gap-4 justify-start w-full">
-              <div className="flex flex-row gap-1 items-center justify-start md:ml-[0] ml-[17px] w-auto">
-                <Text
-                  className="text-white-A700 text-xl w-auto"
-                  size="txtOpenSansRomanBold20WhiteA700"
-                >
-                  Animation
-                </Text>
-                <Img
-                  className="h-6 w-6"
-                  src="images/img_arrowright.svg"
-                  alt="arrowright"
-                />
-              </div>
-              <div className="flex flex-col items-center justify-start w-full">
-                <div className="flex flex-col items-center justify-start w-full">
-                  <div className="flex md:flex-col flex-row gap-5 items-center justify-between w-full">
-                    <div className="md:flex-1 gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-[47%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_300x210.png"
-                        alt="faj2uifuuaul6u"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_mv5bntfinzblyme_300x210.png"
-                        alt="mv5bntfinzblyme"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_yae6uvqijdn411_300x210.png"
-                        alt="yae6uvqijdn411"
-                      />
-                    </div>
-                    <div className="md:flex-1 gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-center w-[47%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_1.png"
-                        alt="faj2uifuuaul6u_One"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_mv5bntfinzblyme_300x210.png"
-                        alt="mv5bntfinzblyme_One"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_yae6uvqijdn411_1.png"
-                        alt="yae6uvqijdn411_One"
-                      />
-                    </div>
-                    <div className="flex md:flex-1 flex-col items-center justify-start w-[4%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_300x52.png"
-                        alt="faj2uifuuaul6u_Two"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-1 flex-col gap-4 justify-start w-full">
-              <div className="flex flex-row gap-1 items-center justify-start md:ml-[0] ml-[17px] w-auto">
-                <Text
-                  className="text-white-A700 text-xl w-auto"
-                  size="txtOpenSansRomanBold20WhiteA700"
-                >
-                  Drama
-                </Text>
-                <Img
-                  className="h-6 w-6"
-                  src="images/img_arrowright.svg"
-                  alt="arrowright"
-                />
-              </div>
-              <div className="flex flex-col items-center justify-start w-full">
-                <div className="flex flex-col items-center justify-start w-full">
-                  <div className="flex md:flex-col flex-row gap-5 items-center justify-between w-full">
-                    <div className="md:flex-1 gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-between w-[47%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_300x210.png"
-                        alt="faj2uifuuaul6u"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_mv5bntfinzblyme_300x210.png"
-                        alt="mv5bntfinzblyme"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_yae6uvqijdn411_300x210.png"
-                        alt="yae6uvqijdn411"
-                      />
-                    </div>
-                    <div className="md:flex-1 gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-3 items-center justify-center w-[47%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_1.png"
-                        alt="faj2uifuuaul6u_One"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_mv5bntfinzblyme_300x210.png"
-                        alt="mv5bntfinzblyme_One"
-                      />
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_yae6uvqijdn411_1.png"
-                        alt="yae6uvqijdn411_One"
-                      />
-                    </div>
-                    <div className="flex md:flex-1 flex-col items-center justify-start w-[4%] md:w-full">
-                      <Img
-                        className="h-[300px] md:h-auto object-cover w-full"
-                        src="images/img_faj2uifuuaul6u_300x52.png"
-                        alt="faj2uifuuaul6u_Two"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <footer className="flex flex-1 items-center justify-center w-full">
+            
+          
+            {/* <footer className="flex flex-1 items-center justify-center w-full">
               <div className="flex flex-col gap-4 items-center justify-center w-full">
                 <div className="flex md:flex-col flex-row gap-1 items-center justify-start md:ml-[0] ml-[17px] mr-[1308px] w-auto">
                   <Text
@@ -426,7 +200,7 @@ const HomePage = () => {
                   </div>
                 </div>
               </div>
-            </footer>
+            </footer> */}
           </List>
           <div className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] ml-[54px] w-[38%] md:w-full">
             <a href="javascript:" className="text-base text-white-A700">

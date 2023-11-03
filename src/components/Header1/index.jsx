@@ -34,7 +34,7 @@ const Header1 = (props) => {
             </Button>
             <Button
               className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[83px]"
-              onClick={() => navigate("/desktop188")}
+              onClick={() => navigate("/movies")}
               leftIcon={
                 <Img
                   className="h-[22px] mb-px mr-2"
@@ -49,7 +49,7 @@ const Header1 = (props) => {
             </Button>
             <Button
               className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[100px]"
-              onClick={() => navigate("/desktop189")}
+              onClick={() => navigate("/Channels")}
               leftIcon={
                 <Img
                   className="h-[22px] mt-px mr-2"
@@ -71,7 +71,7 @@ const Header1 = (props) => {
               <Text
                 className="common-pointer text-base text-pink-500 w-auto"
                 size="txtOpenSansRomanBold16"
-                onClick={() => navigate("/desktopthirtyseven")}
+                onClick={() => navigate("/MyChannels")}
               >
                 My Channel
               </Text>

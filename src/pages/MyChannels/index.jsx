@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Img, Text } from "components";
 import Header1 from "components/Header1";
 
-const DesktopThirtySevenPage = () => {
+const MyChannels = () => {
   const navigate = useNavigate();
 
   return (
@@ -206,4 +206,4 @@ const DesktopThirtySevenPage = () => {
   );
 };
 
-export default DesktopThirtySevenPage;
+export default MyChannels;

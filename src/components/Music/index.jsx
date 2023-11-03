@@ -6,14 +6,14 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 
-function FreetoWatch() {
+function Music() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://mobile.codegifted.com/api/moviebygenre/1";
+    const apiUrl = "http://mobile.codegifted.com/api/moviebygenre/8";
 
     // Make the API request
     axios
@@ -37,12 +37,12 @@ function FreetoWatch() {
 
   return (
     <>
-      <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full" style={{marginTop:"437px"}}>
+      <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
         <Text
           className="text-white-A700 text-xl w-auto"
           size="txtOpenSansRomanBold20WhiteA700"
         >
-          Action
+          Music
         </Text>
         {loading ? (
           <p>Loading...</p>
@@ -89,4 +89,4 @@ function FreetoWatch() {
   );
 }
 
-export default FreetoWatch;
+export default Music;

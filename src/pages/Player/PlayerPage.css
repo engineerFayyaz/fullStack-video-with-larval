@@ -1,0 +1,12 @@
+/* PlayerPage.css */
+
+.player-container {
+    /* position: relative; */
+    /* padding-top: 56.25%; */
+     /* 16:9 aspect ratio (change based on your aspect ratio) */
+  }
+  
+  .player {
+  height: 617px;
+  }
+  

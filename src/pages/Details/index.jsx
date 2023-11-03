@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom"; // Import Link
 import { Text, Img, RatingBar } from "components";
 import { useNavigate } from "react-router-dom";
 import Header from "components/Header";
@@ -9,9 +9,6 @@ const DetailsPage = () => {
   const { movie_id } = useParams();
   const [movieData, setMovieData] = useState(null);
   const navigate = useNavigate();
-
-  console.log("movieid", movie_id)
-
   useEffect(() => {
     axios
       .get(`http://mobile.codegifted.com/api/movie/${movie_id}`)
@@ -28,11 +25,10 @@ const DetailsPage = () => {
         console.error("Error fetching data:", error);
       });
   }, [movie_id]);
-  
 
   return (
     <>
-      <div className="bg-gray-900_02 flex flex-col font-opensans items-center justify-start mx-auto pr-2 py-2 w-full">
+      <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
         <Header
           className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full"
         />
@@ -46,21 +42,16 @@ const DetailsPage = () => {
           )}
           <div className="absolute bottom-[1%] flex flex-col md:gap-10 gap-20 justify-start left-[4%] w-[66%]">
             {movieData && (
+              
               <Img
                 className="common-pointer h-64 md:ml-[0] ml-[523px] w-64"
                 src="/images/icons8-pot-player.svg"
                 alt="group163539"
-                onClick={() => navigate("/player")}
+                onClick={() => navigate(`/player?videoUrl=${movieData.url}`)}
               />
             )}
             {movieData && (
               <div className="flex flex-col gap-[11px] items-start justify-start w-full">
-                <Text
-                  className="text-base text-gray-100 text-right"
-                  size="txtOpenSansRomanBold16Gray100"
-                >
-                  HBO
-                </Text>
                 <div className="h-[207px] relative w-full">
                   <div className="flex flex-col h-full items-center justify-start m-auto w-full">
                     <div className="flex flex-col gap-[30px] justify-start w-full">
@@ -70,32 +61,16 @@ const DetailsPage = () => {
                       >
                         {movieData.title}
                       </Text>
-                      <Img
-                        className="h-10 md:ml-[0] ml-[274px]"
-                        src="images/img_bookmark_gray_100.svg"
-                        alt="bookmark"
-                      />
                     </div>
                   </div>
                   <div className="absolute bottom-[5%] flex flex-col font-poppins items-center justify-start left-[0] w-[41%]">
                     <div className="flex flex-col justify-start w-full">
                       <div className="flex flex-row gap-[34px] items-start justify-start ml-1.5 md:ml-[0] w-[99%] md:w-full">
                         <Text
-                          className="text-gray-100 text-right text-xl"
-                          size="txtPoppinsBold20"
-                        >
-                          <span className="text-gray-100 font-opensans font-normal">
-                            Resolution:
-                          </span>
-                          <span className="text-gray-100 font-opensans font-bold">
-                            {movieData.resolution}
-                          </span>
-                        </Text>
-                        <Text
                           className="mt-0.5 text-gray-100 text-right text-xl"
                           size="txtOpenSansRomanBold20"
                         >
-                          Runtime: {movieData.duration}
+                          Duration: {movieData.duration}
                         </Text>
                       </div>
                       <div className="flex flex-row gap-5 items-center justify-start w-[66%] md:w-full">
@@ -115,6 +90,26 @@ const DetailsPage = () => {
                           {movieData.rating}/5
                         </Text>
                       </div>
+                    </div>
+                    <div className="flex flex-row gap-5 items-center justify-start w-[66%] md:w-full">
+                      {movieData.url && (
+                        <Link to={`/player?videoUrl=${movieData.url}`}>
+                          <button
+                            className="bg-blue-500 text-white text-xl py-2 px-4 rounded"
+                          >
+                            Watch Movie
+                          </button>
+                        </Link>
+                      )}
+                      {movieData.trailer_url && (
+                        <Link to={`/player?videoUrl=${movieData.trailer_url}`}>
+                          <button
+                            className="bg-green-500 text-white text-xl py-2 px-4 rounded"
+                          >
+                            Watch Trailer
+                          </button>
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -160,23 +155,6 @@ const DetailsPage = () => {
                   </span>
                   <span className="text-gray-100 font-opensans text-left font-bold">
                     {movieData.director}
-                  </span>
-                </Text>
-                <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
-                  <span className="text-gray-100 font-opensans text-left font-normal">
-                    Act by:{" "}
-                  </span>
-                  <span className="text-gray-100 font-opensans text-left font-bold">
-                    {movieData.actors}
-                  </span>
-                </Text>
-                
-                <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
-                  <span className="text-gray-100 font-opensans text-left font-normal">
-                    Country:{" "}
-                  </span>
-                  <span className="text-gray-100 font-opensans text-left font-bold">
-                    {movieData.country_id}
                   </span>
                 </Text>
                 <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">

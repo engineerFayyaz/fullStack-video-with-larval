@@ -137,7 +137,7 @@ const Desktop193Page = () => {
                 </div>
                 <Button
                   className="common-pointer cursor-pointer font-bold font-catamaran rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[220px]"
-                  onClick={() => navigate("/desktopthirtyseven")}
+                  onClick={() => navigate("/MyChannels")}
                   color="pink_500"
                   size="md"
                   variant="fill"
