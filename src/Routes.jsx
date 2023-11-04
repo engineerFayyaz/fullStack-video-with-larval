@@ -15,6 +15,7 @@ const Desktop191 = React.lazy(() => import("pages/Desktop191"));
 const Player = React.lazy(() => import("pages/Player"));
 const DetailsOne = React.lazy(() => import("pages/DetailsOne"));
 const Details = React.lazy(() => import("pages/Details"));
+const DetailsSeries= React.lazy(()=>import("pages/DetailsSeries"))
 const Desktop190 = React.lazy(() => import("pages/Desktop190"));
 const Channels = React.lazy(() => import("pages/Channels"));
 const movies = React.lazy(() => import("pages/Movies"));
@@ -43,6 +44,7 @@ const ProjectRoutes = () => {
           <Route path="/Channels" element={<Channels />} />
           <Route path="/desktop190" element={<Desktop190 />} />
           <Route path="/details/:movie_id" element={<Details />} />
+          <Route path="/detailsseries/:series_id" element={<DetailsSeries />} />
           <Route path="/detailsone" element={<DetailsOne />} />
           <Route path="/player" element={<Player />} />
           <Route path="/desktop191" element={<Desktop191 />} />
