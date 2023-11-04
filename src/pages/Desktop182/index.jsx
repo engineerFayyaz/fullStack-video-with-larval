@@ -20,7 +20,7 @@ const Desktop182Page = () => {
             <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[64%] md:w-full">
               <Button
                 className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[76px]"
-                onClick={() => navigate("/HomePage")}
+                onClick={() => navigate("/")}
                 leftIcon={
                   <Img
                     className="h-[22px] mb-px mr-2"

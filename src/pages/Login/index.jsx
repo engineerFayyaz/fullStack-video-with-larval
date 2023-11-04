@@ -40,7 +40,7 @@ const LoginPage = () => {
         if (response.data.status === '1') {
           toast.success('Login successful');
           // Redirect to the dashboard or other page on successful login
-          navigate('/HomePage');
+          navigate('/' , { state: { email: email } });
         } else {
           toast.error(response.data.message);
         }

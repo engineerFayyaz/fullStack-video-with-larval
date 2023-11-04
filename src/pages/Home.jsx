@@ -21,7 +21,7 @@ const Home = () => {
           <Link to="/signupemail">SignUpEmail</Link>
         </li>
         <li>
-          <Link to="/HomePage">HomePage</Link>
+          <Link to="/">HomePage</Link>
         </li>
         <li>
           <Link to="/desktop187">Desktop187 Screen</Link>

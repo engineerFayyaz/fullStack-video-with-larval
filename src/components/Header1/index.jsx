@@ -1,12 +1,14 @@
 import React from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useLocation} from "react-router-dom";
 
 import { Button, Img, Text } from "components";
 
 const Header1 = (props , userName) => {
   const navigate = useNavigate();
   // console.log("username",userName)
+  const location = useLocation();
+  const email = location.state ? location.state.email : null;
 
   return (
     <>
@@ -20,7 +22,7 @@ const Header1 = (props , userName) => {
           <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[65%] md:w-full">
             <Button
               className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[76px]"
-              onClick={() => navigate("/HomePage")}
+              onClick={() => navigate("/")}
               leftIcon={
                 <Img
                   className="h-[22px] mb-px mr-2"
@@ -98,7 +100,7 @@ const Header1 = (props , userName) => {
             variant="fill"
           >
             <div className="font-bold font-opensans text-base text-center">
-      
+            {email && <p>Email: {email}</p>}
             </div>
           </Button>
         </div>

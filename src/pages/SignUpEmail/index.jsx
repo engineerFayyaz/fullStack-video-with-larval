@@ -40,7 +40,7 @@ function SignUpEmailPage() {
   
       if (response.status === 200) {
         // Redirect to the homepage and pass user information as state
-        navigate("/Homepage", { state: { userInfo } });
+        navigate("/", { state: { userInfo } });
       } else {
         // Handle the error based on the response data
         if (response.data && response.data.message) {
@@ -228,7 +228,7 @@ function SignUpEmailPage() {
               </div>
               <Button
                 className="common-pointer border border-pink-500 border-solid cursor-pointer leading-[normal] min-w-[225px] mt-8 shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
-                // onClick={() => navigate("/HomePage")}
+                // onClick={() => navigate("/")}
                 onClick={handleSubmit}
                 shape="round"
                 color="pink_500"

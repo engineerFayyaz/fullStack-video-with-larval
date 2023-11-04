@@ -4,12 +4,15 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button, Img, List, Text } from "components";
 import ChannelBanner from "components/ChannelBanner";
+import Header1 from "components/Header1";
+
 
 const Channels = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const email = location.state ? location.state.email : null;
 
   useEffect(() => {
     // Define the API URL
@@ -50,95 +53,7 @@ const Channels = () => {
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
-        <header className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full">
-          <Img
-            className="md:flex-1 h-20 sm:h-auto object-cover w-[6%] md:w-full"
-            src="images/img_whatsappimage.png"
-            alt="whatsappimage"
-          />
-          <div className="flex md:flex-1 md:flex-col flex-row md:gap-10 items-center justify-between md:ml-[0] ml-[528px] md:mt-0 my-[19px] w-[56%] md:w-full">
-            <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[63%] md:w-full">
-              <Button
-                className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[76px]"
-                onClick={() => navigate("/HomePage")}
-                leftIcon={
-                  <Img
-                    className="h-[22px] mb-px mr-2"
-                    src="images/img_frame.svg"
-                    alt="Frame"
-                  />
-                }
-              >
-                <div className="text-base text-left text-white-A700">Home</div>
-              </Button>
-              <Button
-                className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[83px]"
-                onClick={() => navigate("/movies")}
-                leftIcon={
-                  <Img
-                    className="h-[22px] mb-px mr-2"
-                    src="images/img_svgexport6_white_a700.svg"
-                    alt="svgexport-6"
-                  />
-                }
-              >
-                <div className="text-base text-left text-white-A700">
-                  Movies
-                </div>
-              </Button>
-              <div className="flex flex-row gap-2 items-center justify-center w-auto">
-                <Img
-                  className="h-[22px] w-[22px]"
-                  src="images/img_television_pink_500.svg"
-                  alt="television"
-                />
-                <Text
-                  className="text-base text-pink-500 w-auto"
-                  size="txtOpenSansRomanBold16"
-                >
-                  Channels
-                </Text>
-              </div>
-              <div className="flex flex-row gap-2 items-center justify-center w-auto">
-                <Img
-                  className="h-6 w-6"
-                  src="images/img_search.svg"
-                  alt="search"
-                />
-                <Text
-                  className="common-pointer text-base text-white-A700 w-auto"
-                  size="txtOpenSansRomanRegular16"
-                  onClick={() => navigate("/MyChannels")}
-                >
-                  My Channel
-                </Text>
-              </div>
-            </div>
-            <Img
-              className="h-[18px] w-[18px]"
-              src="images/img_search_white_a700.svg"
-              alt="search_One"
-            />
-            <Button
-              className="cursor-pointer flex items-center justify-center min-w-[190px]"
-              leftIcon={
-                <Img
-                  className="h-[22px] mb-px mr-2.5"
-                  src="images/img_bipersonfill.svg"
-                  alt="bi:person-fill"
-                />
-              }
-              shape="round"
-              color="pink_500"
-              size="sm"
-              variant="fill"
-            >
-              <div className="font-bold text-base text-center">
-                Sign Up / Login
-              </div>
-            </Button>
-          </div>
-        </header>
+      <Header1 className=" flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full"/>
         <div className="font-poppins h-[514px] md:h-[526px] mt-3 md:px-5 relative w-full">
           <ChannelBanner />
         </div>
