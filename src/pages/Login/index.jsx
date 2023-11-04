@@ -3,8 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { CheckBox,Line,Img,Button, Input, Text } from 'components';
+import { CheckBox, Line, Img, Button } from 'components'; // Assuming these components are properly implemented
 import { useGoogleLogin } from "@react-oauth/google";
+import Header from 'components/Header1'; // Assuming you want to use Header1
 
 const LoginPage = () => {
 
@@ -14,15 +15,15 @@ const LoginPage = () => {
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
       console.log("res", res);
-      alert("Login successfull. 😍");
+      alert("Login successful. 😍");
     },
-
   });
+
   const handleLogin = (e) => {
     e.preventDefault();
 
     // Define your API endpoint for login
-    const apiUrl = 'https://mobile.codegifted.com/api/login';
+    const apiUrl = 'http://mobile.codegifted.com/api/login';
 
     // Create a data object with the user's input
     const loginData = {
@@ -66,17 +67,10 @@ const LoginPage = () => {
                 href="javascript:"
                 className="text-2xl md:text-[22px] text-pink-500 sm:text-xl"
               >
-                <Text size="txtPoppinsBold24">Login</Text>
+                Login
               </a>
               <a className="text-2xl md:text-[22px] text-white-A700 sm:text-xl">
-                <Text
-                  className="common-pointer"
-                  
-                  size="txtPoppinsRegular24"
-                  onClick={() => navigate("/signupone")}
-                >
-                  Sign Up
-                </Text>
+                Sign Up
               </a>
             </div>
             <Line className="bg-pink-500 h-0.5 mr-[253px] mt-[7px] w-[55%]" />
@@ -109,19 +103,13 @@ const LoginPage = () => {
               >
                 Login with Twitter
               </Button>
-              <Text
-                className="md:ml-[0] ml-[213px] mt-[49px] text-2xl md:text-[22px] text-white-A700 sm:text-xl"
-                size="txtPoppinsBold24WhiteA700"
-              >
+              <p className="text-2xl md:text-[22px] text-white-A700 sm:text-xl">
                 OR
-              </Text>
+              </p>
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px] mt-16 w-[99%] md:w-full">
-                <Text
-                  className="text-lg text-white-A700"
-                  size="txtPoppinsRegular18"
-                >
+                <p className="text-lg text-white-A700">
                   Email
-                </Text>
+                </p>
                 <input
                   name="email_One"
                   placeholder="Email"
@@ -132,15 +120,12 @@ const LoginPage = () => {
                   variant="fill"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                ></input>
+                />
               </div>
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px] mt-[19px] w-[99%] md:w-full">
-                <Text
-                  className="text-lg text-white-A700"
-                  size="txtPoppinsRegular18"
-                >
+                <p className="text-lg text-white-A700">
                   Password
-                </Text>
+                </p>
                 <input
                   name="password_One"
                   placeholder="Password"
@@ -151,7 +136,7 @@ const LoginPage = () => {
                   variant="fill"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                ></input>
+                />
               </div>
               <CheckBox
                 className="leading-[normal] md:ml-[0] ml-[5px] mt-[19px] text-left text-lg"
@@ -159,10 +144,9 @@ const LoginPage = () => {
                 name="rememberme"
                 id="rememberme"
                 label="Remember me"
-              ></CheckBox>
+              />
               <Button
                 className="common-pointer border border-pink-500 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
-                // onClick={() => navigate("/HomePage")}
                 shape="round"
                 color="pink_500"
                 size="xs"
@@ -176,29 +160,20 @@ const LoginPage = () => {
                   href="javascript:"
                   className="sm:mt-0 mt-0.5 text-lg text-white-A700_90"
                 >
-                  <Text size="txtPoppinsRegular18WhiteA70090"
-                  onClick={() => navigate("/desktop180")}
-                  >
-                    Privacy Policy
-                  </Text>
+                  Privacy Policy
                 </a>
                 <a
                   href="javascript:"
                   className="mb-0.5 text-lg text-white-A700_90"
                 >
-                  <Text size="txtPoppinsRegular18WhiteA70090"
-                
-                  onClick={() => navigate("/desktop179")}>
-                    Terms and Conditions
-                  </Text>
+                  Terms and Conditions
                 </a>
-                <Text
+                <p
                   className="mb-0.5 text-lg text-white-A700_90"
-                  size="txtPoppinsRegular18WhiteA70090"
                   onClick={() => navigate("/desktop181")}
                 >
                   Disclaimer
-                </Text>
+                </p>
               </div>
             </div>
           </div>

@@ -23,7 +23,7 @@ function SignUpOnePage() {
     e.preventDefault();
 
     // Define your API endpoint
-    const apiUrl = 'https://mobile.codegifted.com/api/signup';
+    const apiUrl = 'http://mobile.codegifted.com/api/signup';
 
     // Create a data object with the user's input
     const userData = {
@@ -38,7 +38,8 @@ function SignUpOnePage() {
         // Handle the API response here
         console.log('API Response:', response.data);
         toast.success(response.data.message); 
-        navigate(`/signup?email=${email}&password=${password}`);
+        // navigate(`/signup?email=${email}&password=${password}`);
+        navigate('/login')
       })
       .catch((error) => {
         // Handle errors

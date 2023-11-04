@@ -2,12 +2,14 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-const Banners = () => {
+const ChannelBanner = () => {
   const bannerImages = [
-    "/banners/banner-1.jpg",
-    "/banners/banner2.jpg",
-    "/banners/doll-figures-3015495_1280.jpg",
-    "/banners/fantasy-4126847_1280.jpg",
+    "/ChannelBanner/banner1.jpg",
+    "/ChannelBanner/banner2.jpg",
+    "/ChannelBanner/banner3.jpg",
+    "/ChannelBanner/banner4.jpg",
+    "/ChannelBanner/banner5.jpg",
+    "/ChannelBanner/banner6.jpg",
   ];
 
   return (
@@ -28,7 +30,7 @@ const Banners = () => {
                     <img
                       src={url}
                       alt={`Banner ${index + 1}`}
-                      style={{ maxWidth: "100%", maxHeight: "550px" }}
+                      style={{ maxWidth: "100%", maxHeight: "530px" }}
                     />
                   </div>
                 </div>
@@ -43,4 +45,4 @@ const Banners = () => {
   );
 };
 
-export default Banners;
+export default ChannelBanner;

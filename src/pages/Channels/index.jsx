@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Img, List, PagerIndicator, Text } from "components";
+import ChannelBanner from "components/ChannelBanner";
 
 const Channels = () => {
   const navigate = useNavigate();
@@ -100,7 +101,7 @@ const Channels = () => {
           </div>
         </header>
         <div className="font-poppins h-[514px] md:h-[526px] mt-3 md:px-5 relative w-full">
-          <Img
+          {/* <Img
             className="h-[514px] m-auto object-cover w-full"
             src="images/img_lucifers1_514x1440.png"
             alt="lucifersOne"
@@ -113,13 +114,13 @@ const Channels = () => {
             inactiveCss="inline-block cursor-pointer rounded-[50%] h-6 border-gray-100 border-2 border-solid w-6 relative"
             selectedWrapperCss="inline-block mx-[5.00px]"
             unselectedWrapperCss="inline-block mx-[5.00px]"
-          />
-          <div className="absolute bottom-[22%] flex flex-col items-start justify-start left-[2%] w-1/5">
+          /> */}
+          {/* <div className="absolute bottom-[22%] flex flex-col items-start justify-start left-[2%] w-1/5">
             <Text
               className="sm:text-[40px] md:text-[46px] text-[50px] text-gray-100"
               size="txtPoppinsBlack50"
             >
-              A+ Cinema
+              BBC
             </Text>
             <div className="flex flex-row font-opensans gap-[90px] items-center justify-start mt-0.5 w-[89%] md:w-full">
               <Text
@@ -135,7 +136,8 @@ const Channels = () => {
                 Shows: 158
               </Text>
             </div>
-          </div>
+          </div> */}
+          <ChannelBanner/>
         </div>
         <div className="flex flex-col font-opensans justify-start max-w-[1432px] mb-[29px] mt-8 mx-auto overflow-auto md:px-5 w-full">
           <div className="flex flex-col gap-4 items-start justify-start w-full">
@@ -157,44 +159,59 @@ const Channels = () => {
               orientation="horizontal"
             >
               <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-40 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_160x283.png"
-                  alt="faj2uifuuaul6u"
-                />
+                <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/9Auq9mYxFEE"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
               </div>
               <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-40 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_2.png"
-                  alt="faj2uifuuaul6u"
-                />
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/GHZvOIQgwFY"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
               </div>
               <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-40 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_3.png"
-                  alt="faj2uifuuaul6u"
-                />
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/vZYMwAm8sso"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
               </div>
               <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-40 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_4.png"
-                  alt="faj2uifuuaul6u"
-                />
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/Bgqq9gpuDnc"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
               </div>
               <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-40 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_5.png"
-                  alt="faj2uifuuaul6u"
-                />
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/3ni9YJHkKHw"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
               </div>
             </List>
           </div>
           <div className="flex flex-col items-start justify-start md:ml-[0] ml-[17px] mt-8 w-full">
-            <div className="flex flex-col gap-[15px] items-start justify-start w-[92%] md:w-full">
+            <div className="flex flex-col gap-4 items-start justify-start w-full">
               <div className="flex flex-row gap-1 items-center justify-start w-auto">
                 <Text
                   className="text-white-A700 text-xl w-auto"
@@ -209,94 +226,60 @@ const Channels = () => {
                 />
               </div>
               <List
-                className="sm:flex-col flex-row gap-[25px] grid sm:grid-cols-1 md:grid-cols-3 grid-cols-6 justify-center w-full"
-                orientation="horizontal"
-              >
-                <div className="flex relative w-full">
-                  <Img
-                    className="h-[185px] my-auto"
-                    src="images/img_1.svg"
-                    alt="One"
-                  />
-                  <div className="flex flex-col items-center justify-start ml-[-5.5px] my-auto rounded w-auto z-[1]">
-                    <Img
-                      className="h-[185px] md:h-auto object-cover rounded w-[132px] sm:w-full"
-                      src="images/img_image_4.png"
-                      alt="image_One"
-                    />
-                  </div>
-                </div>
-                <div className="flex relative w-full">
-                  <Img
-                    className="h-[185px] my-auto"
-                    src="images/img_2.svg"
-                    alt="Two"
-                  />
-                  <div className="flex flex-col items-center justify-start ml-[-24.35px] my-auto rounded w-auto z-[1]">
-                    <Img
-                      className="h-[185px] md:h-auto object-cover rounded w-[132px] sm:w-full"
-                      src="images/img_image_5.png"
-                      alt="image_One"
-                    />
-                  </div>
-                </div>
-                <div className="flex relative w-full">
-                  <Img
-                    className="h-[185px] my-auto"
-                    src="images/img_3.svg"
-                    alt="Three"
-                  />
-                  <div className="flex flex-col items-center justify-start ml-[-25.75px] my-auto rounded w-auto z-[1]">
-                    <Img
-                      className="h-[185px] md:h-auto object-cover rounded w-[132px] sm:w-full"
-                      src="images/img_image_6.png"
-                      alt="image_One"
-                    />
-                  </div>
-                </div>
-                <div className="flex relative w-full">
-                  <Img
-                    className="h-[185px] my-auto"
-                    src="images/img_4.svg"
-                    alt="Four"
-                  />
-                  <div className="flex flex-col items-center justify-start ml-[-41.5px] my-auto rounded w-auto z-[1]">
-                    <Img
-                      className="h-[185px] md:h-auto object-cover rounded w-[132px] sm:w-full"
-                      src="images/img_image_7.png"
-                      alt="image_One"
-                    />
-                  </div>
-                </div>
-                <div className="flex relative w-full">
-                  <Img
-                    className="h-[185px] my-auto"
-                    src="images/img_5.svg"
-                    alt="Five"
-                  />
-                  <div className="flex flex-col items-center justify-start ml-[-23.33px] my-auto rounded w-auto z-[1]">
-                    <Img
-                      className="h-[185px] md:h-auto object-cover rounded w-[132px] sm:w-full"
-                      src="images/img_image_8.png"
-                      alt="image_One"
-                    />
-                  </div>
-                </div>
-                <div className="flex relative w-full">
-                  <Img
-                    className="h-[185px] my-auto"
-                    src="images/img_6.svg"
-                    alt="Six"
-                  />
-                  <div className="flex flex-col items-center justify-start ml-[-28.33px] my-auto rounded w-auto z-[1]">
-                    <Img
-                      className="h-[185px] md:h-auto object-cover rounded w-[132px] sm:w-full"
-                      src="images/img_image_2.png"
-                      alt="image_One"
-                    />
-                  </div>
-                </div>
-              </List>
+              className="sm:flex-col flex-row gap-4 grid sm:grid-cols-1 md:grid-cols-3 grid-cols-5 justify-center w-full"
+              orientation="horizontal"
+            >
+              <div className="flex flex-1 flex-col items-center justify-start w-full">
+                <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/jfKfPfyJRdk"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
+              </div>
+              <div className="flex flex-1 flex-col items-center justify-start w-full">
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/zsYwejVYZ_M"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
+              </div>
+              <div className="flex flex-1 flex-col items-center justify-start w-full">
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/qH3fETPsqXU"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
+              </div>
+              <div className="flex flex-1 flex-col items-center justify-start w-full">
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/rUxyKA_-grg"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
+              </div>
+              <div className="flex flex-1 flex-col items-center justify-start w-full">
+              <iframe
+                  width="100%"
+                  height="160rem"
+                  src="https://www.youtube.com/embed/3ni9YJHkKHw"
+                  frameBorder="0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                ></iframe>
+              </div>
+            </List>
             </div>
           </div>
           <Text
@@ -307,291 +290,195 @@ const Channels = () => {
           </Text>
           <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center min-h-[auto] mt-[17px] w-full">
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/ydYDqZQpim8"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/RBikkVw4maE"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/lFPG2B7hJs0"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/MIA8AKVZ0Yk"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/-QpxsY5anoc"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/Vm2SwtQVTLY"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/3ni9YJHkKHw"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/d-Prr4NkPmk"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/-OMckPM0Gao"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/36YnV9STBqc"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/4zpDEDyF9dc"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/86XzuPmMriw"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/VSZg7mjOd84"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/tkDUSYHoKxE"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/Fgm9UAzdzQY"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/34H1XIjnfKM"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/tyVQk-BAWms"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/TG4fFNVoEQQ"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/we2YjI3IzPk"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
             <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
+            <iframe
+                  width="100%"
+                  height="193rem"
+                  src="https://www.youtube.com/embed/yI3H8Dnrn9M"
+                  allow="autoplay; fullscreen; encrypted-media"
+                  title="YouTube Video"
+                />
             </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_160x283.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_2.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_3.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
-            <div className="flex flex-1 flex-col items-center justify-start w-full">
-              <Img
-                className="h-48 md:h-auto object-cover w-full"
-                src="images/img_faj2uifuuaul6u_4.png"
-                alt="faj2uifuuaul6u"
-              />
-            </div>
+            
           </div>
           <div className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] ml-[54px] w-[38%] md:w-full">
             <a href="javascript:" className="text-base text-white-A700">
-              <Text size="txtOpenSansRomanRegular16"
-               onClick={() => navigate("/desktop180")}
-              >Privacy Policy</Text>
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop180")}
+              >
+                Privacy Policy
+              </Text>
             </a>
             <Text
               className="text-base text-white-A700"
@@ -601,14 +488,16 @@ const Channels = () => {
               Disclaimer
             </Text>
             <a href="javascript:" className="text-base text-white-A700">
-              <Text size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/desktop179")}
-              >Terms and Conditions</Text>
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop179")}
+              >
+                Terms and Conditions
+              </Text>
             </a>
             <Text
               className="text-base text-white-A700"
               size="txtOpenSansRomanRegular16"
-              
             >
               Terms of Use
             </Text>

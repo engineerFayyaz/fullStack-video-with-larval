@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button, Img, Text } from "components";
+import Banners from "components/Banners";
 
 function Movies(props) {
   const navigate = useNavigate();
@@ -55,6 +56,7 @@ function Movies(props) {
             src="images/img_whatsappimage.png"
             alt="whatsappimage"
           />
+          
           <div className="flex md:flex-1 md:flex-col flex-row md:gap-10 items-center justify-between md:ml-[0] ml-[528px] md:mt-0 my-[19px] w-[56%] md:w-full">
             <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[63%] md:w-full">
               <div className={`flex flex-row gap-2 items-center justify-center w-auto ${location.pathname === "/movies" ? 'text-pink-500' : ''}`}>
@@ -143,8 +145,10 @@ function Movies(props) {
             </Button>
           </div>
         </header>
+
+        <Banners/>
    
-    <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full" style={{ marginTop: "437px" }}>
+    <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
    
       <Text className="text-white-A700 text-xl w-auto" size="txtOpenSansRomanBold20WhiteA700">
         All Movies

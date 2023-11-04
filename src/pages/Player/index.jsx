@@ -1,18 +1,13 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import { useLocation } from "react-router-dom";
-import "../../pages/Player/PlayerPage.css"
 
 const PlayerPage = () => {
   const location = useLocation();
   const videoUrl = new URLSearchParams(location.search).get("videoUrl");
 
   if (!videoUrl) {
-    return (
-      <div>
-        Video URL is missing. Please provide a valid video URL.
-      </div>
-    );
+    return <div>Video URL is missing. Please provide a valid video URL.</div>;
   }
 
   return (

@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 import { Button, Img, Text } from "components";
 
-const Header1 = (props) => {
+const Header1 = (props , userName) => {
   const navigate = useNavigate();
+  console.log("username",userName)
 
   return (
     <>
@@ -97,7 +98,7 @@ const Header1 = (props) => {
             variant="fill"
           >
             <div className="font-bold font-opensans text-base text-center">
-              Jane J. Jester
+            <p>Welcome, {userName}</p> {/* Display the username */}
             </div>
           </Button>
         </div>
