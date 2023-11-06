@@ -37,7 +37,7 @@ const DetailsSeries = () => {
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
         <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
-        <div className="h-[700px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
+        <div className="h-[600px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
           {seriesData && seriesData.series_id && ( // Check if seriesData and series_id exist
             <Img
               className="h-[100%] m-auto  w-full"
@@ -48,7 +48,7 @@ const DetailsSeries = () => {
           <div className="absolute bottom-[1%] flex flex-col md:gap-10 gap-20 justify-start left-[4%] w-[66%]">
             {seriesData && seriesData.series_id && ( // Check if seriesData and series_id exist
               <Img
-                className="common-pointer h-100 md:ml-[0] ml-[523px] w-44"
+                className="common-pointer h-50 md:ml-[0] ml-[523px] w-44"
                 src="/images/icons8-pot-player.svg"
                 alt="group163539"
                 onClick={() => navigate(`/player?videoUrl=${seriesData.trailer_url}`)}
@@ -111,6 +111,182 @@ const DetailsSeries = () => {
             )}
           </div>
         </div>
+        <div className="flex flex-col items-start justify-start max-w-[1329px] mb-10 mt-8 mx-auto md:px-5 w-full">
+          <Text
+            className="md:text-3xl sm:text-[28px] text-[32px] text-gray-100"
+            size="txtOpenSansRomanBold32"
+          >
+            Desciption
+          </Text>
+          <Text
+            className="mt-5 text-gray-100 text-sm w-full"
+            size="txtNunitoSansRegular14"
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit
+            amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem
+            ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor
+            sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet,
+            consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
+            elit.{" "}
+          </Text>
+          <div className="flex flex-col font-poppins gap-2.5 items-start justify-start mt-[22px]">
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Seasons:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+                1
+              </span>
+            </Text>
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Genre:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+                Action, Thriller, Survival, Drama
+              </span>
+            </Text>
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Directed by:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+                Hwang Dong-hyuk
+              </span>
+            </Text>
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Written by:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+                Hwang Dong-hyuk
+              </span>
+            </Text>
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Starring:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+                <>
+                  Lee Jung-jae, Park Hae-soo, Wi Ha-joon, Jung Ho-yeon, O
+                  Yeong-su, Heo Sung-tae,Anupam Tripathi, Kim Joo-ryoung
+                </>
+              </span>
+            </Text>
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Production Companies:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+                Netflix
+              </span>
+            </Text>
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Original release:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+                September 17, 2021
+              </span>
+            </Text>
+          </div>
+        </div>
+        <div className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] pl-[54px] w-[100%] md:w-full pt-3" style={{borderTop:"1px solid #2d2d2d"}}>
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop180")}
+              >
+                Privacy Policy
+              </Text>
+            </a>
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop181")}
+              >
+                Disclaimer
+              </Text>
+            </a>
+
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop179")}
+              >
+                Terms and Conditions
+              </Text>
+            </a>
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop178")}
+              >
+                Terms Of Use
+              </Text>
+            </a>
+          </div>
       </div>
     </>
   );

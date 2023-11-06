@@ -98,7 +98,7 @@ const Header = (props) => {
             variant="fill"
           >
             <div className="font-bold font-opensans text-base text-center">
-            {email && <p>Email: {email}</p>}
+            {email && <p>{email}</p>}
             </div>
           </Button>
         </div>

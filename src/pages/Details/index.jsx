@@ -61,7 +61,9 @@ const DetailsPage = () => {
         <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
 
       <div className="h-[600px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
+        
         {movieData && (
+          
           <Img
             className="h-[100%] m-auto w-full"
             src={`https://ourbrandtv.com/assets/global/movie_thumb/${movieData.movie_id}.jpg`}
