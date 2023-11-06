@@ -1,7 +1,5 @@
 import React from "react";
-
 import { useNavigate , useLocation} from "react-router-dom";
-
 import { Button, Img, Text } from "components";
 
 const Header1 = (props , userName) => {
@@ -12,11 +10,11 @@ const Header1 = (props , userName) => {
 
   return (
     <>
-      <header className={props.className}>
+      <header className={`${props.className} pl-4 pr-4 `}  >
         <Img
-          className="h-20 sm:h-auto object-cover w-[6%] md:w-full"
-          src="images/img_whatsappimage.png"
-          alt="whatsappimage"
+          className="h-20 sm:h-auto object-cover w-[7%] md:w-full "
+          src="images/logo.png"
+          alt="OurBrandTV"
         />
         <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start md:ml-[0] ml-[528px] md:mt-0 my-[19px] w-[56%] md:w-full">
           <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[65%] md:w-full">
@@ -68,11 +66,11 @@ const Header1 = (props , userName) => {
             <div className="flex flex-row gap-2 items-center justify-center w-auto">
               <Img
                 className="h-6 w-6"
-                src="images/img_search_pink_500.svg"
+                src="images/user-icon-white.png"
                 alt="search"
               />
               <Text
-                className="common-pointer text-base text-pink-500 w-auto"
+                className="common-pointer text-base text-white-A700 w-auto"
                 size="txtOpenSansRomanBold16"
                 onClick={() => navigate("/MyChannels")}
               >
@@ -95,7 +93,7 @@ const Header1 = (props , userName) => {
               />
             }
             shape="round"
-            color="pink_500"
+            style={{ backgroundColor: "#015DEF" }}
             size="sm"
             variant="fill"
           >

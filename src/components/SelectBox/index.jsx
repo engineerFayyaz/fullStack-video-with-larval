@@ -3,7 +3,7 @@ import Select from "react-select";
 import PropTypes from "prop-types";
 import { ErrorMessage } from "../ErrorMessage";
 
-const variants = { fill: { pink_500: "bg-pink-500 text-white-A700" } };
+const variants = { fill: { pink_500: "bg-#015DEF text-white-A700" } };
 const shapes = { round: "rounded-[3px]" };
 const sizes = { xs: "p-2.5" };
 

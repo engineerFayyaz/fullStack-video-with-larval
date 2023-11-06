@@ -55,7 +55,7 @@ function Movies(props) {
 
         <Banners/>
    
-    <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
+    <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3 pr-3">
    
       <Text className="text-white-A700 text-xl w-auto" size="txtOpenSansRomanBold20WhiteA700">
         All Movies
@@ -65,7 +65,7 @@ function Movies(props) {
           <p>Loading...</p>
         ) : (
           createRows().map((row, rowIndex) => (
-            <div key={rowIndex} className="flex flex-row gap-5 items-center justify-between w-full">
+            <div key={rowIndex} className="flex flex-row gap-3 items-center  w-full mb-5">
               {row.map((movie) => {
                 // Store movie_id in a variable
                 const movieId = movie.movie_id;
@@ -76,7 +76,7 @@ function Movies(props) {
                       <img
                         src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
                         alt={movie.title}
-                        className="common-pointer h-[300px] md:h-auto object-cover w-full"
+                        className="common-pointer h-[250px] md:h-auto  w-full" style={{width:"220px"}}
                       />
                     </Link>
                   </div>
@@ -86,8 +86,60 @@ function Movies(props) {
           ))
         )}
       </div>
+      <div className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] pl-[54px] w-[100%] md:w-full pt-3" style={{borderTop:"1px solid #2d2d2d"}}>
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop180")}
+              >
+                Privacy Policy
+              </Text>
+            </a>
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop181")}
+              >
+                Disclaimer
+              </Text>
+            </a>
+
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop179")}
+              >
+                Terms and Conditions
+              </Text>
+            </a>
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop178")}
+              >
+                Terms Of Use
+              </Text>
+            </a>
+          </div>
     </div>
     </div>
+    
     </>
     
   );

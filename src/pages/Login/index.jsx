@@ -57,26 +57,28 @@ const LoginPage = () => {
       <div className="bg-black-900 flex flex-col font-poppins items-center justify-end mx-auto p-[18px] w-full">
         <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between max-w-[1171px] mt-[62px] mx-auto md:px-5 w-full">
           <Img
-            className="h-[403px] md:h-auto md:mt-0 mt-[217px] object-cover"
-            src="images/img_whatsappimage_403x476.png"
+            className=" md:h-auto md:mt-0 mt-[40px] object-cover"
+            src="images/logo.png"
             alt="whatsappimage"
           />
-          <div className="flex flex-col items-end justify-start">
-            <div className="flex flex-row items-center justify-between w-[90%] md:w-full">
+          <div className="flex flex-col items-center justify-start">
+            <div className="flex flex-row justify-between w-[100%] md:w-full">
               <a
                 href="javascript:"
-                className="text-2xl md:text-[22px] text-pink-500 sm:text-xl"
+                className="text-2xl md:text-[22px] text-blue-600 sm:text-xl"
               >
                 Login
               </a>
-              <a className="text-2xl md:text-[22px] text-white-A700 sm:text-xl">
+              <a
+              href="javascript:"
+               className="text-2xl md:text-[22px] text-white-A700 sm:text-xl"  onClick={() => navigate("/SignUpOne")}>
                 Sign Up
               </a>
             </div>
-            <Line className="bg-pink-500 h-0.5 mr-[253px] mt-[7px] w-[55%]" />
-            <div className="flex flex-col items-start justify-start mr-0.5 mt-[90px] w-[87%] md:w-full">
+            <Line className="bg-blue-600 h-0.5 mr-[253px] mt-[7px] w-[55%]" />
+            <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
               <Button
-                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg"
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700"
                 onClick={() => googleSignIn()}
                 shape="round"
                 color="pink_500"
@@ -87,15 +89,15 @@ const LoginPage = () => {
               </Button>
               <Button
                 className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg"
-                shape="round"
                 color="pink_500"
+                shape="round"
                 size="sm"
                 variant="fill"
               >
                 Login with Facebook
               </Button>
               <Button
-                className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg"
+                className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg "
                 shape="round"
                 color="pink_500"
                 size="sm"
@@ -103,50 +105,50 @@ const LoginPage = () => {
               >
                 Login with Twitter
               </Button>
-              <p className="text-2xl md:text-[22px] text-white-A700 sm:text-xl">
+              <p className="text-2xl mt-3 ml-auto mr-auto md:text-[22px] text-white-A700 sm:text-xl">
                 OR
               </p>
-              <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px] mt-16 w-[99%] md:w-full">
+              <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px]  w-[100%] md:w-full min-w-[450px] sm:min-w-full">
                 <p className="text-lg text-white-A700">
                   Email
                 </p>
                 <input
                   name="email_One"
                   placeholder="Email"
-                  className="leading-[normal] p-0 placeholder:text-white-A700_87 text-left text-lg w-full"
+                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full"
                   wrapClassName="rounded-[20px] w-full"
                   type="email"
-                  color="gray_900_01"
                   variant="fill"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  style={{background:"#1D1D1D",border:"none",borderRadius:"6px"}}
                 />
               </div>
-              <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px] mt-[19px] w-[99%] md:w-full">
+              <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px] mt-[19px] w-[100%] md:w-full min-w-[450px] sm:min-w-full">
                 <p className="text-lg text-white-A700">
                   Password
                 </p>
                 <input
                   name="password_One"
                   placeholder="Password"
-                  className="leading-[normal] p-0 placeholder:text-white-A700_87 text-left text-lg w-full"
+                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full"
                   wrapClassName="rounded-[20px] w-full"
                   type="password"
-                  color="gray_900_01"
                   variant="fill"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  style={{background:"#1D1D1D",border:"none",borderRadius:"6px"}}
                 />
               </div>
               <CheckBox
                 className="leading-[normal] md:ml-[0] ml-[5px] mt-[19px] text-left text-lg"
-                inputClassName="border-2 border-pink-500 border-solid h-[25px] mr-[5px] w-[25px]"
+                inputClassName="border-2 border-blue-600 border-solid h-[25px] mr-[5px] w-[25px]"
                 name="rememberme"
                 id="rememberme"
-                label="Remember me"
+                label={<span style={{color:"white"}}>Remember me</span>}
               />
               <Button
-                className="common-pointer border border-pink-500 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
+                className="common-pointer border border-blue-700 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
                 shape="round"
                 color="pink_500"
                 size="xs"
@@ -155,21 +157,21 @@ const LoginPage = () => {
               >
                 Login
               </Button>
-              <div className="flex sm:flex-col flex-row gap-5 items-start justify-between mt-[78px] w-full">
+              <div className="flex sm:flex-col flex-row gap-2 items-start justify-between mt-[18px] w-full min-w-[450px] sm:min-w-full">
                 <a
                   href="javascript:"
-                  className="sm:mt-0 mt-0.5 text-lg text-white-A700_90"
+                  className="sm:mt-0 mt-0.5 text-md text-white-A700_90"
                 >
                   Privacy Policy
                 </a>
                 <a
                   href="javascript:"
-                  className="mb-0.5 text-lg text-white-A700_90"
+                  className="mb-0.5 text-md text-white-A700_90"
                 >
                   Terms and Conditions
                 </a>
                 <p
-                  className="mb-0.5 text-lg text-white-A700_90"
+                  className="mb-0.5 text-md text-white-A700_90"
                   onClick={() => navigate("/desktop181")}
                 >
                   Disclaimer

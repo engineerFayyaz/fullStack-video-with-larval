@@ -58,7 +58,7 @@ const Channels = () => {
           <ChannelBanner />
         </div>
         //all series can be get there:
-        <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
+        <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3">
           <Text
             className="text-white-A700 text-xl w-auto"
             size="txtOpenSansRomanBold20WhiteA700"
@@ -72,7 +72,7 @@ const Channels = () => {
               createRows().map((row, rowIndex) => (
                 <div
                   key={rowIndex}
-                  className="flex flex-row gap-5 items-center justify-between w-full"
+                  className="flex flex-row gap-3 items-center  w-full"
                 >
                   {row.map((movie) => {
                     // Store movie_id in a variable
@@ -89,7 +89,7 @@ const Channels = () => {
                           <img
                             src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.series_id}.jpg`}
                             alt={movie.title}
-                            className="common-pointer h-[300px] md:h-auto object-cover w-full"
+                            className="common-pointer h-[250px] md:h-auto  w-full" style={{width:"180px"}}
                           />
                         </Link>
                         {console.log("data passed : ", movie.series_id)}
@@ -101,7 +101,7 @@ const Channels = () => {
             )}
           </div>
         </div>
-        <div className="flex flex-col font-opensans justify-start max-w-[1432px] mb-[29px] mt-8 mx-auto overflow-auto md:px-5 w-full">
+        <div className="flex flex-col font-opensans justify-start max-w-[1432px] mb-[29px] mt-8 mx-auto overflow-auto md:px-5 w-full pl-3">
           <div className="flex flex-col gap-4 items-start justify-start w-full">
             <div className="flex flex-row gap-1 items-center justify-start ml-1 md:ml-[0] w-auto">
               <Text
@@ -172,7 +172,7 @@ const Channels = () => {
               </div>
             </List>
           </div>
-          <div className="flex flex-col items-start justify-start md:ml-[0] ml-[17px] mt-8 w-full">
+          <div className="flex flex-col items-start justify-start md:ml-[0] pr-5 mt-8 w-full">
             <div className="flex flex-col gap-4 items-start justify-start w-full">
               <div className="flex flex-row gap-1 items-center justify-start w-auto">
                 <Text
@@ -245,12 +245,12 @@ const Channels = () => {
             </div>
           </div>
           <Text
-            className="md:ml-[0] ml-[17px] mt-[34px] text-white-A700 text-xl"
+            className="md:ml-[0] mt-[34px] text-white-A700 text-xl"
             size="txtOpenSansRomanBold20WhiteA700"
           >
             All Channels
           </Text>
-          <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center min-h-[auto] mt-[17px] w-full">
+          <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center pr-5 min-h-[auto] mt-[17px] w-full">
             <div className="flex flex-1 flex-col items-center justify-start w-full">
               <iframe
                 width="100%"
@@ -432,8 +432,12 @@ const Channels = () => {
               />
             </div>
           </div>
-          <div className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] ml-[54px] w-[38%] md:w-full">
-            <a href="javascript:" className="text-base text-white-A700">
+            <div className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] pl-[54px] w-[100%] md:w-full pt-3" style={{borderTop:"1px solid #2d2d2d"}}>
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
               <Text
                 size="txtOpenSansRomanRegular16"
                 onClick={() => navigate("/desktop180")}
@@ -441,14 +445,24 @@ const Channels = () => {
                 Privacy Policy
               </Text>
             </a>
-            <Text
+            <a
+              href="javascript:"
               className="text-base text-white-A700"
-              size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/desktop181")}
+              style={{ fontSize: "13px" }}
             >
-              Disclaimer
-            </Text>
-            <a href="javascript:" className="text-base text-white-A700">
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop181")}
+              >
+                Disclaimer
+              </Text>
+            </a>
+
+            <a
+              href="javascript:"
+              className="text-base text-white-A700"
+              style={{ fontSize: "13px" }}
+            >
               <Text
                 size="txtOpenSansRomanRegular16"
                 onClick={() => navigate("/desktop179")}
@@ -456,12 +470,18 @@ const Channels = () => {
                 Terms and Conditions
               </Text>
             </a>
-            <Text
+            <a
+              href="javascript:"
               className="text-base text-white-A700"
-              size="txtOpenSansRomanRegular16"
+              style={{ fontSize: "13px" }}
             >
-              Terms of Use
-            </Text>
+              <Text
+                size="txtOpenSansRomanRegular16"
+                onClick={() => navigate("/desktop178")}
+              >
+                Terms Of Use
+              </Text>
+            </a>
           </div>
         </div>
       </div>

@@ -13,8 +13,8 @@ const Header = (props) => {
       <header className={props.className}>
         <Img
           className="h-20 sm:h-auto object-cover w-[6%] md:w-full"
-          src="images/img_whatsappimage.png"
-          alt="whatsappimage"
+          src="images/logo.jpeg"
+          alt="ourbrandTV"
         />
         <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between md:ml-[0] ml-[528px] md:mt-0 my-[19px] w-[56%] md:w-full">
           <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[63%] md:w-full">

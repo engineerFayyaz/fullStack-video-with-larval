@@ -1,13 +1,44 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Text, Img, RatingBar } from "components";
+
 
 const Banners = () => {
   const bannerImages = [
-    "/banners/banner-1.jpg",
-    "/banners/banner2.jpg",
-    "/banners/doll-figures-3015495_1280.jpg",
-    "/banners/fantasy-4126847_1280.jpg",
+    {
+      url: "/banners/banner-1.jpg",
+      channel: "HBO",
+      movie: "The MEG2",
+      runtime: "Runtime: 1250s",
+      resolution: "Resolution: 4K",
+      rating: 4.5, // Replace with the actual rating
+    },
+    {
+      url: "/banners/banner2.jpg",
+      channel: "Channel Name",
+      movie: "Movie Name",
+      runtime: "Runtime: 1250s",
+      resolution: "Resolution: 4K",
+      rating: 4.5, // Replace with the actual rating
+    },
+    {
+      url: "/banners/doll-figures-3015495_1280.jpg",
+      channel: "Channel Name",
+      movie: "Movie Name",
+      runtime: "Runtime: 1250s",
+      resolution: "Resolution: 4K",
+      rating: 4.5, // Replace with the actual rating
+    },
+    {
+      url: "/banners/fantasy-4126847_1280.jpg",
+      channel: "Channel Name",
+      movie: "Movie Name",
+      runtime: "Runtime: 1250s",
+      resolution: "Resolution: 4K",
+      rating: 4.5, // Replace with the actual rating
+    },
+     
   ];
 
   return (
@@ -16,20 +47,50 @@ const Banners = () => {
         <div className="col-md-12">
           {bannerImages.length > 0 ? (
             <Carousel showThumbs={true} showStatus={false} infiniteLoop autoPlay>
-              {bannerImages.map((url, index) => (
+              {bannerImages.map((banner, index) => (
                 <div key={index}>
                   <div
                     style={{
+                      position: "relative",
                       display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
+                      alignItems: "flex-end",
+                      justifyContent: "flex-start",
                     }}
                   >
                     <img
-                      src={url}
+                      src={banner.url}
                       alt={`Banner ${index + 1}`}
                       style={{ maxWidth: "100%", maxHeight: "550px" }}
                     />
+                    <div
+                      style={{
+                        position: "absolute",
+                        bottom: "60px",
+                        left: "40px",
+                        color: "white",
+                        padding: "5px",
+                        borderRadius: "5px",
+                      }}
+                    >
+                      <p style={{fontSize:"14px"}} className="text-left">{banner.channel}</p>
+                      <p style={{fontSize:"80px",fontWeight:"700",fontFamily:"arial"}} className="text-left">{banner.movie}</p>
+                      <p style={{fontSize:"29px",fontWeight:"500"}} className="text-left">{`${banner.resolution} | ${banner.runtime}`}</p>
+                      <p className="flex flex-row items-center gap-4"> <RatingBar
+                          className="flex justify-between w-[190px]"
+                          // value={movieData.rating}
+                          starCount={5}
+                          activeColor="#f1c644"
+                          size={30}
+                        ></RatingBar>
+                        <Text
+                        className="text-white-A700 text-xl pt-1"
+                        size="txtPoppinsRegular20WhiteA700"
+                      >
+                        5
+                      </Text>
+                        </p>
+                  
+                    </div>
                   </div>
                 </div>
               ))}

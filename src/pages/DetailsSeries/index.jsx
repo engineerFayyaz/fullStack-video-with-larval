@@ -37,10 +37,10 @@ const DetailsSeries = () => {
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
         <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
-        <div className="h-[924px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
+        <div className="h-[700px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
           {seriesData && seriesData.series_id && ( // Check if seriesData and series_id exist
             <Img
-              className="h-[924px] m-auto object-cover w-full"
+              className="h-[100%] m-auto  w-full"
               src={`https://ourbrandtv.com/assets/global/movie_thumb/${seriesData.series_id}.jpg`}
               alt="lucifersOne"
             />
@@ -48,28 +48,28 @@ const DetailsSeries = () => {
           <div className="absolute bottom-[1%] flex flex-col md:gap-10 gap-20 justify-start left-[4%] w-[66%]">
             {seriesData && seriesData.series_id && ( // Check if seriesData and series_id exist
               <Img
-                className="common-pointer h-64 md:ml-[0] ml-[523px] w-64"
+                className="common-pointer h-100 md:ml-[0] ml-[523px] w-44"
                 src="/images/icons8-pot-player.svg"
                 alt="group163539"
                 onClick={() => navigate(`/player?videoUrl=${seriesData.trailer_url}`)}
               />
             )}
             {seriesData && seriesData.title && ( // Check if seriesData and title exist
-              <div className="flex flex-col gap-[11px] items-start justify-start w-full">
-                <div className="h-[207px] relative w-full">
-                  <div className="flex flex-col h-full items-center justify-start m-auto w-full">
-                    <div className="flex flex-col gap-[30px] justify-start w-full">
+              <div className="flex flex-col h-[250px] w-[100%]  items-start justify-start w-full">
+                <div className=" w-full">
+                  <div className="flex flex-col  justify-start m-auto w-full">
+                    <div className="flex flex-col  justify-start w-full">
                       <Text
-                        className="md:text-5xl text-[100px] text-gray-100 text-right"
+                        className="md:text-2xl text-[40px] text-gray-100 "
                         size="txtOpenSansRomanExtraBold100"
                       >
                         {seriesData.title}
                       </Text>
                     </div>
                   </div>
-                  <div className="absolute bottom-[5%] flex flex-col font-poppins items-center justify-start left-[0] w-[41%]">
+                  <div className="absolute flex flex-col font-poppins  justify-start left-[0] w-[100%]">
                     <div className="flex flex-col justify-start w-full">
-                      <div className="flex flex-row gap-[34px] items-start justify-start ml-1.5 md:ml-[0] w-[99%] md:w-full">
+                      <div className="flex flex-row  items-start justify-start  md:ml-[0] w-[99%] md:w-full">
                         <Text
                           className="mt-0.5 text-gray-100 text-right text-xl"
                           size="txtOpenSansRomanBold20"
@@ -78,7 +78,7 @@ const DetailsSeries = () => {
                         </Text>
                       </div>
                       <div className="flex flex-row gap-5 items-center justify-start w-[66%] md:w-full">
-                        <div className="flex flex-row items-center justify-evenly w-[78%]">
+                        <div className="flex flex-row items-center justify-evenly w-[28%]">
                           <RatingBar
                             className="flex justify-between w-[190px]"
                             value={seriesData.rating}
@@ -89,7 +89,7 @@ const DetailsSeries = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-row gap-5 items-center justify-start w-[66%] md:w-full">
+                    <div className="flex flex-row gap-5  justify-start w-[100%] md:w-full">
                       {seriesData.trailer_url && (
                         <Link to={`/player?videoUrl=${seriesData.trailer_url}`}>
                           <button className="bg-blue-500 text-white text-xl py-2 px-4 rounded">

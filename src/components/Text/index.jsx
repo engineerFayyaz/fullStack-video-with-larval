@@ -33,6 +33,7 @@ const sizeClasses = {
   txtOpenSansRomanBold24: "font-bold font-opensans",
   txtNunitoSansSemiBold14: "font-nunitosans font-semibold",
   txtInterRegular18: "font-inter font-normal",
+  
 };
 
 const Text = ({ children, className = "", size, as, ...restProps }) => {
