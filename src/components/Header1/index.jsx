@@ -1,18 +1,27 @@
-import React from "react";
-import { useNavigate , useLocation} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button, Img, Text } from "components";
 
-const Header1 = (props , userName) => {
+const Header1 = (props) => {
   const navigate = useNavigate();
-  // console.log("username",userName)
   const location = useLocation();
   const email = location.state ? location.state.email : null;
 
+  const [searchBarVisible, setSearchBarVisible] = useState(false);
+
+  const openSearchBar = () => {
+    setSearchBarVisible(true);
+  };
+
+  const closeSearchBar = () => {
+    setSearchBarVisible(false);
+  };
+
   return (
     <>
-      <header className={`${props.className} pl-4 pr-4 `}  >
+      <header className={`${props.className} pl-4 pr-4`}>
         <Img
-          className="h-20 sm:h-auto object-cover w-[7%] md:w-full "
+          className="h-20 sm:h-auto object-cover w-[7%] md:w-full"
           src="images/logo.png"
           alt="OurBrandTV"
         />
@@ -68,6 +77,7 @@ const Header1 = (props , userName) => {
                 className="h-6 w-6"
                 src="images/user-icon-white.png"
                 alt="search"
+                onClick={openSearchBar} // Open the search bar
               />
               <Text
                 className="common-pointer text-base text-white-A700 w-auto"
@@ -79,9 +89,10 @@ const Header1 = (props , userName) => {
             </div>
           </div>
           <Img
-            className="h-[18px] md:ml-[0] ml-[25px] w-[18px]"
+            className="h-[18px] md:ml-[0] ml-[25px] w-[18px] cursor-pointer sm:hidden"
             src="images/img_search_white_a700.svg"
             alt="search_One"
+            onClick={openSearchBar} // Open the search bar
           />
           <Button
             className="cursor-pointer flex items-center justify-center min-w-[172px] md:ml-[0] ml-[50px]"
@@ -98,11 +109,45 @@ const Header1 = (props , userName) => {
             variant="fill"
           >
             <div className="font-bold font-opensans text-base text-center">
-            {email && <p>Email: {email}</p>}
+              {email && <p>Email: {email}</p>}
             </div>
           </Button>
         </div>
       </header>
+      {searchBarVisible && (
+        <div className="relative top-0 left-0 w-full h-16 bg-gray-900 z-10 sm:hidden">
+          <div className="pl-4 pr-4 flex items-center justify-between h-16 w-[90%]">
+            <input
+              type="text"
+              className="w-full p-2  text-white placeholder-white-500"
+              style={{borderRadius:"2px"}}
+              placeholder="Search..."
+            />
+            <Button
+              className="cursor-pointer bg-transparent ml-2"
+              leftIcon={
+                <Img
+                  className="h-6 w-6"
+                  src="images/close.png"
+                  alt="Close"
+                />
+              }
+              onClick={closeSearchBar} 
+            />
+            <Button
+              className="cursor-pointer p-2 "
+             
+             style={{position:"absolute",top:"13px",right:"182px",color:"white",backgroundColor: "#015DEF",borderRadius:"5px"}}
+              onClick={() => {
+                alert("No result Found....! try agin later..")
+              }}
+              
+            >
+              Search
+            </Button>
+          </div>
+        </div>
+      )}
     </>
   );
 };

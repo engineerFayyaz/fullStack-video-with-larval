@@ -1,7 +1,5 @@
 import React from "react";
-
 import { useNavigate } from "react-router-dom";
-
 import { Button, Img, List, PagerIndicator, RatingBar, Text } from "components";
 import FreetoWatch from "components/FreetoWatch";
 import TopTen from "components/TopTen";
