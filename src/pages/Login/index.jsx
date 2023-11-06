@@ -55,13 +55,13 @@ const LoginPage = () => {
   return (
     <>
       <div className="bg-black-900 flex flex-col font-poppins items-center justify-end mx-auto p-[18px] w-full">
-        <div className="flex md:flex-col flex-row md:gap-10 items-start justify-between max-w-[1171px] mt-[62px] mx-auto md:px-5 w-full">
+        <div className="flex md:flex-col  flex-row md:gap-10 items-start justify-between max-w-[1171px] mt-[62px] mx-auto md:px-5 w-full">
           <Img
             className=" md:h-auto md:mt-0 mt-[40px] object-cover"
             src="images/logo.png"
             alt="whatsappimage"
           />
-          <div className="flex flex-col items-center justify-start">
+          <div className="flex flex-col  items-center justify-start w-[40%]">
             <div className="flex flex-row justify-between w-[100%] md:w-full">
               <a
                 href="javascript:"
@@ -115,7 +115,7 @@ const LoginPage = () => {
                 <input
                   name="email_One"
                   placeholder="Email"
-                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full"
+                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-white-A700 text-left text-lg w-full"
                   wrapClassName="rounded-[20px] w-full"
                   type="email"
                   variant="fill"
@@ -131,7 +131,7 @@ const LoginPage = () => {
                 <input
                   name="password_One"
                   placeholder="Password"
-                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full"
+                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full text-white-A700"
                   wrapClassName="rounded-[20px] w-full"
                   type="password"
                   variant="fill"

@@ -116,7 +116,7 @@ const Header1 = (props) => {
       </header>
       {searchBarVisible && (
         <div className="relative top-0 left-0 w-full h-16 bg-gray-900 z-10 sm:hidden">
-          <div className="pl-4 pr-4 flex items-center justify-between h-16 w-[90%]">
+          <div className="pl-4 pr-4 flex items-center justify-between h-16 w-[100%]">
             <input
               type="text"
               className="w-full p-2  text-white placeholder-white-500"
@@ -137,7 +137,7 @@ const Header1 = (props) => {
             <Button
               className="cursor-pointer p-2 "
              
-             style={{position:"absolute",top:"13px",right:"182px",color:"white",backgroundColor: "#015DEF",borderRadius:"5px"}}
+             style={{position:"absolute",top:"13px",right:"52px",color:"white",backgroundColor: "#015DEF",borderRadius:"5px"}}
               onClick={() => {
                 alert("No result Found....! try agin later..")
               }}

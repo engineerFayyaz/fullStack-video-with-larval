@@ -129,7 +129,7 @@ function SignUpOnePage() {
                 <input
                   name="email_One"
                   placeholder="Email"
-                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full"
+                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full text-white-A700"
                   wrapClassName="rounded-[20px] w-full"
                   type="email"
                   variant="fill"
@@ -148,7 +148,7 @@ function SignUpOnePage() {
                 <input
                   name="groupSeven"
                   placeholder="Password"
-                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full"
+                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full text-white-A700"
                   wrapClassName="rounded-[20px] w-full"
                   type="password"
                   variant="fill"
@@ -167,7 +167,7 @@ function SignUpOnePage() {
                 <input
                   name="groupEight"
                   placeholder="Confirm Password"
-                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full"
+                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full text-white-A700"
                   wrapClassName="rounded-[20px] w-full"
                   type="password"
                   variant="fill"
