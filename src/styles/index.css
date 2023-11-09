@@ -183,3 +183,13 @@ ul li a{
   background: #6b6b6b;
   border-radius: 10px;
 }
+
+
+button.kep-login-facebook.metro {
+  background-color: #132cdc;
+  color: white;
+  padding: 11px;
+  min-width: 450px;
+  margin-left: 5px;
+  margin-top: 15px;
+}

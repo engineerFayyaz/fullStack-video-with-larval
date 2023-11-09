@@ -7,6 +7,8 @@ import { CheckBox, Line, Img, Button } from "components"; // Assuming these comp
 import { useGoogleLogin } from "@react-oauth/google";
 import Header from "components/Header1"; // Assuming you want to use Header1
 import { useUser } from "redux/UserContext";
+import FacebookLogin from "react-facebook-login";
+import TwitterLogin from "react-twitter-login";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -20,6 +22,21 @@ const LoginPage = () => {
       navigate("/");
     },
   });
+
+  const responseTwitter = (err, data) => {
+    if (err) {
+      console.error("Twitter login failed:", err);
+      toast.error("Twitter login failed.");
+    } else {
+      console.log("Twitter Login Response:", data);
+      // Handle the Twitter login response here
+      // For example, you can send the `data` object to your server for authentication
+      // Then, navigate to the desired page
+      // Here, we just set the user's email and navigate to the home page
+      setUserEmail(data.email);
+      navigate("/");
+    }
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -53,6 +70,21 @@ const LoginPage = () => {
         console.error("API Error:", error);
         toast.error("Error during login");
       });
+  };
+
+  const responseFacebook = (response) => {
+    if (response.status === "connected") {
+      // User logged in with Facebook
+      const { email, accessToken } = response;
+      // You can handle the Facebook login response here
+      // For example, you can send the `email` and `accessToken` to your server for authentication
+      // Then, navigate to the desired page
+      // Here, we just set the user's email and navigate to the home page
+      setUserEmail(email);
+      navigate("/");
+    } else {
+      toast.error("Facebook login failed.");
+    }
   };
 
   return (
@@ -92,24 +124,41 @@ const LoginPage = () => {
               >
                 Login with Google
               </Button>
-              <Button
-                className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg"
-                color="pink_500"
+              <FacebookLogin
+                appId="1514730115943733"
+                autoLoad={false}
+                fields="name,email,picture"
+                callback={responseFacebook}
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700"
+                render={(renderProps) => (
+                  <Button
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
                 shape="round"
+                color="pink_500"
                 size="sm"
                 variant="fill"
+                onClick={renderProps.onClick}
               >
                 Login with Facebook
               </Button>
-              <Button
+                )}
+              />
+
+
+
+              {/* <TwitterLogin
+                authCallback={responseTwitter}
                 className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg "
                 shape="round"
                 color="pink_500"
                 size="sm"
                 variant="fill"
-              >
-                Login with Twitter
-              </Button>
+                consumerKey="your-twitter-consumer-key"
+               consumerSecret="your-twitter-consumer-secret"
+               text="Login with Twitter"
+              //  style={{ padding: "11px", borderRadius: "3px", backgroundColor: "blue" }}
+              /> */}
+                
               <p className="text-2xl mt-3 ml-auto mr-auto md:text-[22px] text-white-A700 sm:text-xl">
                 OR
               </p>

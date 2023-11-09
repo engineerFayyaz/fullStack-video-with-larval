@@ -5,6 +5,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { Button, CheckBox, Img, Input, Line, Text } from "components";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FacebookLogin from 'react-facebook-login';
 function SignUpOnePage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,10 +14,28 @@ function SignUpOnePage() {
   const navigate = useNavigate();
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
-      console.log("res", res);
-      alert("Login successfull. 😍");
+      // Access the user's email from the response
+      const userEmail = res.profileObj.email;
+      console.log("Google Login Response:", res);
+      console.log("User Email:", userEmail);
+      alert("Login successful with Google. 😍");
+      // Now, you can use userEmail as needed (e.g., send it to your server)
+      // ...
+
+      navigate("/");
     },
   });
+
+
+
+  const responseFacebook = (response) => {
+    if (response.status !== 'unknown') {
+      console.log("Facebook Login Response:", response);
+      alert("Sign up with Facebook successful. 😍");
+    } else {
+      console.log("Facebook Login was cancelled or failed.");
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -95,16 +114,26 @@ function SignUpOnePage() {
               >
                 Sign up with Google
               </Button>
-              <Button
-                className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg"
+              <FacebookLogin
+                appId="1514730115943733"
+                autoLoad={false}
+                fields="name,email,picture"
+                callback={responseFacebook}
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700"
+                render={(renderProps) => (
+                  <Button
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
                 shape="round"
                 color="pink_500"
                 size="sm"
                 variant="fill"
+                onClick={renderProps.onClick}
               >
                 Sign up with Facebook
               </Button>
-              <Button
+                )}
+              />
+              {/* <Button
                 className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg"
                 shape="round"
                 color="pink_500"
@@ -112,7 +141,7 @@ function SignUpOnePage() {
                 variant="fill"
               >
                 Sign up with Twitter
-              </Button>
+              </Button> */}
               <Text
                 className="md:ml-[0] ml-[213px] mt-[18px] text-2xl md:text-[22px] text-white-A700 sm:text-xl"
                 size="txtPoppinsBold24WhiteA700"
