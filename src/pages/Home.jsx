@@ -48,25 +48,25 @@ const Home = () => {
           <Link to="/desktop191">Desktop191</Link>
         </li>
         <li>
-          <Link to="/desktop179">Desktop179</Link>
+          <Link to="/TermsConditions">TermsConditions</Link>
         </li>
         <li>
-          <Link to="/desktop180">Desktop180</Link>
+          <Link to="/PrivacyPolicy">PrivacyPolicy</Link>
         </li>
         <li>
-          <Link to="/desktop181">Desktop181</Link>
+          <Link to="/Disclaimer">Disclaimer</Link>
         </li>
         <li>
-          <Link to="/desktop182">Desktop182</Link>
+          <Link to="/Profile">Profile</Link>
         </li>
         <li>
           <Link to="/desktop192">Desktop192</Link>
         </li>
         <li>
-          <Link to="/desktopthirtysix">DesktopThirtySix</Link>
+          <Link to="/CreateChannel">CreateChannel</Link>
         </li>
         <li>
-          <Link to="/desktop193">Desktop193</Link>
+          <Link to="/UploadMovie">UploadMovie</Link>
         </li>
         <li>
           <Link to="/MyChannels">MyChannels</Link>

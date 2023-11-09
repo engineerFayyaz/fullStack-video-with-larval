@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Img, List, RatingBar, Text } from "components";
 import Header from "components/Header";
 
-const Desktop177Page = () => {
+const MyWishlistPage = () => {
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto p-2 shadow-bs1 w-full">
@@ -14,7 +14,7 @@ const Desktop177Page = () => {
               className="text-gray-100 text-xl"
               size="txtOpenSansRomanBold20"
             >
-              My Wishlist
+              MyWishlist
             </Text>
           </div>
           <List
@@ -371,4 +371,4 @@ const Desktop177Page = () => {
   );
 };
 
-export default Desktop177Page;
+export default MyWishlistPage;

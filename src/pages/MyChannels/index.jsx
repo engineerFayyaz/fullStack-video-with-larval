@@ -1,12 +1,57 @@
-import React from "react";
-
-import { useNavigate } from "react-router-dom";
-
-import { Button, Img, Text } from "components";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button, Img, List, Text } from "components";
+import ChannelBanner from "components/ChannelBanner";
+import { useUser } from "redux/UserContext";
 import Header1 from "components/Header1";
-
 const MyChannels = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { user } = useUser();
+  const { userEmail } = useUser();
+  const age = useUser().age;
+  const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
+  const displayAge = age ? age : Math.floor(Math.random() * (99 - 18 + 1)) + 18;
+
+  useEffect(() => {
+    // Define the API URL
+    const apiUrl = "http://mobile.codegifted.com/api/series";
+
+    // Make the API request
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        console.log("API Response:", response.data); // Log the response data
+
+        if (Array.isArray(response.data.data)) {
+          setData(response.data.data);
+        } else {
+          console.error("Unexpected API response structure");
+        }
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  const createRows = () => {
+    const rows = [];
+    const itemsPerRow = 6;
+
+    for (let i = 0; i < data.length; i += itemsPerRow) {
+      const row = data.slice(i, i + itemsPerRow);
+      rows.push(row);
+    }
+
+    return rows;
+  };
 
   return (
     <>
@@ -29,7 +74,7 @@ const MyChannels = () => {
                 className="text-4xl sm:text-[32px] md:text-[34px] text-center text-white-A700"
                 size="txtOpenSansRomanBold36"
               >
-                Catlin Grim Plays
+                {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
               </Text>
               <Text
                 className="text-white-A700 text-xl"
@@ -39,7 +84,7 @@ const MyChannels = () => {
               </Text>
               <Button
                 className="common-pointer cursor-pointer md:ml-[0]  mt-[26px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px]"
-                onClick={() => navigate("/desktop193")}
+                onClick={() => navigate("/UploadMovie")}
                 color="pink_500"
                 size="md"
                 variant="fill"
@@ -55,203 +100,48 @@ const MyChannels = () => {
         >
           Movies / Shows
         </Text>
-        <div className="flex flex-col items-center pb-[30px] px-2 w-full pl-8 pr-8">
-          <div className="flex flex-col items-center justify-start max-w-[1420px] mx-auto md:px-5 w-full">
-            <div className="gap-5 grid sm:grid-cols-1 md:grid-cols-2 grid-cols-4 justify-center min-h-[auto] w-full">
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_160x283.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_2.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_3.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_4.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_160x283.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_2.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_3.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_4.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_160x283.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_2.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_3.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_4.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_160x283.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_2.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_3.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_4.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_160x283.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_2.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_3.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-              <div className="flex flex-1 flex-col items-center justify-start w-full">
-                <Img
-                  className="h-48 md:h-auto object-cover w-full"
-                  src="images/img_faj2uifuuaul6u_4.png"
-                  alt="faj2uifuuaul6u"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="flex sm:flex-col flex-row gap-8 items-start justify-start mt-[10px] md:ml-[0] pl-[54px] w-[100%] md:w-full pt-3" style={{borderTop:"1px solid #2d2d2d"}}>
-            <a
-              href="javascript:"
-              className="text-base text-white-A700"
-              style={{ fontSize: "13px" }}
-            >
-              <Text
-                size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop180")}
-              >
-                Privacy Policy
-              </Text>
-            </a>
-            <a
-              href="javascript:"
-              className="text-base text-white-A700"
-              style={{ fontSize: "13px" }}
-            >
-              <Text
-                size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop181")}
-              >
-                Disclaimer
-              </Text>
-            </a>
+        <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3">
+          <Text
+            className="text-white-A700 text-xl w-auto"
+            size="txtOpenSansRomanBold20WhiteA700"
+          >
+            All series/Channels
+          </Text>
+          <div className="flex flex-col items-center justify-start w-full">
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              createRows().map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="flex flex-row gap-3 items-center  w-full"
+                >
+                  {row.map((movie) => {
+                    // Store movie_id in a variable
+                    const movieId = movie.series_id;
 
-            <a
-              href="javascript:"
-              className="text-base text-white-A700"
-              style={{ fontSize: "13px" }}
-            >
-              <Text
-                size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop179")}
-              >
-                Terms and Conditions
-              </Text>
-            </a>
-            <a
-              href="javascript:"
-              className="text-base text-white-A700"
-              style={{ fontSize: "13px" }}
-            >
-              <Text
-                size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop178")}
-              >
-                Terms Of Use
-              </Text>
-            </a>
+                    return (
+                      <div key={movie.series_id}>
+                        <Link
+                          to={{
+                            pathname: `/detailsseries/${movie.series_id}`,
+                            state: { data: data },
+                          }}
+                        >
+                          <img
+                            src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.series_id}.jpg`}
+                            alt={movie.title}
+                            className="common-pointer h-[250px] md:h-auto  w-full" style={{width:"180px"}}
+                          />
+                        </Link>
+                        {console.log("data passed : ", movie.series_id)}
+                      </div>
+                    );
+                  })}
+                </div>
+              ))
+            )}
           </div>
-          
         </div>
       </div>
     </>

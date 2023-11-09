@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { CheckBox, Line, Img, Button } from 'components'; // Assuming these components are properly implemented
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { CheckBox, Line, Img, Button } from "components"; // Assuming these components are properly implemented
 import { useGoogleLogin } from "@react-oauth/google";
-import Header from 'components/Header1'; // Assuming you want to use Header1
+import Header from "components/Header1"; // Assuming you want to use Header1
+import { useUser } from "redux/UserContext";
 
 const LoginPage = () => {
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const { setUserEmail } = useUser();
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
-      console.log("res", res);
+      // console.log("res", res);
       alert("Login successful. 😍");
+      navigate("/");
     },
   });
 
@@ -23,7 +25,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     // Define your API endpoint for login
-    const apiUrl = 'http://mobile.codegifted.com/api/login';
+    const apiUrl = "http://mobile.codegifted.com/api/login";
 
     // Create a data object with the user's input
     const loginData = {
@@ -36,19 +38,20 @@ const LoginPage = () => {
       .post(apiUrl, loginData)
       .then((response) => {
         // Handle the API response here
-        console.log('API Response:', response.data);
-        if (response.data.status === '1') {
-          toast.success('Login successful');
-          // Redirect to the dashboard or other page on successful login
-          navigate('/' , { state: { email: email } });
+        console.log("API Response:", response.data);
+        if (response.data.status === "1") {
+          toast.success("Login successful");
+          // Set the user's email in the context
+          setUserEmail(email);
+          navigate("/", { state: { email: email } });
         } else {
           toast.error(response.data.message);
         }
       })
       .catch((error) => {
         // Handle errors
-        console.error('API Error:', error);
-        toast.error('Error during login');
+        console.error("API Error:", error);
+        toast.error("Error during login");
       });
   };
 
@@ -70,8 +73,10 @@ const LoginPage = () => {
                 Login
               </a>
               <a
-              href="javascript:"
-               className="text-2xl md:text-[22px] text-white-A700 sm:text-xl"  onClick={() => navigate("/SignUpOne")}>
+                href="javascript:"
+                className="text-2xl md:text-[22px] text-white-A700 sm:text-xl"
+                onClick={() => navigate("/SignUpOne")}
+              >
                 Sign Up
               </a>
             </div>
@@ -109,9 +114,7 @@ const LoginPage = () => {
                 OR
               </p>
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px]  w-[100%] md:w-full min-w-[450px] sm:min-w-full">
-                <p className="text-lg text-white-A700">
-                  Email
-                </p>
+                <p className="text-lg text-white-A700">Email</p>
                 <input
                   name="email_One"
                   placeholder="Email"
@@ -121,13 +124,15 @@ const LoginPage = () => {
                   variant="fill"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  style={{background:"#1D1D1D",border:"none",borderRadius:"6px"}}
+                  style={{
+                    background: "#1D1D1D",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
                 />
               </div>
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px] mt-[19px] w-[100%] md:w-full min-w-[450px] sm:min-w-full">
-                <p className="text-lg text-white-A700">
-                  Password
-                </p>
+                <p className="text-lg text-white-A700">Password</p>
                 <input
                   name="password_One"
                   placeholder="Password"
@@ -137,15 +142,26 @@ const LoginPage = () => {
                   variant="fill"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  style={{background:"#1D1D1D",border:"none",borderRadius:"6px"}}
+                  style={{
+                    background: "#1D1D1D",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
                 />
+                <a
+                  href="javascript:"
+                  onClick={() => navigate("/forgot-password")} // Navigate to the Forgot Password page
+                  className="text-md text-white-A700_90"
+                >
+                  Forgot Password
+                </a>
               </div>
               <CheckBox
                 className="leading-[normal] md:ml-[0] ml-[5px] mt-[19px] text-left text-lg"
                 inputClassName="border-2 border-blue-600 border-solid h-[25px] mr-[5px] w-[25px]"
                 name="rememberme"
                 id="rememberme"
-                label={<span style={{color:"white"}}>Remember me</span>}
+                label={<span style={{ color: "white" }}>Remember me</span>}
               />
               <Button
                 className="common-pointer border border-blue-700 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
@@ -172,7 +188,7 @@ const LoginPage = () => {
                 </a>
                 <p
                   className="mb-0.5 text-md text-white-A700_90"
-                  onClick={() => navigate("/desktop181")}
+                  onClick={() => navigate("/Disclaimer")}
                 >
                   Disclaimer
                 </p>

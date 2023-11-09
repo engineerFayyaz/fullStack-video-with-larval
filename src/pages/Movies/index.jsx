@@ -94,7 +94,7 @@ function Movies(props) {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop180")}
+                onClick={() => navigate("/PrivacyPolicy")}
               >
                 Privacy Policy
               </Text>
@@ -106,7 +106,7 @@ function Movies(props) {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop181")}
+                onClick={() => navigate("/Disclaimer")}
               >
                 Disclaimer
               </Text>
@@ -119,7 +119,7 @@ function Movies(props) {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop179")}
+                onClick={() => navigate("/TermsConditions")}
               >
                 Terms and Conditions
               </Text>

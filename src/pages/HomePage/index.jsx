@@ -14,9 +14,11 @@ import Emotinal from "components/Emotinal";
 import Banners from "components/Banners";
 import { useLocation } from "react-router-dom";
 import Header1 from "components/Header1";
+import UpcomingMoviesTimer from "components/UpcomingMoviesTimer.js";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const eventDate = "2023-12-31T23:59:59";
 
   return (
     <>
@@ -28,6 +30,7 @@ const HomePage = () => {
           <Banners />
         </div>
         <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
+        <UpcomingMoviesTimer eventDate={eventDate} />
           <FreetoWatch />
           <TopTen />
           <Action />
@@ -51,7 +54,7 @@ const HomePage = () => {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop180")}
+                onClick={() => navigate("/PrivacyPolicy")}
               >
                 Privacy Policy
               </Text>
@@ -63,7 +66,7 @@ const HomePage = () => {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop181")}
+                onClick={() => navigate("/Disclaimer")}
               >
                 Disclaimer
               </Text>
@@ -76,7 +79,7 @@ const HomePage = () => {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop179")}
+                onClick={() => navigate("/TermsConditions")}
               >
                 Terms and Conditions
               </Text>

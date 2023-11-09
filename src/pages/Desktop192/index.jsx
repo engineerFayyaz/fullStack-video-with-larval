@@ -181,66 +181,7 @@ const Desktop192Page = () => {
               </div>
             </div>
           </div>
-          <div className="absolute bg-gray-900_01 flex flex-col items-start justify-end p-4 right-[1%] top-[11%] w-[21%]">
-            <Text
-              className="common-pointer md:ml-[0] ml-[33px] mt-1 text-base text-white-A700"
-              size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/desktop182")}
-            >
-              Profile
-            </Text>
-            <Text
-              className="common-pointer md:ml-[0] ml-[33px] mt-[26px] text-base text-white-A700"
-              size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/desktop177")}
-            >
-              Wishlist
-            </Text>
-            <Text
-              className="md:ml-[0] ml-[33px] mt-[25px] text-base text-white-A700"
-              size="txtOpenSansRomanRegular16"
-            >
-              Notification
-            </Text>
-            <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-[26px] w-[78%] md:w-full">
-              <div className="flex flex-row gap-[35px] items-center justify-between w-full">
-                <Text
-                  className="text-base text-white-A700"
-                  size="txtOpenSansRomanRegular16"
-                >
-                  Email Notification
-                </Text>
-                <Switch
-                  onColor="#d9d9d9"
-                  offColor="#d9d9d9"
-                  onHandleColor="#ec008b"
-                  offHandleColor="#ec008b"
-                  value={true}
-                  className=""
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-7">
-              <Text
-                className="text-base text-white-A700"
-                size="txtOpenSansRomanRegular16"
-              >
-                Language
-              </Text>
-            </div>
-            <a
-              href="javascript:"
-              className="md:ml-[0] ml-[33px] mt-6 text-base text-white-A700"
-            >
-              <Text size="txtOpenSansRomanRegular16">Contact Us</Text>
-            </a>
-            <a
-              href="javascript:"
-              className="md:ml-[0] ml-[33px] mt-[27px] text-base text-white-A700"
-            >
-              <Text size="txtOpenSansRomanRegular16">Log Out</Text>
-            </a>
-          </div>
+          
         </div>
         <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mx-auto overflow-auto md:px-5 w-full">
           <List

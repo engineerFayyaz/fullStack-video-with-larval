@@ -1,0 +1,37 @@
+body{
+    background-color: black;
+}
+.container {
+    background-color: black;
+    color: white;
+    width: 60%;
+    height: fit-content;
+    padding: 20px 50px;
+}
+.form-column input{
+    color: white;
+}
+input[type="file"] {
+    display: none;
+}
+
+label.upload-label {
+    cursor: pointer;
+}
+
+.form-column input.form-control, textarea.form-control {
+    color: white;
+    background-color: transparent;
+    border-color: white;
+}
+.form-column input.form-control::placeholder, textarea.form-control::placeholder{
+    color: rgba(245, 245, 245, 0.438);
+}
+.form-column input.form-control:focus, textarea.form-control:focus {
+    background-color: transparent;
+    color: white;
+}
+
+.form-column input::placeholder {
+    color: rgba(245, 245, 245, 0.438);
+}

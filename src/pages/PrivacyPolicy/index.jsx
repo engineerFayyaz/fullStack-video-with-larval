@@ -3,21 +3,21 @@ import React from "react";
 import { Button, Img, Text } from "components";
 import Header from "components/Header";
 
-const Desktop179Page = () => {
+const PrivacyPolicyPage = () => {
   return (
     <>
-      <div className="bg-gray-900 flex flex-col items-center justify-start mx-auto p-2 shadow-bs1 w-full">
+      <div className="bg-gray-900 flex flex-col  justify-start mx-auto p-2 shadow-bs1 w-full">
         <Header className="flex md:flex-col flex-row font-opensans md:gap-5 items-center justify-center md:px-5 w-full" />
-        <div className="flex flex-col font-opensans items-center justify-start mt-[53px] md:px-5 ">
+        <div className="flex flex-col font-opensans justify-start mt-14 md:px-5 pl-12 pr-12">
           <Text
             className="md:text-3xl sm:text-[28px] text-[32px] text-gray-100"
             size="txtOpenSansRomanBold32"
           >
-            Terms & Conditions
+            Privacy Policy
           </Text>
         </div>
         <Text
-          className="mb-[49px] mt-8 pl-5 pr-5 text-white-A700 text-md"
+          className="mb-[49px] mt-7  text-md pl-12 pr-12"
           size="txtPoppinsRegular20WhiteA700"
         >
           <>
@@ -60,11 +60,13 @@ const Desktop179Page = () => {
                 In exceptional circumstances, we may preemptively suspend accounts when we believe an individual’s use of Twitch poses a high likelihood of inciting violence. In weighing the risk of harm, we consider an individual’s influence, the level of recklessness in their past behaviors (regardless of whether any past behavior occurred on Twitch), whether or not there continues to be a risk of harm, and the scale of ongoing threats.
               </p>
             </div>
+
           </>
         </Text>
+        
       </div>
     </>
   );
 };
 
-export default Desktop179Page;
+export default PrivacyPolicyPage;

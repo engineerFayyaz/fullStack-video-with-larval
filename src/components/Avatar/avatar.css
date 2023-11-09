@@ -1,0 +1,24 @@
+/* Avatar container styles */
+.avatar-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px; /* Adjust the size as needed */
+    height: 80px; /* Adjust the size as needed */
+    background-color: #3498db; /* Background color for the circle */
+    border-radius: 50%; /* Create a circle */
+    color: #fff; /* Text color (white) */
+    font-size: 24px; /* Font size of the letter */
+    font-weight: bold;
+    text-transform: uppercase; /* Convert letter to uppercase */
+  }
+  
+  /* Avatar circle styles */
+  .avatar-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  

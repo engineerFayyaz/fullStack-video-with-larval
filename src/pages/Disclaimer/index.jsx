@@ -3,7 +3,7 @@ import React from "react";
 import { Button, Img, Text } from "components";
 import Header from "components/Header";
 
-const Desktop181Page = () => {
+const DisclaimerPage = () => {
   return (
     <>
       <div className="bg-gray-900 flex flex-col items-center justify-start mx-auto p-2 shadow-bs1 w-full">
@@ -79,4 +79,4 @@ const Desktop181Page = () => {
   );
 };
 
-export default Desktop181Page;
+export default DisclaimerPage;

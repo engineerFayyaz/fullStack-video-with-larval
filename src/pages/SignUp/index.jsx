@@ -81,7 +81,7 @@ const SignUpPage = () => {
                   className="sm:mt-0 mt-0.5 text-lg text-white-A700_90"
                 >
                   <Text size="txtPoppinsRegular18WhiteA70090"
-                  onClick={() => navigate("/desktop180")}
+                  onClick={() => navigate("/PrivacyPolicy")}
                   >
                     Privacy Policy
                   </Text>
@@ -92,14 +92,14 @@ const SignUpPage = () => {
                 >
                   <Text size="txtPoppinsRegular18WhiteA70090"
                 
-                  onClick={() => navigate("/desktop179")}>
+                  onClick={() => navigate("/TermsConditions")}>
                     Terms and Conditions
                   </Text>
                 </a>
                 <Text
                   className="mb-0.5 text-lg text-white-A700_90"
                   size="txtPoppinsRegular18WhiteA70090"
-                  onClick={() => navigate("/desktop181")}
+                  onClick={() => navigate("/Disclaimer")}
                 >
                   Disclaimer
                 </Text>

@@ -244,7 +244,7 @@ function SignUpEmailPage() {
                 >
                   <Text
                     size="txtPoppinsRegular18WhiteA70090"
-                    onClick={() => navigate("/desktop180")}
+                    onClick={() => navigate("/PrivacyPolicy")}
                   >
                     Privacy Policy
                   </Text>
@@ -255,7 +255,7 @@ function SignUpEmailPage() {
                 >
                   <Text
                     size="txtPoppinsRegular18WhiteA70090"
-                    onClick={() => navigate("/desktop179")}
+                    onClick={() => navigate("/TermsConditions")}
                   >
                     Terms and Conditions
                   </Text>
@@ -263,7 +263,7 @@ function SignUpEmailPage() {
                 <Text
                   className="mb-0.5 text-lg text-white-A700_90"
                   size="txtPoppinsRegular18WhiteA70090"
-                  onClick={() => navigate("/desktop181")}
+                  onClick={() => navigate("/Disclaimer")}
                 >
                   Disclaimer
                 </Text>

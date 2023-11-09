@@ -208,7 +208,7 @@ function SignUpOnePage() {
                 </a>
                 <p
                   className="mb-0.5 text-md text-white-A700_90"
-                  onClick={() => navigate("/desktop181")}
+                  onClick={() => navigate("/Disclaimer")}
                 >
                   Disclaimer
                 </p>
