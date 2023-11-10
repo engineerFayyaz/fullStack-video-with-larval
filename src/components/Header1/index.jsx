@@ -11,6 +11,8 @@ const Header1 = (props) => {
   const [searchBarVisible, setSearchBarVisible] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
+  
+
   const handleLogout = () => {
     // You can add your logout logic here.
     // For example, clear user session data and redirect to the login page.

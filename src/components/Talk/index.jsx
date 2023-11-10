@@ -19,7 +19,7 @@ function Talk() {
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log("API Response:", response.data); // Log the response data
+        console.log("API Response:", response.data);
 
         if (Array.isArray(response.data.data)) {
           setData(response.data.data);
@@ -35,56 +35,82 @@ function Talk() {
       });
   }, []);
 
+  const renderSlides = () => {
+    const itemsPerPage = 6;
+    const totalSlides = Math.ceil(data.length / itemsPerPage);
+
+    return Array.from({ length: totalSlides }).map((_, index) => {
+      const startIndex = index * itemsPerPage;
+      const endIndex = (index + 1) * itemsPerPage;
+
+      const slideItems = data.slice(startIndex, endIndex).map((movie) => (
+        <div key={movie.movie_id}>
+          <Link to={`/details/${movie.movie_id}`}>
+            <img
+              src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
+              alt={movie.title}
+              className="common-pointer h-[250px] md:h-auto w-full"
+              style={{ width: "180px" }}
+            />
+          </Link>
+        </div>
+      ));
+
+      return (
+        <div key={index} className="flex justify-around">
+          {slideItems}
+        </div>
+      );
+    });
+  };
+
   return (
     <>
-      <div className="flex flex-col gap-5 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3">
+      <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3">
         <Text
           className="text-white-A700 text-xl w-auto"
           size="txtOpenSansRomanBold20WhiteA700"
         >
           Talk
         </Text>
+
         {loading ? (
           <p>Loading...</p>
         ) : (
           <Carousel
-          showThumbs={false}
-          showArrows={true}
-          infiniteLoop={true}
-          centerMode={false} // Start the carousel from the left
-          centerSlidePercentage={25} // Display 100% of the content in one slide
-          
+            showThumbs={false}
+            showArrows={true}
+            infiniteLoop={true}
+            centerMode={false}
+            centerSlidePercentage={25}
+            dynamicHeight={true}
+            renderIndicator={(onClickHandler, isSelected, index, label) => {
+              if (isSelected) {
+                return (
+                  <li
+                    style={{ background: "#fff", width: "10px", height: "10px" }}
+                    aria-label={`Selected: ${label} ${index + 1}`}
+                    title={`Selected: ${label} ${index + 1}`}
+                  />
+                );
+              }
+              return (
+                <li
+                  style={{ background: "#000", width: "10px", height: "10px" }}
+                  onClick={onClickHandler}
+                  onKeyDown={onClickHandler}
+                  value={index}
+                  key={index}
+                  role="button"
+                  tabIndex={0}
+                  title={`${label} ${index + 1}`}
+                  aria-label={`${label} ${index + 1}`}
+                />
+              );
+            }}
           >
-            <div className="flex flex-col items-center justify-start w-full ">
-              <div className="flex flex-col items-center justify-start w-full">
-                <div className="flex md:flex-col flex-row gap-3  items-center w-full">
-                  {data.map((movie) => {
-                    // Store movie_id in a variable
-                    const movieId = movie.movie_id;
-
-                    return (
-                      <div key={movie.movie_id}  >
-                        {/* <img
-                    src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
-                    alt={movie.title}
-                    // onClick={() => navigate(`/details/${movieId}`)} // Use the stored movieId
-                    className="common-pointer h-[300px] md:h-auto object-cover w-full"
-                  /> */}
-                        <Link to={`/details/${movie.movie_id}`} style={{display:"inline"}}>
-                          <img
-                            src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
-                            alt={movie.title}
-                            className="common-pointer h-[250px] md:h-auto w-full" style={{width:"180px"}}
-                          />
-                        </Link>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+            {renderSlides()}
           </Carousel>
-          
         )}
       </div>
     </>
