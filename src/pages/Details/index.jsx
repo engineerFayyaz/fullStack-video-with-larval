@@ -3,14 +3,19 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { Text, Img, RatingBar } from "components";
 import { useNavigate } from "react-router-dom";
-// import Header from "components/Header";
+import Header from "components/Header";
 import Header1 from "components/Header1";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useUser } from "redux/UserContext";
 
 const DetailsPage = (props) => {
   const { movie_id, series_id } = useParams();
   const [movieData, setMovieData] = useState(null);
   const [seriesData, setSeriesData] = useState([]);
+  const [isInWishList, setIsInWishList] = useState(false);
   const navigate = useNavigate();
+  const { user } = useUser(); // Get the user object from the context
 
   useEffect(() => {
     if (movie_id) {
@@ -50,15 +55,39 @@ const DetailsPage = (props) => {
         });
     }
   }, [movie_id, series_id]);
-  console.log("header1 inside the details",Header1)
+  const addToWishList = async () => {
+    try {
+      if (!user || !user.id) {
+        toast.error('Please log in to add to the wish list');
+        return;
+      }
+
+      const response = await axios.post(
+        'http://mobile.codegifted.com/api/wishlist',
+        {
+          user_id: user.id,
+          movie_id,
+        }
+      );
+
+      if (response.data.status === 'success') {
+        setIsInWishList(true);
+        toast.success('Added to wish list successfully');
+      } else {
+        toast.error(`Failed to add to wish list: ${response.data.message}`);
+      }
+    } catch (error) {
+      toast.error('Error adding to wish list');
+    }
+  };
 
   // Your component JSX and rendering logic...
 
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
-        {/* <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" /> */}
-        <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
+        <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center w-full" />
+        {/* <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" /> */}
 
         <div className="h-[600px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
           {movieData && (
@@ -133,6 +162,33 @@ const DetailsPage = (props) => {
                           </button>
                         </Link>
                       )}
+
+                      <div className="absolute right-4 top-4" style={{color:'white', marginTop:"15px"}}>
+                        <button
+                          className="flex items-center text-white"
+                          onClick={addToWishList}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill={isInWishList ? "red" : "none"}
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            className="h-6 w-6 cursor-pointer"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="M12 21l-1.42-1.42M5.05 8H19a2 2 0 0 1 1.7 3.09l-7.3 9.13a1 1 0 0 1-1.4 0L3.3 11.09A2 2 0 0 1 5.05 8z"
+                            />
+                          </svg>
+                          <span className="ml-2">
+                            {isInWishList
+                              ? "Remove from Wish List"
+                              : "Add to Wish List"}
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

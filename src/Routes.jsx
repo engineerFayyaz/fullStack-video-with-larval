@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Movies from "pages/Movies";
+// import ContactUs from "pages/ContactUs";
 const MyChannels = React.lazy(() => import("pages/MyChannels"));
 const UploadMovie = React.lazy(() => import("pages/UploadMovie"));
 const CreateChannel = React.lazy(() => import("pages/CreateChannel"));
@@ -26,7 +27,9 @@ const SignUp = React.lazy(() => import("pages/SignUp"));
 const SignUpOne = React.lazy(() => import("pages/SignUpOne"));
 const Login = React.lazy(() => import("pages/Login"));
 const MyWishlist = React.lazy(() => import("pages/MyWishlist"));
-const ForgotPassword = React.lazy(()=> import("pages/ForgotPassword"))
+const ForgotPassword = React.lazy(()=> import("pages/ForgotPassword"));
+const ContactUs =React.lazy(()=>import("pages/ContactUs"));
+const Notification = React.lazy(()=> import("pages/Notification"))
 // const PaymentPage =React.lazy(()=>import("pages/PaymentPage"))
 const ProjectRoutes = () => {
   return (
@@ -58,6 +61,8 @@ const ProjectRoutes = () => {
           <Route path="/UploadMovie" element={<UploadMovie />} />
           <Route path="/MyChannels" element={<MyChannels />} />
           <Route path="/dhiwise-dashboard" element={<Home />} />
+          <Route path="/ContactUs" element={< ContactUs />}/>
+          <Route path="/Notification" element={<Notification/>}/>
         </Routes>
       </Router>
     </React.Suspense>

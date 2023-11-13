@@ -1,19 +1,18 @@
 import React from "react";
-
 import { useNavigate , useLocation } from "react-router-dom";
-
 import { Button, Img, Text } from "components";
-
+import { useUser } from "redux/UserContext";
 const Header = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const email = location.state ? location.state.email : null;
+  const { userEmail } = useUser();
+  const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
   return (
     <>
       <header className={props.className}>
         <Img
           className="h-20 sm:h-auto object-cover w-[6%] md:w-full"
-          src="images/logo.jpeg"
+          src="/images/logo.png"
           alt="ourbrandTV"
         />
         <div className="flex md:flex-col flex-row md:gap-10 items-center justify-between md:ml-[0] ml-[528px] md:mt-0 my-[19px] w-[56%] md:w-full">
@@ -24,7 +23,7 @@ const Header = (props) => {
               leftIcon={
                 <Img
                   className="h-[22px] mb-px mr-2"
-                  src="images/img_frame.svg"
+                  src="/images/img_frame.svg"
                   alt="Frame"
                 />
               }
@@ -39,7 +38,7 @@ const Header = (props) => {
               leftIcon={
                 <Img
                   className="h-[22px] mb-px mr-2"
-                  src="images/img_svgexport6_white_a700.svg"
+                  src="/images/img_svgexport6_white_a700.svg"
                   alt="svgexport-6"
                 />
               }
@@ -54,19 +53,19 @@ const Header = (props) => {
               leftIcon={
                 <Img
                   className="h-[22px] mt-px mr-2"
-                  src="images/img_television.svg"
+                  src="/images/img_television.svg"
                   alt="television"
                 />
               }
             >
               <div className="font-opensans text-base text-left text-white-A700">
-                Channels
+                Tv series
               </div>
             </Button>
             <div className="flex flex-row gap-2 items-center justify-center w-auto">
               <Img
                 className="h-6 w-6"
-                src="images/img_search.svg"
+                src="/images/img_search.svg"
                 alt="search"
               />
               <Text
@@ -80,7 +79,7 @@ const Header = (props) => {
           </div>
           <Img
             className="h-[18px] w-[18px]"
-            src="images/img_search_white_a700.svg"
+            src="/images/img_search_white_a700.svg"
             alt="search_One"
           />
           <Button
@@ -88,7 +87,7 @@ const Header = (props) => {
             leftIcon={
               <Img
                 className="h-[22px] mb-px mr-2.5"
-                src="images/img_bipersonfill.svg"
+                src="/images/img_bipersonfill.svg"
                 alt="bi:person-fill"
               />
             }
@@ -98,7 +97,7 @@ const Header = (props) => {
             variant="fill"
           >
             <div className="font-bold font-opensans text-base text-center">
-            {email && <p>{email}</p>}
+            {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
             </div>
           </Button>
         </div>

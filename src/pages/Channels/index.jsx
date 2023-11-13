@@ -154,7 +154,7 @@ const Channels = () => {
                 <iframe
                   width="100%"
                   height="160rem"
-                  src="https://www.youtube.com/embed/Bgqq9gpuDnc"
+                  src="https://www.youtube.com/embed/3_-jZqsQqdk"
                   frameBorder="0"
                   allow="autoplay; fullscreen; encrypted-media"
                   title="YouTube Video"
@@ -235,7 +235,7 @@ const Channels = () => {
                   <iframe
                     width="100%"
                     height="160rem"
-                    src="https://www.youtube.com/embed/3ni9YJHkKHw"
+                    src="https://www.youtube.com/embed/86XzuPmMriw"
                     frameBorder="0"
                     allow="autoplay; fullscreen; encrypted-media"
                     title="YouTube Video"

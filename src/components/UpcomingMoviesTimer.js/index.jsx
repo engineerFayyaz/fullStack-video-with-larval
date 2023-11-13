@@ -39,15 +39,34 @@ const UpcomingEventTimerBar = ({ eventDate }) => {
   };
 
   return (
-    <div className="upcoming-event-timer-bar">
-      <div className="timer-bar" style={{ width: `${calculateProgress()}%` }}></div>
-      <div className="timer-info">
-        <span>{timeLeft.days}d</span>
-        <span>{timeLeft.hours}h</span>
-        <span>{timeLeft.minutes}m</span>
-        <span>{timeLeft.seconds}s</span>
-      </div>
-    </div>
+    <div className="row" style={{"margin":'20px 60px'}}>
+	<h4 style={{color:"white"}}>Upcoming</h4>
+	<div className="step-container">
+		<div className="step">
+			8 AM
+		</div>
+		<div className="step-line"></div>
+		<div className="step">
+			10 AM
+		</div>
+		<div className="step-line"></div>
+		<div className="step">
+			1 PM
+		</div>
+		<div className="step-line"></div>
+		<div className="step">
+			3 PM
+		</div>
+		<div className="step-line"></div>
+		<div className="step">
+			6 pm
+		</div>
+		<div className="step-line"></div>
+		<div className="step">
+			9 PM
+		</div>
+	</div>
+</div>
   );
 };
 

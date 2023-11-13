@@ -54,18 +54,21 @@ const UploadMoviePage = () => {
     formDataToSend.append("url", formData.url);
     formDataToSend.append("trailer_url", formData.trailer_url);
     formDataToSend.append("user_id", formData.user_id);
+    formDataToSend.append("thumbnail_image", formData.thumbnail_image);
+    formDataToSend.append("poster_image", formData.poster_image);
+    formDataToSend.append("proof_ownership", formData.proof_ownership);
 
-    if (formData.thumbnail_image) {
-      formDataToSend.append("thumbnail_image", formData.thumbnail_image);
-    }
+    // if (formData.thumbnail_image) {
+      
+    // }
 
-    if (formData.poster_image) {
-      formDataToSend.append("poster_image", formData.poster_image);
-    }
+    // if (formData.poster_image) {
+      
+    // }
 
-    if (formData.proof_ownership) {
-      formDataToSend.append("proof_ownership", formData.proof_ownership);
-    }
+    // if (formData.proof_ownership) {
+      
+    // }
 
     axios
       .post(apiUrl, formDataToSend)
@@ -135,7 +138,7 @@ const UploadMoviePage = () => {
                     }
                   ></input>
                 </div>
-                {/* <div
+                <div
                   className="flex sm:flex-1 flex-col gap-1 items-start justify-start w-[40%] sm:w-full"
                   style={{ marginLeft: "60px" }}
                 >
@@ -155,7 +158,7 @@ const UploadMoviePage = () => {
     ))}
   </select>
 </div>
-                </div> */}
+                </div>
 
                 <div className="flex sm:flex-1 flex-col gap-1 items-start justify-start w-[40%] sm:w-full">
                   <Text

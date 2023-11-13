@@ -17,12 +17,25 @@ const ProfilePage = () => {
   const age = useUser().age;
   const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
 
-  const displayAge = age ? age : Math.floor(Math.random() * (99 - 18 + 1)) + 18;
+  const displayAge = age ? age : Math.floor(Math.random() * (50 - 18 + 1)) + 18;
 
   console.log("user data", user);
 
   const [showPaymentOptions, setShowPaymentOptions] = useState(false);
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+
+
+  const generateRandomPhoneNumber = () => {
+    const countryCode = '+1'; // US country code
+    const areaCode = Math.floor(Math.random() * 900) + 100;
+    const firstPart = Math.floor(Math.random() * 1000);
+    const secondPart = Math.floor(Math.random() * 10000);
+
+    // Format the random number with the specified format
+    return `${countryCode} (${areaCode}) ${firstPart.toString().padStart(3, '0')}-${secondPart.toString().padStart(4, '0')}`;
+  };
+
+  const randomPhoneNumber = generateRandomPhoneNumber();
 
 
   const handleBuyNowFree = () => {
@@ -146,7 +159,7 @@ const handleBuyNow = () => {
                 Phone Number:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                +1 123 123 123
+              {randomPhoneNumber}
               </span>
             </Text>
           </div>
@@ -173,7 +186,7 @@ const handleBuyNow = () => {
                   className="md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
                   size="txtInterBold32"
                 >
-                  Free for All
+                 Basic 
                 </Text>
               </div>
               <div className="flex flex-col gap-6 items-start justify-start ml-3 md:ml-[0] mt-8 w-auto">
@@ -193,7 +206,7 @@ const handleBuyNow = () => {
                     className="text-gray-900_02 text-lg w-auto"
                     size="txtInterRegular18"
                   >
-                    Offers a diverse range of content, including movies, TV shows
+                    10x slots of 28:30(28 minutes and 30 seconds)
                   </Text>
                 </div>
                 <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
@@ -206,33 +219,22 @@ const handleBuyNow = () => {
                     className="text-gray-900_02 text-lg w-auto"
                     size="txtInterRegular18"
                   >
-                    Higher video resolutions, such as HD or 4K
+                   To Air Mon-Fri 
                   </Text>
                 </div>
+                
+
                 <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
                   <Img
                     className="h-6 w-6"
                     src="images/img_bxscheckcircle.svg"
-                    alt="bxscheckcircle_Two"
+                    alt="bxscheckcircle_One"
                   />
                   <Text
                     className="text-gray-900_02 text-lg w-auto"
                     size="txtInterRegular18"
                   >
-                    They display advertisements during content playback.
-                  </Text>
-                </div>
-                <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
-                  <Img
-                    className="h-6 w-6"
-                    src="images/img_bxscheckcircle.svg"
-                    alt="bxscheckcircle_Three"
-                  />
-                  <Text
-                    className="text-gray-900_02 text-lg w-auto"
-                    size="txtInterRegular18"
-                  >
-                    It should support a wide range of platforms, including smartphones, tablets, smart TVs, and web browsers.
+                   12pm till 11pm
                   </Text>
                 </div>
               </div>
@@ -241,7 +243,7 @@ const handleBuyNow = () => {
                 className="ml-3 md:ml-[0] mt-[63px] md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
                 size="txtInterBold32"
               >
-                FREE 
+                $500 
               </Text>
               <Button
                 className="cursor-pointer font-semibold min-w-[257px] ml-3 md:ml-[0] mr-6 mt-6 text-[22px] text-center sm:text-lg md:text-xl"
@@ -249,11 +251,23 @@ const handleBuyNow = () => {
                 color="purple_A100"
                 size="md"
                 variant="fill"
-                onClick={() => { navigate('/'); toast.success("Your Free membership is activated"); }}
-                // onClick={handleBuyNowFree}
+                onClick={handleBuyNow}
               >
                 Choose
               </Button>
+              {showPaymentOptions && (
+                <div className="mt-4">
+                  <label>Select Payment Method:</label>
+                  <select
+                    value={selectedPaymentMethod}
+                    onChange={(e) => handlePaymentMethodSelected(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="Stripe">Stripe</option>
+                    <option value="PayPal">PayPal</option>
+                  </select>
+                </div>
+              )}
             </div>
           </div>
           <div className="bg-white-A700 flex flex-1 flex-col items-center justify-start pl-3 py-3 rounded-[20px] w-full">
@@ -268,7 +282,7 @@ const handleBuyNow = () => {
                   className="md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
                   size="txtInterBold32"
                 >
-                  Creator
+                  Pro
                 </Text>
               </div>
               <div className="flex flex-col gap-6 items-start justify-start ml-3 md:ml-[0] mt-8 w-auto">
@@ -288,7 +302,7 @@ const handleBuyNow = () => {
                     className="text-gray-900_02 text-lg w-auto"
                     size="txtInterRegular18"
                   >
-                    Buyers access to a vast library of movies and TV shows, spanning various genres
+                    15 x 28:30 
                   </Text>
                 </div>
                 <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
@@ -301,7 +315,7 @@ const handleBuyNow = () => {
                     className="text-gray-900_02 text-lg w-auto"
                     size="txtInterRegular18"
                   >
-                    Ad-Free Viewing: Enjoy uninterrupted streaming with an ad-free experience.
+                    Airing between 6pm and 10pm  
                   </Text>
                 </div>
                 <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
@@ -314,22 +328,10 @@ const handleBuyNow = () => {
                     className="text-gray-900_02 text-lg w-auto"
                     size="txtInterRegular18"
                   >
-                    Get the best possible viewing experience.
+                    From Mon to Sat
                   </Text>
                 </div>
-                <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
-                  <Img
-                    className="h-6 w-6"
-                    src="images/img_bxscheckcircle.svg"
-                    alt="bxscheckcircle_Three"
-                  />
-                  <Text
-                    className="text-gray-900_02 text-lg w-auto"
-                    size="txtInterRegular18"
-                  >
-                    OurBrand TV's packages enable users to stream.
-                  </Text>
-                </div>
+                
               </div>
               <Line className="bg-gray-500 h-px mr-3 mt-9 w-[96%]" />
               <Text
@@ -340,7 +342,114 @@ const handleBuyNow = () => {
                   $
                 </span>
                 <span className="text-gray-900_02 font-inter text-left font-bold">
-                  480
+                  1500
+                </span>
+                <span className="text-gray-900_02 font-inter text-left text-lg font-normal">
+                  /month
+                </span>
+              </Text>
+              <Button
+                className="cursor-pointer font-semibold min-w-[257px] ml-3 md:ml-[0] mr-6 mt-6 text-[22px] text-center sm:text-lg md:text-xl"
+                shape="round"
+                color="purple_A100"
+                size="md"
+                variant="fill"
+                onClick={handleBuyNow}
+              >
+                Choose
+              </Button>
+              {showPaymentOptions && (
+                <div className="mt-4">
+                  <label>Select Payment Method:</label>
+                  <select
+                    value={selectedPaymentMethod}
+                    onChange={(e) => handlePaymentMethodSelected(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="Stripe">Stripe</option>
+                    <option value="PayPal">PayPal</option>
+                  </select>
+                </div>
+              )}
+
+              </div>
+          </div>
+
+
+
+          <div className="bg-white-A700 flex flex-1 flex-col items-center justify-start pl-3 py-3 rounded-[20px] w-full">
+            <div className="flex flex-col justify-start my-3 w-full">
+              <div className="flex flex-row gap-2 items-center justify-start ml-1 md:ml-[0] w-[65%] md:w-full">
+                <Img
+                  className="h-10 w-10"
+                  src="images/img_lightbulb.svg"
+                  alt="lightbulb"
+                />
+                <Text
+                  className="md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
+                  size="txtInterBold32"
+                >
+                 Faith Based
+                </Text>
+              </div>
+              <div className="flex flex-col gap-6 items-start justify-start ml-3 md:ml-[0] mt-8 w-auto">
+                <Text
+                  className="text-[22px] text-gray-500 sm:text-lg md:text-xl w-full"
+                  size="txtInterRegular22"
+                >
+                  What You’ll Get
+                </Text>
+                <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
+                  <Img
+                    className="h-6 w-6"
+                    src="images/img_bxscheckcircle.svg"
+                    alt="bxscheckcircle"
+                  />
+                  <Text
+                    className="text-gray-900_02 text-lg w-auto"
+                    size="txtInterRegular18"
+                  >
+                    4 x 28:30 
+                  </Text>
+                </div>
+                <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
+                  <Img
+                    className="h-6 w-6"
+                    src="images/img_bxscheckcircle.svg"
+                    alt="bxscheckcircle_One"
+                  />
+                  <Text
+                    className="text-gray-900_02 text-lg w-auto"
+                    size="txtInterRegular18"
+                  >
+                   Sat to Sun Morning
+                  </Text>
+                </div>
+                <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
+                  <Img
+                    className="h-6 w-6"
+                    src="images/img_bxscheckcircle.svg"
+                    alt="bxscheckcircle_Two"
+                  />
+                  <Text
+                    className="text-gray-900_02 text-lg w-auto"
+                    size="txtInterRegular18"
+                  >
+                    6am to 12pm
+                  </Text>
+                </div>
+                
+              </div>
+              <Line className="bg-gray-500 h-px mr-3 mt-9 w-[96%]" />
+              <Text
+                className="ml-3 md:ml-[0] mt-[63px] md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
+                size="txtInterBold32"
+              >
+                <span className="text-gray-900_02 font-inter text-left font-bold">
+                  $
+                </span>
+                <span className="text-gray-900_02 font-inter text-left font-bold">
+                  400
                 </span>
                 <span className="text-gray-900_02 font-inter text-left text-lg font-normal">
                   /month

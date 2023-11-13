@@ -2,8 +2,10 @@ import React from "react";
 
 import { Button, Img, List, RatingBar, Text } from "components";
 import Header from "components/Header";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const MyWishlistPage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto p-2 shadow-bs1 w-full">
@@ -21,11 +23,12 @@ const MyWishlistPage = () => {
             className="flex flex-col gap-[30px] items-center mt-[50px] w-[98%]"
             orientation="vertical"
           >
-            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full">
+            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full"   onClick={() => navigate("/movies")} style={{cursor:"pointer"}}>
               <Img
                 className="md:flex-1 h-[300px] sm:h-auto object-cover w-[16%] md:w-full"
                 src="images/img_faj2uifuuaul6u.png"
                 alt="faj2uifuuaul6u"
+                onClick={() => navigate("/movies")}
               />
               <div className="flex md:flex-1 flex-col items-start justify-start md:ml-[0] ml-[120px] w-[41%] md:w-full">
                 <Text
@@ -90,7 +93,7 @@ const MyWishlistPage = () => {
                 alt="bookmark"
               />
             </div>
-            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full">
+            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full" onClick={() => navigate("/movies")} style={{cursor:"pointer"}}>
               <Img
                 className="md:flex-1 h-[300px] sm:h-auto object-cover w-[16%] md:w-full"
                 src="images/img_mv5bntfinzblyme.png"
@@ -159,7 +162,7 @@ const MyWishlistPage = () => {
                 alt="bookmark"
               />
             </div>
-            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full">
+            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full" onClick={() => navigate("/movies")} style={{cursor:"pointer"}}>
               <Img
                 className="md:flex-1 h-[300px] sm:h-auto object-cover w-[16%] md:w-full"
                 src="images/img_yae6uvqijdn411.png"
@@ -226,7 +229,7 @@ const MyWishlistPage = () => {
                 alt="bookmark"
               />
             </div>
-            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full">
+            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full" onClick={() => navigate("/movies")} style={{cursor:"pointer"}}>
               <Img
                 className="md:flex-1 h-[300px] sm:h-auto object-cover w-[16%] md:w-full"
                 src="images/img_faj2uifuuaul6u.png"
@@ -295,7 +298,7 @@ const MyWishlistPage = () => {
                 alt="bookmark"
               />
             </div>
-            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full">
+            <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start w-full" onClick={() => navigate("/movies")} style={{cursor:"pointer"}}>
               <Img
                 className="md:flex-1 h-[300px] sm:h-auto object-cover w-[16%] md:w-full"
                 src="images/img_mv5bntfinzblyme.png"

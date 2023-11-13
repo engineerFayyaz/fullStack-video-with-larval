@@ -6,6 +6,7 @@ import { Button, Img, List, Text } from "components";
 import ChannelBanner from "components/ChannelBanner";
 import { useUser } from "redux/UserContext";
 import Header1 from "components/Header1";
+
 const MyChannels = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -13,6 +14,7 @@ const MyChannels = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useUser();
   const { userEmail } = useUser();
+  const [uploadCount, setUploadCount] = useState(0); // State to store the upload count
   const age = useUser().age;
   const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
   const displayAge = age ? age : Math.floor(Math.random() * (99 - 18 + 1)) + 18;
@@ -29,6 +31,11 @@ const MyChannels = () => {
 
         if (Array.isArray(response.data.data)) {
           setData(response.data.data);
+          // Calculate the count of uploaded movies by the logged-in user
+          const userUploadCount = response.data.data.filter(
+            (movie) => movie.uploaded_by === userEmail
+          ).length;
+          setUploadCount(userUploadCount);
         } else {
           console.error("Unexpected API response structure");
         }
@@ -39,7 +46,7 @@ const MyChannels = () => {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  }, []);
+  }, [userEmail]);
 
   const createRows = () => {
     const rows = [];
@@ -51,6 +58,14 @@ const MyChannels = () => {
     }
 
     return rows;
+  };
+
+  const handleUploadButtonClick = () => {
+    // Increment the upload count when the button is clicked
+    setUploadCount(uploadCount + 1);
+
+    // Navigate to the UploadMovie page
+    navigate("/UploadMovie");
   };
 
   return (
@@ -80,11 +95,14 @@ const MyChannels = () => {
                 className="text-white-A700 text-xl"
                 size="txtOpenSansRomanRegular20"
               >
-                1.2k Subscribers
+                {uploadCount} Movies Uploaded
               </Text>
               <Button
                 className="common-pointer cursor-pointer md:ml-[0]  mt-[26px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px]"
-                onClick={() => navigate("/UploadMovie")}
+                onClick={() => {
+                  handleUploadButtonClick(); // Call your function
+                  navigate("/UploadMovie"); // Navigate after calling the function
+                }}
                 color="pink_500"
                 size="md"
                 variant="fill"

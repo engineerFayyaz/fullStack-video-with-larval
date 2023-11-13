@@ -85,7 +85,7 @@ const Header1 = (props) => {
               }
             >
               <div className="font-opensans text-base text-left text-white-A700">
-                Channels
+                TV series
               </div>
             </Button>
             <div className="flex flex-row gap-2 items-center justify-center w-auto">
@@ -156,10 +156,11 @@ const Header1 = (props) => {
                   <Text
                     className="md:ml-[0] ml-[33px] mt-[25px] text-base text-white"
                     size="txtOpenSansRomanRegular16"
+                    onClick={() => navigate("/Notification")}
                   >
                     Notification
                   </Text>
-                  <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-[26px] w-[78%] md:w-full">
+                  {/* <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-[26px] w-[78%] md:w-full">
                     <div className="flex flex-row gap-[35px] items-center justify-between w-full">
                       <Text
                         className="text-base text-white"
@@ -168,20 +169,20 @@ const Header1 = (props) => {
                         Email Notification
                       </Text>
                     </div>
-                  </div>
-                  <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-7">
+                  </div> */}
+                  {/* <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-7">
                     <Text
                       className="text-base text-white"
                       size="txtOpenSansRomanRegular16"
                     >
                       Language
                     </Text>
-                  </div>
+                  </div> */}
                   <a
                     href="javascript:"
                     className="md:ml-[0] ml-[33px] mt-6 text-base text-white"
                   >
-                    <Text size="txtOpenSansRomanRegular16">Contact Us</Text>
+                    <Text size="txtOpenSansRomanRegular16" onClick={() => navigate("/ContactUs")}>Contact Us</Text>
                   </a>
                   <a
                     className="md:ml-[0] ml-[33px] mt-[27px] text-base text-white cursor-pointer"

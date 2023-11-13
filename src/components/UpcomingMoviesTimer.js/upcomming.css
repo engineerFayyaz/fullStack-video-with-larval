@@ -1,0 +1,17 @@
+/* styles.css */
+
+.event-box {
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .event-line {
+    width: 100%;
+    height: 2px;
+    background-color: blue;
+    margin-top: 10px;
+  }
+  
