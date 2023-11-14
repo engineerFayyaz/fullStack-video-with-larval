@@ -118,7 +118,10 @@ const DetailsSeries = () => {
           >
             Desciption
           </Text>
-          <Text
+          <Text style={{color:"white"}}>
+            {seriesData.description_long}
+          </Text>
+          {/* <Text
             className="mt-5 text-gray-100 text-sm w-full"
             size="txtNunitoSansRegular14"
           >
@@ -173,7 +176,7 @@ const DetailsSeries = () => {
             consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur
             adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing
             elit.{" "}
-          </Text>
+          </Text> */}
           <div className="flex flex-col font-poppins gap-2.5 items-start justify-start mt-[22px]">
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">

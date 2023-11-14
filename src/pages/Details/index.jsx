@@ -55,31 +55,35 @@ const DetailsPage = (props) => {
         });
     }
   }, [movie_id, series_id]);
+
   const addToWishList = async () => {
     try {
-      if (!user || !user.id) {
-        toast.error('Please log in to add to the wish list');
+      // Check if the user is logged in by verifying the existence of the user object
+      if (!user || !user.email) {
+        // This block should not be executed if the user is already logged in
+        toast.error("Please log in to add to the wish list");
         return;
       }
-
-      const response = await axios.post(
-        'http://mobile.codegifted.com/api/wishlist',
-        {
-          user_id: user.id,
-          movie_id,
-        }
-      );
-
-      if (response.data.status === 'success') {
-        setIsInWishList(true);
-        toast.success('Added to wish list successfully');
+  
+      // Now, the user is logged in
+      // You can proceed with adding to the wish list...
+  
+      const response = await axios.post("http://mobile.codegifted.com/api/wishlist", {
+        user_id: user.id, // Use the actual user ID from your authentication system
+        movie_id,
+      });
+  
+      if (response.data.status === "success") {
+        toast.success("Added to wish list successfully");
+        // You might want to update the state or perform other actions after successful addition
       } else {
         toast.error(`Failed to add to wish list: ${response.data.message}`);
       }
     } catch (error) {
-      toast.error('Error adding to wish list');
+      toast.error("Error adding to wish list");
     }
   };
+  
 
   // Your component JSX and rendering logic...
 
@@ -112,7 +116,7 @@ const DetailsPage = (props) => {
                   <div className="flex flex-col  justify-start m-auto w-full">
                     <div className="flex flex-col  justify-start w-full">
                       <Text
-                        className="md:text-2xl text-[40px] text-gray-100 "
+                        className="md:text-2xl text-[30px] text-blue-100 "
                         size="txtOpenSansRomanExtraBold100"
                       >
                         {movieData.title}
@@ -163,12 +167,16 @@ const DetailsPage = (props) => {
                         </Link>
                       )}
 
-                      <div className="absolute right-4 top-4" style={{color:'white', marginTop:"15px"}}>
+                      <div
+                        className="absolute right-4 top-4"
+                        style={{ color: "white", marginTop: "15px" }}
+                      >
                         <button
                           className="flex items-center text-white"
-                          onClick={addToWishList}
+                          // onClick={addToWishList}
+                          style={{fontWeight:"700",color:"blue",marginTop:"28px"}}
                         >
-                          <svg
+                          {/* <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill={isInWishList ? "red" : "none"}
                             viewBox="0 0 24 24"
@@ -181,11 +189,11 @@ const DetailsPage = (props) => {
                               strokeWidth="2"
                               d="M12 21l-1.42-1.42M5.05 8H19a2 2 0 0 1 1.7 3.09l-7.3 9.13a1 1 0 0 1-1.4 0L3.3 11.09A2 2 0 0 1 5.05 8z"
                             />
-                          </svg>
+                          </svg> */}
                           <span className="ml-2">
                             {isInWishList
                               ? "Remove from Wish List"
-                              : "Add to Wish List"}
+                              : ""}
                           </span>
                         </button>
                       </div>
@@ -203,7 +211,12 @@ const DetailsPage = (props) => {
           >
             Desciption
           </Text>
-          <Text
+          <Text style={{color:"white"}}>
+            {movieData && movieData.description_long
+              ? movieData.description_long
+              : "The film opens with Brando uttering the now-legendary line, 'I'm gonna make him an offer he can't refuse.' This phrase encapsulates the essence of the Corleone family's dealings, where negotiations often take on a sinister undertone. Brando's stoic demeanor and calculated approach to power dynamics make him an unforgettable figure in cinema history. As the story unfolds, we witness the Corleones navigating a dangerous world where allegiances are tested, and betrayals have severe consequences. The juxtaposition of the family's intimate moments with scenes of brutal violence creates a narrative tension that resonates throughout the film. Al Pacino's Michael Corleone undergoes a profound transformation from a reluctant outsider to a ruthless leader, showcasing the film's exploration of the corrupting nature of power."}
+          </Text>
+          {/* <Text
             className="mt-5 text-gray-100 text-sm w-full"
             size="txtNunitoSansRegular14"
           >
@@ -220,7 +233,7 @@ const DetailsPage = (props) => {
             Michael Corleone undergoes a profound transformation from a
             reluctant outsider to a ruthless leader, showcasing the film's
             exploration of the corrupting nature of power.
-          </Text>
+          </Text> */}
           <div className="flex flex-col font-poppins gap-2.5 items-start justify-start mt-[22px]">
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">
