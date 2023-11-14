@@ -42,19 +42,44 @@ function Adventure() {
     return Array.from({ length: totalSlides }).map((_, index) => {
       const startIndex = index * itemsPerPage;
       const endIndex = (index + 1) * itemsPerPage;
+      const slideItems = data.slice(startIndex, endIndex).map((movie) => {
+        const imageUrl = movie.poster_image
+          ? movie.poster_image
+          : `https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`;
+    
+        return (
+          <div key={movie.movie_id}>
+            <Link to={`/details/${movie.movie_id}`}>
+              <img
+                src={imageUrl}
+                alt={movie.title}
+                className="common-pointer h-[250px] md:h-auto w-full"
+                style={{ width: "180px" }}
+              />
+            </Link>
+          </div>
+        );
+      });
 
-      const slideItems = data.slice(startIndex, endIndex).map((movie) => (
-        <div key={movie.movie_id}>
-          <Link to={`/details/${movie.movie_id}`}>
-            <img
-              src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
-              alt={movie.title}
-              className="common-pointer h-[250px] md:h-auto w-full"
-              style={{ width: "180px" }}
-            />
-          </Link>
-        </div>
-      ));
+      // const slideItems = data.slice(startIndex, endIndex).map((movie) => (
+      //   const imageUrl = movie.poster_image
+      //   <div key={movie.movie_id}>
+      //     <Link to={`/details/${movie.movie_id}`}>
+      //       {/* <img
+      //         src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
+      //         alt={movie.title}
+      //         className="common-pointer h-[250px] md:h-auto w-full"
+      //         style={{ width: "180px" }}
+      //       /> */}
+      //       <img
+      //       src={imageUrl}
+      //       alt={movie.title}
+      //       className="common-pointer h-[250px] md:h-auto w-full"
+      //       style={{ width: "180px" }}
+      //     />
+      //     </Link>
+      //   </div>
+      // ));
 
       return (
         <div key={index} className="flex justify-around">

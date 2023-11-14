@@ -186,6 +186,90 @@ const handleBuyNow = () => {
                   className="md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
                   size="txtInterBold32"
                 >
+                 Free For community Member
+                </Text>
+              </div>
+              <div className="flex flex-col gap-6 items-start justify-start ml-3 md:ml-[0] mt-8 w-auto">
+                <Text
+                  className="text-[22px] text-gray-500 sm:text-lg md:text-xl w-full"
+                  size="txtInterRegular22"
+                >
+                  What You’ll Get
+                </Text>
+                <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
+                  <Img
+                    className="h-6 w-6"
+                    src="images/img_bxscheckcircle.svg"
+                    alt="bxscheckcircle"
+                  />
+                  <Text
+                    className="text-gray-900_02 text-lg w-auto"
+                    size="txtInterRegular18"
+                  >
+                    10x slots of 28:30(28 minutes and 30 seconds)
+                  </Text>
+                </div>
+                <div className="flex flex-row gap-2 items-start justify-start w-[281px]">
+                  <Img
+                    className="h-6 w-6"
+                    src="images/img_bxscheckcircle.svg"
+                    alt="bxscheckcircle_One"
+                  />
+                  <Text
+                    className="text-gray-900_02 text-lg w-auto"
+                    size="txtInterRegular18"
+                  >
+                   To Air Mon-Fri 
+                  </Text>
+                </div>
+                
+
+              
+              </div>
+              <Line className="bg-gray-500 h-px mr-3 mt-9 w-[96%]" />
+              <Text
+                className="ml-3 md:ml-[0] mt-[63px] md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
+                size="txtInterBold32"
+              >
+                Free
+              </Text>
+              <Button
+                className="cursor-pointer font-semibold min-w-[257px] ml-3 md:ml-[0] mr-6 mt-6 text-[22px] text-center sm:text-lg md:text-xl"
+                shape="round"
+                color="purple_A100"
+                size="md"
+                variant="fill"
+                onClick={handleBuyNow}
+              >
+                Choose
+              </Button>
+              {showPaymentOptions && (
+                <div className="mt-4">
+                  <label>Select Payment Method:</label>
+                  <select
+                    value={selectedPaymentMethod}
+                    onChange={(e) => handlePaymentMethodSelected(e.target.value)}
+                  >
+                    <option value="">Select...</option>
+                    <option value="Stripe">Stripe</option>
+                    <option value="PayPal">PayPal</option>
+                  </select>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="bg-white-A700 flex flex-1 flex-col items-center justify-start pl-3 py-3 rounded-[20px] w-full">
+            <div className="flex flex-col justify-start my-3 w-full">
+              <div className="flex flex-row gap-2 items-center justify-start ml-1 md:ml-[0] w-3/4 md:w-full">
+                <Img
+                  className="h-10 w-10"
+                  src="images/img_lightbulb.svg"
+                  alt="lightbulb"
+                />
+                <Text
+                  className="md:text-3xl sm:text-[28px] text-[32px] text-gray-900_02"
+                  size="txtInterBold32"
+                >
                  Basic 
                 </Text>
               </div>
