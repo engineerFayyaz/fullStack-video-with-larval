@@ -16,24 +16,24 @@ const Banners = () => {
     },
     {
       url: "/banners/banner2.jpg",
-      channel: "Channel Name",
-      movie: "Movie Name",
+      channel: "our brand tv",
+      movie: "The movies creator",
       runtime: "Runtime: 1250s",
       resolution: "Resolution: 4K",
       rating: 4.5, // Replace with the actual rating
     },
     {
       url: "/banners/doll-figures-3015495_1280.jpg",
-      channel: "Channel Name",
-      movie: "Movie Name",
+      channel: "CGF",
+      movie: "Cartoon Network",
       runtime: "Runtime: 1250s",
       resolution: "Resolution: 4K",
       rating: 4.5, // Replace with the actual rating
     },
     {
       url: "/banners/fantasy-4126847_1280.jpg",
-      channel: "Channel Name",
-      movie: "Movie Name",
+      channel: "Fighter",
+      movie: "The Figher KGF",
       runtime: "Runtime: 1250s",
       resolution: "Resolution: 4K",
       rating: 4.5, // Replace with the actual rating
