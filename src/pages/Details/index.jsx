@@ -90,6 +90,36 @@ const DetailsPage = (props) => {
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
+      {seriesData && (
+        <div className="bg-gray-900 p-4">
+          {Object.keys(seriesData).map((seasonId) => (
+            <div key={seasonId}>
+              <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+                <span className="text-gray-100 font-opensans text-left font-normal">
+                  Season:{" "}
+                </span>
+                <span className="text-gray-100 font-opensans text-left font-bold">
+                  {seriesData[seasonId].title}
+                </span>
+              </Text>
+              {seriesData[seasonId].episodes.map((episode) => (
+                <div key={episode.episode_id}>
+                  <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+                    <span className="text-gray-100 font-opensans text-left font-normal">
+                      Episode:{" "}
+                    </span>
+                    <span className="text-gray-100 font-opensans text-left font-bold">
+                      {episode.name}
+                    </span>
+                    {episode.url}
+                  </Text>
+                  {/* Add any additional information about the episode here */}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
         <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center w-full" />
         {/* <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" /> */}
 
@@ -202,6 +232,8 @@ const DetailsPage = (props) => {
                 </div>
               </div>
             )}
+
+            
           </div>
         </div>
         <div className="flex flex-col items-start justify-start max-w-[1329px] mb-10 mt-8 mx-auto md:px-5 w-full">

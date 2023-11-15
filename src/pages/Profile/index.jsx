@@ -76,7 +76,7 @@ const handleBuyNow = () => {
       }
     } else if (method === "PayPal") {
       // Open the PayPal payment page in a new window
-      const paypalPaymentWindow = window.open('https://www.paypal.com/pay', '_blank');
+      const paypalPaymentWindow = window.open('https://paypal.me/WAHEEDRAZA286', '_blank');
       if (paypalPaymentWindow) {
         paypalPaymentWindow.focus();
       } else {
