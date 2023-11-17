@@ -7,7 +7,7 @@ import Avatar from "components/Avatar";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from 'react-modal';
-import TestModel from "components/TestModel";
+
 
 
 const ProfilePage = () => {
@@ -133,13 +133,11 @@ const ProfilePage = () => {
   console.log("Terms and Conditions button clicked");
   setShowTermsModal(true);
 };
-  const handleAcceptTerms = () => {
-    // Add logic for accepting terms
-    // You can redirect or perform any other actions here
-    closeTermsModal();
-    // Call the function for selecting the plan or any other logic
-    handleSelectPlan(selectedPlan);
-  };
+const handleAcceptTerms = () => {
+ 
+  // Use the 'navigate' function to redirect to the "/Terms" route
+  window.open('/Terms', '_blank');
+};
   return (
     <>
     <div className="bg-gray-900 flex flex-col font-opensans gap-[31px] items-center justify-start mx-auto p-2 shadow-bs1 w-full">
@@ -232,7 +230,7 @@ const ProfilePage = () => {
                 color="blue_A700"
                 size="md"
                 variant="fill"
-                onClick={handleTermsClick}
+                onClick={handleAcceptTerms}
               >
                 Terms and Conditions
               </Button>
@@ -254,29 +252,6 @@ const ProfilePage = () => {
         ))}
       </List>
     </div>
-    <Modal
-      isOpen={isTermsModalOpen}
-      onRequestClose={closeTermsModal}
-      contentLabel="Terms and Conditions Modal"
-      className="modal"
-      overlayClassName="overlay"
-      style={{
-        overlay: {
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-        },
-        content: {
-          padding: "20px",
-        },
-      }}
-    >
-      {isTermsModalOpen && (
-          <TestModel
-            handleAcceptTerms={handleAcceptTerms}
-            closeModal={closeTermsModal}
-            // ... (pass any other necessary props)
-          />
-        )}
-    </Modal>
   </>
   );
 };
