@@ -14,24 +14,20 @@ const MyChannels = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useUser();
   const { userEmail } = useUser();
+  const loggedInEmail = userEmail || "";
   const [uploadCount, setUploadCount] = useState(0); // State to store the upload count
   const age = useUser().age;
   const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
   const displayAge = age ? age : Math.floor(Math.random() * (99 - 18 + 1)) + 18;
 
   useEffect(() => {
-    // Define the API URL
     const apiUrl = "http://mobile.codegifted.com/api/series";
-
-    // Make the API request
+  
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log("API Response:", response.data); // Log the response data
-
         if (Array.isArray(response.data.data)) {
           setData(response.data.data);
-          // Calculate the count of uploaded movies by the logged-in user
           const userUploadCount = response.data.data.filter(
             (movie) => movie.uploaded_by === userEmail
           ).length;
@@ -39,14 +35,24 @@ const MyChannels = () => {
         } else {
           console.error("Unexpected API response structure");
         }
-
+  
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
+  
+    // Retrieve uploadCount from localStorage
+    const getUploadSuccessCount = () => {
+      const localStorageKey = `uploadSuccessCount_${loggedInEmail}`;
+      const existingData = JSON.parse(localStorage.getItem(localStorageKey)) || {};
+      return existingData.successCount || 0;
+    };
+  
+    const uploadSuccessCount = getUploadSuccessCount();
   }, [userEmail]);
+  
 
   const createRows = () => {
     const rows = [];
@@ -61,13 +67,21 @@ const MyChannels = () => {
   };
 
   const handleUploadButtonClick = () => {
-    // Increment the upload count when the button is clicked
-    setUploadCount(uploadCount + 1);
-
-    // Navigate to the UploadMovie page
-    navigate("/UploadMovie");
+    // Use the updater function to ensure proper state update based on the current state
+    setUploadCount((prevCount) => {
+      const updatedCount = prevCount + 1;
+  
+      // Store the updated count in localStorage
+      localStorage.setItem("uploadCount", updatedCount);
+  
+      // Navigate to the UploadMovie page
+      navigate("/UploadMovie");
+  
+      // Return the updated count to set the state
+      return updatedCount;
+    });
   };
-
+ 
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans gap-[45px] items-start justify-start mx-auto py-2 w-full">
@@ -95,7 +109,7 @@ const MyChannels = () => {
                 className="text-white-A700 text-xl"
                 size="txtOpenSansRomanRegular20"
               >
-                {uploadCount} Movies Uploaded
+                 {localStorage.getItem("uploadSuccessCount")} Movies Uploaded
               </Text>
               <Button
                 className="common-pointer cursor-pointer md:ml-[0]  mt-[26px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px]"
@@ -152,7 +166,6 @@ const MyChannels = () => {
                             className="common-pointer h-[250px] md:h-auto  w-full" style={{width:"180px"}}
                           />
                         </Link>
-                        {console.log("data passed : ", movie.series_id)}
                       </div>
                     );
                   })}

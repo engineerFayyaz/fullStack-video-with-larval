@@ -11,6 +11,7 @@ const ChannelBanner = () => {
     "/ChannelBanner/banner5.jpg",
     "/ChannelBanner/banner6.jpg",
   ];
+  
 
   return (
     <div className="container">

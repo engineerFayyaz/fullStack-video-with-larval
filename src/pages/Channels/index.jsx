@@ -22,7 +22,6 @@ const Channels = () => {
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log("API Response:", response.data); // Log the response data
 
         if (Array.isArray(response.data.data)) {
           setData(response.data.data);
@@ -127,7 +126,6 @@ const Channels = () => {
                             style={{ width: "180px" }}
                           />
                         </Link>
-                        {console.log("data passed : ", movie.series_id)}
                       </div>
                     );
                   })}
@@ -357,7 +355,7 @@ const Channels = () => {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop178")}
+                onClick={() => navigate("/TermsOfUse")}
               >
                 Terms Of Use
               </Text>

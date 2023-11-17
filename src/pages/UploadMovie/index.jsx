@@ -86,22 +86,26 @@ const UploadMoviePage = () => {
     }
 
     axios
-      .post(apiUrl, formDataToSend)
-      .then((response) => {
-        if (response.data.data && response.data.data) {
-          toast.success("Movie uploaded successfully!");
-          console.log("API Response:", response.data.data);
-          navigate("/MyChannels");
-        } else {
-          toast.error("API response is empty or missing data.");
-        }
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.error("API Error Response Data:", error.response.data);
-        }
-        toast.error("Failed to upload the movie. Please try again.");
-      });
+    .post(apiUrl, formDataToSend)
+    .then((response) => {
+      if (response.data.data && response.data.data) {
+        // Increment success count
+        const successCount = localStorage.getItem("uploadSuccessCount") || 0;
+        localStorage.setItem("uploadSuccessCount", Number(successCount) + 1);
+
+        toast.success("Movie uploaded successfully!");
+        console.log("API Response:", response.data.data);
+        navigate("/MyChannels");
+      } else {
+        toast.error("API response is empty or missing data.");
+      }
+    })
+    .catch((error) => {
+      if (error.response) {
+        console.error("API Error Response Data:", error.response.data);
+      }
+      toast.error("Failed to upload the movie. Please try again.");
+    });
   };
 
   const handleGenreChange = (e) => {

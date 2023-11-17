@@ -284,7 +284,7 @@ const DetailsSeries = () => {
             >
               <Text
                 size="txtOpenSansRomanRegular16"
-                onClick={() => navigate("/desktop178")}
+                onClick={() => navigate("/TermsOfUse")}
               >
                 Terms Of Use
               </Text>

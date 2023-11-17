@@ -4,6 +4,9 @@ import Routes from "./Routes";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from "redux/UserContext";
+import ReactModal from 'react-modal';
+
+ReactModal.setAppElement('#root'); // or any other root element in your HTML
 
 function App() {
   return (

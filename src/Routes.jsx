@@ -30,6 +30,7 @@ const MyWishlist = React.lazy(() => import("pages/MyWishlist"));
 const ForgotPassword = React.lazy(()=> import("pages/ForgotPassword"));
 const ContactUs =React.lazy(()=>import("pages/ContactUs"));
 const Notification = React.lazy(()=> import("pages/Notification"))
+const TermsOfUse =React.lazy(()=>import("pages/TermsOfUse"))
 // const PaymentPage =React.lazy(()=>import("pages/PaymentPage"))
 const ProjectRoutes = () => {
   return (
@@ -63,6 +64,7 @@ const ProjectRoutes = () => {
           <Route path="/dhiwise-dashboard" element={<Home />} />
           <Route path="/ContactUs" element={< ContactUs />}/>
           <Route path="/Notification" element={<Notification/>}/>
+          <Route path="/TermsOfUse" element={<TermsOfUse/>}/>
         </Routes>
       </Router>
     </React.Suspense>
