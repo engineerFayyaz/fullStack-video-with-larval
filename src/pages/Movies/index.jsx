@@ -39,7 +39,7 @@ function Movies(props) {
   const createRows = () => {
     const rows = [];
     const itemsPerRow = 6;
-    
+
     for (let i = 0; i < data.length; i += itemsPerRow) {
       const row = data.slice(i, i + itemsPerRow);
       rows.push(row);
@@ -50,43 +50,57 @@ function Movies(props) {
 
   return (
     <>
-    <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
-    <Header1 className=" flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full"/>
+      <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
+        <Header1 className=" flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
 
-        <Banners/>
-   
-    <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3 pr-3">
-   
-      <Text className="text-white-A700 text-xl w-auto" size="txtOpenSansRomanBold20WhiteA700">
-        All Movies
-      </Text>
-      <div className="flex flex-col items-center justify-start w-full">
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          createRows().map((row, rowIndex) => (
-            <div key={rowIndex} className="flex flex-row gap-3 items-center  w-full mb-5">
-              {row.map((movie) => {
-                // Store movie_id in a variable
-                const movieId = movie.movie_id;
+        <Banners />
 
-                return (
-                  <div key={movie.movie_id}>
-                    <Link to={`/details/${movie.movie_id}`}>
-                      <img
-                        src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
-                        alt={movie.title}
-                        className="common-pointer h-[250px] md:h-auto  w-full" style={{width:"220px"}}
-                      />
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          ))
-        )}
-      </div>
-      <div className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] pl-[54px] w-[100%] md:w-full pt-3" style={{borderTop:"1px solid #2d2d2d"}}>
+        <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3 pr-3">
+          <Text
+            className="text-white-A700 text-xl w-auto"
+            size="txtOpenSansRomanBold20WhiteA700"
+          >
+            All Movies
+          </Text>
+          <div className="flex flex-col items-center justify-start w-full">
+            {loading ? (
+              <p>Loading...</p>
+            ) : (
+              createRows().map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className="flex flex-row gap-3 items-center  w-full mb-5"
+                >
+                  {row.map((movie) => {
+                    // Store movie_id in a variable
+                    const movieId = movie.movie_id;
+
+                    return (
+                      <div key={movie.movie_id}>
+                        <Link to={`/details/${movie.movie_id}`}>
+                          <img
+                            src={
+                              movie.poster_image
+                                ? movie.thumbnail_image
+                                : `https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`
+                            }
+                            // src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
+                            alt={movie.title}
+                            className="common-pointer h-[250px] md:h-auto  w-full"
+                            style={{ width: "220px" }}
+                          />
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
+              ))
+            )}
+          </div>
+          <div
+            className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] pl-[54px] w-[100%] md:w-full pt-3"
+            style={{ borderTop: "1px solid #2d2d2d" }}
+          >
             <a
               href="javascript:"
               className="text-base text-white-A700"
@@ -137,11 +151,9 @@ function Movies(props) {
               </Text>
             </a>
           </div>
-    </div>
-    </div>
-    
+        </div>
+      </div>
     </>
-    
   );
 }
 
