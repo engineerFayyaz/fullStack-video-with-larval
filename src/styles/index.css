@@ -254,3 +254,7 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 .p-6 {
   margin-top: 34px;
 }
+
+.react-datepicker__input-container {
+  color: white;
+}

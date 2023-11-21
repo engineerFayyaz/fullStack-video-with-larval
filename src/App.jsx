@@ -5,6 +5,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from "redux/UserContext";
 import ReactModal from 'react-modal';
+import UpcomingEventTimerBar from "components/UpcomingMoviesTimer.js";
 
 ReactModal.setAppElement('#root'); // or any other root element in your HTML
 
@@ -13,6 +14,7 @@ function App() {
     <UserProvider>
     <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
       <Routes />
+      <UpcomingEventTimerBar/>
       <ToastContainer />
     </GoogleOAuthProvider>
     </UserProvider>

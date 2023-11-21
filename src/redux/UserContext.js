@@ -7,24 +7,27 @@ export function useUser() {
 }
 
 export function UserProvider({ children }) {
-  // Load the userEmail from localStorage on initial render
-  const initialUserEmail = localStorage.getItem('userEmail');
+  // Load the user data from localStorage on initial render
+  const initialUserData = JSON.parse(localStorage.getItem('userData'));
 
-  // Use the initial value or set it to null if not found in localStorage
-  const [userEmail, setUserEmail] = useState(initialUserEmail || null);
+  // Use the initial value or set it to an empty object if not found in localStorage
+  const [userData, setUserData] = useState(initialUserData || {});
 
-  // Update localStorage when userEmail changes
+  // Extract user_id and userEmail from the userData
+  const { user_id, userEmail } = userData;
+
+  // Update localStorage when userData changes
   useEffect(() => {
-    if (userEmail) {
-      localStorage.setItem('userEmail', userEmail);
+    if (userData) {
+      localStorage.setItem('userData', JSON.stringify(userData));
     } else {
-      // Clear the value from localStorage if userEmail is null
-      localStorage.removeItem('userEmail');
+      // Clear the value from localStorage if userData is null
+      localStorage.removeItem('userData');
     }
-  }, [userEmail]);
+  }, [userData]);
 
   return (
-    <UserContext.Provider value={{ userEmail, setUserEmail }}>
+    <UserContext.Provider value={{ user_id, userEmail, setUserData }}>
       {children}
     </UserContext.Provider>
   );

@@ -14,10 +14,10 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { setUserEmail } = useUser();
+  const { userEmail, setUserData } = useUser();
+  const [userId, setUserId] = useState(null);
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
-      // console.log("res", res);
       alert("Login successful. 😍");
       navigate("/");
     },
@@ -29,11 +29,7 @@ const LoginPage = () => {
       toast.error("Twitter login failed.");
     } else {
       console.log("Twitter Login Response:", data);
-      // Handle the Twitter login response here
-      // For example, you can send the `data` object to your server for authentication
-      // Then, navigate to the desired page
-      // Here, we just set the user's email and navigate to the home page
-      setUserEmail(data.email);
+      setUserData({ user_id: data.user_id, userEmail: data.email });
       navigate("/");
     }
   };
@@ -41,32 +37,27 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Define your API endpoint for login
     const apiUrl = "http://mobile.codegifted.com/api/login";
 
-    // Create a data object with the user's input
     const loginData = {
       email: email,
       password: password,
     };
 
-    // Make a POST request to the login API
     axios
       .post(apiUrl, loginData)
       .then((response) => {
-        // Handle the API response here
         console.log("API Response:", response.data);
         if (response.data.status === "1") {
           toast.success("Login successful");
-          // Set the user's email in the context
-          setUserEmail(email);
+
+          setUserData({ user_id: response.data.user_id, userEmail: email });
           navigate("/", { state: { email: email } });
         } else {
           toast.error(response.data.message);
         }
       })
       .catch((error) => {
-        // Handle errors
         console.error("API Error:", error);
         toast.error("Error during login");
       });
@@ -74,13 +65,8 @@ const LoginPage = () => {
 
   const responseFacebook = (response) => {
     if (response.status === "connected") {
-      // User logged in with Facebook
       const { email, accessToken } = response;
-      // You can handle the Facebook login response here
-      // For example, you can send the `email` and `accessToken` to your server for authentication
-      // Then, navigate to the desired page
-      // Here, we just set the user's email and navigate to the home page
-      setUserEmail(email);
+      setUserData({ user_id: response.data.user_id, userEmail: email });
       navigate("/");
     } else {
       toast.error("Facebook login failed.");

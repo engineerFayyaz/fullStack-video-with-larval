@@ -33,6 +33,7 @@ const Notification = React.lazy(()=> import("pages/Notification"))
 const TermsOfUse =React.lazy(()=>import("pages/TermsOfUse"))
 const TestModel = React.lazy(()=> import("pages/TestModel"))
 const LiveStreaming = React.lazy(()=>import("pages/LiveStreaming"))
+const ScheduleMovie = React.lazy(()=>import("pages/ScheduleMovie"))
 // const PaymentPage =React.lazy(()=>import("pages/PaymentPage"))
 const ProjectRoutes = () => {
   return (
@@ -69,6 +70,7 @@ const ProjectRoutes = () => {
           <Route path="/TermsOfUse" element={<TermsOfUse/>}/>
           <Route path="/Terms" element={<TestModel/>}/>
           <Route path="/LiveStreaming" element={<LiveStreaming/>}/>
+          <Route path="/ScheduleMovie" element={<ScheduleMovie/>}/>
         </Routes>
       </Router>
     </React.Suspense>

@@ -123,6 +123,23 @@ const MyChannels = () => {
               >
                 Upload Movie / Show
               </Button>
+
+              {/* <br/> */}
+
+              <div className="flex flex-col items-start justify-start mt-[-200px] ml-[328px] w-[50%] z-[1]" style={{marginTop:"-87px",marginLeft:"720px"}}>
+              <Button
+                className="common-pointer cursor-pointer md:ml-[0]  mt-[26px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px]"
+                onClick={() => {
+                  handleUploadButtonClick(); // Call your function
+                  navigate("/ScheduleMovie"); // Navigate after calling the function
+                }}
+                color="pink_500"
+                size="md"
+                variant="fill"
+              >
+                Schedule Movie / Show
+              </Button>
+              </div>
             </div>
           </div>
         </div>
