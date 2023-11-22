@@ -7,50 +7,72 @@ import "react-toastify/dist/ReactToastify.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useUser } from "redux/UserContext";
+import { format } from 'date-fns';
+
 
 const ScheduleMovie = () => {
-    const { user_id } = useUser(); // Assuming your user context provides the user_id
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        description: "",
-        genre: "",
-        location: "",
-        proof: "",
-        movie_id: "",
-        user_id: "",
-        upcoming_date: new Date(), // Initialize with the current date and time
-      });
+  const { user_id } = useUser();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    description: "",
+    genre_id: "", // Use genre_id instead of genre
+    location: "",
+    proof: "",
+    movie_id: "",
+    user_id: user_id || "",
+    upcoming_datetime: new Date(), // Corrected property name
+  });
 
   const [genreList, setGenreList] = useState([]);
 
+  const handleGenreChange = (e) => {
+    const selectedGenreId = e.target.value;
+    setFormData({ ...formData, genre_id: selectedGenreId });
+  };
+
+  
   const handleUpload = async () => {
     try {
-      // Check if upcoming_date is defined before formatting
-      if (formData.upcoming_date) {
-        // Format the date and time as a string
-        const formattedDate = formData.upcoming_date.toISOString();
-  
-        // Add the formatted date to the formData
-        const updatedFormData = { ...formData, upcoming_date: formattedDate, user_id: user_id };
-  
+      // Log the formData to check the user_id value
+      console.log("formData:", formData);
+
+      // Check if the user is authorized based on user_id
+      const allowedUserIds = [1, 2, 3, 4, 67];
+      
+      // Convert user_id to a number before checking
+      const userIdAsNumber = parseInt(formData.user_id, 10);
+
+      if (!allowedUserIds.includes(userIdAsNumber)) {
+        console.error("User is not authorized");
+        toast.error("Sorry, You are not authorized. Please buy the plan first.");
+        return;
+      }
+
+      // Check if upcoming_datetime is defined before formatting
+      if (formData.upcoming_datetime) {
+        // Format the date to the desired format
+        const formattedDateTime = format(formData.upcoming_datetime, 'yyyy-MM-dd HH:mm:ss');
+        
         const response = await axios.post(
           "http://mobile.codegifted.com/api/storeschedule",
-          updatedFormData
+          { ...formData, upcoming_datetime: formattedDateTime }
         );
-  
+
         console.log("Data uploaded successfully", response.data.data);
-        toast.success("Movie Schdeuled Successfully");
+        toast.success("Movie Scheduled Successfully");
       } else {
-        console.error("Upcoming date is undefined");
-        toast.error("Upcoming date is undefined");
+        console.error("Upcoming datetime is undefined");
+        toast.error("Upcoming datetime is undefined");
       }
     } catch (error) {
       console.error("Failed to upload data", error);
       toast.error("Failed to upload data");
     }
   };
-
+  
+  
+  
   useEffect(() => {
     axios
       .get("http://mobile.codegifted.com/api/genre")
@@ -65,8 +87,7 @@ const ScheduleMovie = () => {
   }, []);
 
   const handleDateTimeChange = (date) => {
-    const formattedDateTime = date.toISOString();
-    setFormData({ ...formData, upcomingDateTime: date });
+    setFormData({ ...formData, upcoming_datetime: date });
   };
 
   return (
@@ -104,27 +125,33 @@ const ScheduleMovie = () => {
                   }
                 ></input>
               </div>
-              <div className="flex sm:flex-1 flex-col gap-1 items-start justify-start w-[30%] " style={{ marginLeft: "10px" }}>
+              <div
+                className="flex sm:flex-1 flex-col gap-1 items-start justify-start w-[40%] sm:w-full"
+                style={{ marginLeft: "30px" }}
+              >
                 <Text
                   className="text-sm text-white-A700 w-auto"
                   size="txtNunitoSansSemiBold14"
                 >
                   Genre
                 </Text>
-                <input
-                  name="genre"
-                  placeholder="genre"
-                  className="leading-[normal] p-0 placeholder:text-white-A700 text-left text-sm w-full"
-                  wrapClassName="w-full"
-                  type="text"
-                  shape="round"
+                <select
+                  name="genre_id"
                   value={formData.genre_id}
-                  onChange={(e) =>
-                    setFormData({ ...formData, genre_id: e.target.value })
-                  }
-                ></input>
+                  onChange={handleGenreChange}
+                >
+                  <option value="">Select a Genre</option>
+                  {genreList.map((genre) => (
+                    <option key={genre.genre_id} value={genre.genre_id}>
+                      {genre.genre_id}
+                    </option>
+                  ))}
+                </select>
               </div>
-              <div className="flex sm:flex-1 flex-col gap-1 items-start justify-start w-[40%] sm:w-full" style={{ marginLeft: "10px" }}>
+              <div
+                className="flex sm:flex-1 flex-col gap-1 items-start justify-start w-[40%] sm:w-full"
+                style={{ marginLeft: "10px" }}
+              >
                 <Text
                   className="text-sm text-white-A700 w-auto"
                   size="txtNunitoSansSemiBold14"
@@ -144,7 +171,10 @@ const ScheduleMovie = () => {
                   }
                 ></input>
               </div>
-              <div className="flex sm:flex-3 flex-col gap-1 items-start justify-start w-[40%] sm:w-full" style={{ marginLeft: "20px" }}>
+              <div
+                className="flex sm:flex-3 flex-col gap-1 items-start justify-start w-[40%] sm:w-full"
+                style={{ marginLeft: "20px" }}
+              >
                 <Text
                   className="text-sm text-white-A700 w-auto"
                   size="txtNunitoSansSemiBold14"
@@ -194,14 +224,18 @@ const ScheduleMovie = () => {
                   Upcoming Date and Time
                 </Text>
                 <DatePicker
-                  selected={formData.upcoming_date}
+                  selected={new Date(formData.upcoming_datetime)} // Convert the string to a Date object
                   onChange={handleDateTimeChange}
                   showTimeSelect
                   dateFormat="Pp"
-                  className="leading-[normal] p-0 placeholder:text-white-A700 text-left text-sm w-full" style={{color:"white"}}
+                  className="leading-[normal] p-0 placeholder:text-white-A700 text-left text-sm w-full"
+                  style={{ color: "white" }}
                 />
               </div>
-              <div className="flex sm:flex-3 flex-col gap-1 items-start justify-start w-[30%] sm:w-full" style={{ marginLeft: "20px" }}>
+              <div
+                className="flex sm:flex-3 flex-col gap-1 items-start justify-start w-[30%] sm:w-full"
+                style={{ marginLeft: "20px" }}
+              >
                 <Text
                   className="text-sm text-white-A700 w-auto"
                   size="txtNunitoSansSemiBold14"
@@ -222,26 +256,52 @@ const ScheduleMovie = () => {
                 ></input>
               </div>
             </div>
-            <div className="flex sm:flex-3 flex-col gap-1 items-start justify-start w-[30%] sm:w-full" style={{ marginLeft: "20px" }}>
-                <Text
-                  className="text-sm text-white-A700 w-auto"
-                  size="txtNunitoSansSemiBold14"
-                >
-                  Proof
-                </Text>
-                <input
-                  name="proof"
-                  placeholder="proof"
-                  className="leading-[normal] p-0 placeholder:text-white-A700 text-left text-sm w-full"
-                  wrapClassName="w-full"
-                  type="file"
-                  shape="round"
-                  value={formData.proof}
-                  onChange={(e) =>
-                    setFormData({ ...formData, proof: e.target.value })
-                  }
-                ></input>
-              </div>
+            <div
+              className="flex sm:flex-3 flex-col-2 gap-1 items-start justify-start w-[65%] sm:w-full"
+              style={{ marginLeft: "20px" }}
+            >
+              <Text
+                className="text-sm text-white-A700 w-auto"
+                size="txtNunitoSansSemiBold14"
+              >
+                Proof
+              </Text>
+              <input
+                name="proof"
+                placeholder="proof"
+                className="leading-[normal] p-0 placeholder:text-white-A700 text-left text-sm w-full"
+                wrapClassName="w-full"
+                type="file"
+                shape="round"
+                value={formData.proof}
+                onChange={(e) =>
+                  setFormData({ ...formData, proof: e.target.value })
+                }
+              ></input>
+            </div>
+            <div
+              className="flex sm:flex-3 flex-col-2 gap-1 items-start justify-start w-[30%] sm:w-full"
+              style={{ marginLeft: "20px" }}
+            >
+              <Text
+                className="text-sm text-white-A700 w-auto"
+                size="txtNunitoSansSemiBold14"
+              >
+                User id
+              </Text>
+              <input
+                name="user_id"
+                placeholder="user_id"
+                className="leading-[normal] p-0 placeholder:text-white-A700 text-left text-sm w-full"
+                wrapClassName="w-full"
+                type="input"
+                shape="round"
+                value={formData.user_id}
+                onChange={(e) =>
+                  setFormData({ ...formData, user_id: e.target.value })
+                }
+              ></input>
+            </div>
             <Button
               className="common-pointer cursor-pointer font-bold font-catamaran rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[220px]"
               onClick={handleUpload}
