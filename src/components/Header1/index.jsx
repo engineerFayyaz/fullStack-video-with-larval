@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import { Button, Img, Text } from "components";
 import { useUser } from "redux/UserContext";
 
@@ -10,8 +10,6 @@ const Header1 = (props) => {
 
   const [searchBarVisible, setSearchBarVisible] = useState(false);
   const [dropdownVisible, setDropdownVisible] = useState(false);
-
-  
 
   const handleLogout = () => {
     // You can add your logout logic here.
@@ -35,14 +33,14 @@ const Header1 = (props) => {
 
   return (
     <>
-      <header className={`${props.className} pl-4 pr-4`}>
+      <header className={`${props.className} pl-3 pr-1`}>
         <Img
           className="h-20 sm:h-auto object-cover w-[7%] md:w-full"
           src="images/logo.png"
           alt="OurBrandTV"
         />
         <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start md:ml-[0] ml-[528px] md:mt-0 my-[19px] w-[56%] md:w-full">
-          <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[65%] md:w-full">
+          <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[70%] md:w-full">
             <Button
               className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[76px]"
               onClick={() => navigate("/")}
@@ -103,6 +101,22 @@ const Header1 = (props) => {
                 My Channel
               </Button>
             </div>
+
+            <a
+  className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[83px]"
+  href="https://ourbrandtv.com/admin/index.php?home/signin"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <Img
+    className="h-[22px] mb-px mr-2"
+    src="/images/admin.png"
+    alt="svgexport-6"
+  />
+  <div className="font-opensans text-base text-left text-white-A700">
+    Admin
+  </div>
+</a>
           </div>
           <Img
             className="h-[18px] md:ml-[0] ml-[25px] w-[18px] cursor-pointer sm:hidden"
@@ -126,8 +140,11 @@ const Header1 = (props) => {
               variant="fill"
               onClick={toggleDropdown}
             >
-              <div className="font-bold font-opensans text-base text-left pr-3" style={{color:"white"}}>
-              {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
+              <div
+                className="font-bold font-opensans text-base text-left pr-3"
+                style={{ color: "white" }}
+              >
+                {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
               </div>
               {dropdownVisible && (
                 <div
@@ -182,7 +199,12 @@ const Header1 = (props) => {
                     href="javascript:"
                     className="md:ml-[0] ml-[33px] mt-6 text-base text-white"
                   >
-                    <Text size="txtOpenSansRomanRegular16" onClick={() => navigate("/ContactUs")}>Contact Us</Text>
+                    <Text
+                      size="txtOpenSansRomanRegular16"
+                      onClick={() => navigate("/ContactUs")}
+                    >
+                      Contact Us
+                    </Text>
                   </a>
                   <a
                     className="md:ml-[0] ml-[33px] mt-[27px] text-base text-white cursor-pointer"
