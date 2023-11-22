@@ -15,7 +15,7 @@ const UpcomingEventTimerBar = () => {
        const userIdToUse = user_id || 67; // If user_id is available, use it; otherwise, use 67
 const response = await axios.get(`http://mobile.codegifted.com/api/upcoming_movie/${userIdToUse}`);
         const { data } = response.data;
-        const upcomingTimesData = data.map((movie) => movie.upcoming_time);
+        const upcomingTimesData = data.map((movie) => movie.timeonly);
         setUpcomingTimes(upcomingTimesData);
       } catch (error) {
         console.error("Error fetching upcoming times:", error);

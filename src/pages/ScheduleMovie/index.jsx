@@ -40,7 +40,7 @@ const ScheduleMovie = () => {
         );
   
         console.log("Data uploaded successfully", response.data.data);
-        toast.success("Data uploaded successfully");
+        toast.success("Movie Schdeuled Successfully");
       } else {
         console.error("Upcoming date is undefined");
         toast.error("Upcoming date is undefined");
