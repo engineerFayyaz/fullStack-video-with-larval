@@ -258,3 +258,6 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 .react-datepicker__input-container {
   color: white;
 }
+.carousel .control-dots{
+  display: none;
+}

@@ -39,8 +39,8 @@ const Header1 = (props) => {
           src="images/logo.png"
           alt="OurBrandTV"
         />
-        <div className="flex md:flex-col flex-row md:gap-5 items-center justify-start md:ml-[0] ml-[528px] md:mt-0 my-[19px] w-[56%] md:w-full">
-          <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[70%] md:w-full">
+        <div className="flex md:flex-col flex-row md:gap-5 items-center justify-end md:ml-[0] ml-[0px] md:mt-0 my-[19px] w-[100%] md:w-full">
+          <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[50%] md:w-full">
             <Button
               className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[76px]"
               onClick={() => navigate("/")}

@@ -9,6 +9,7 @@ import Header from "components/Header1"; // Assuming you want to use Header1
 import { useUser } from "redux/UserContext";
 import FacebookLogin from "react-facebook-login";
 import TwitterLogin from "react-twitter-login";
+import { auth } from "../../firebase"; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -16,12 +17,7 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { userEmail, setUserData } = useUser();
   const [userId, setUserId] = useState(null);
-  const googleSignIn = useGoogleLogin({
-    onSuccess: (res) => {
-      alert("Login successful. 😍");
-      navigate("/");
-    },
-  });
+ 
 
   const responseTwitter = (err, data) => {
     if (err) {
@@ -72,6 +68,31 @@ const LoginPage = () => {
       toast.error("Facebook login failed.");
     }
   };
+  const googleSignIn = async () => {
+    try {
+      const provider = new auth.GoogleAuthProvider(); // Use 'auth' instead of 'firebase.auth'
+      const result = await auth.signInWithPopup(provider);
+      // Handle the successful login
+      alert("Login successful. 😍");
+      navigate("/");
+    } catch (error) {
+      console.error("Google login failed:", error);
+      toast.error("Google login failed.");
+    }
+  };
+
+  const facebookSignIn = async () => {
+    try {
+      const provider = new auth.FacebookAuthProvider(); // Use 'auth' instead of 'firebase.auth'
+      const result = await auth.signInWithPopup(provider);
+      // Handle the successful login
+      alert("Login successful. 😍");
+      navigate("/");
+    } catch (error) {
+      console.error("Facebook login failed:", error);
+      toast.error("Facebook login failed.");
+    }
+  };
 
   return (
     <>
@@ -102,7 +123,7 @@ const LoginPage = () => {
             <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
               <Button
                 className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700"
-                onClick={() => googleSignIn()}
+                onClick={googleSignIn}
                 shape="round"
                 color="pink_500"
                 size="sm"
@@ -110,7 +131,7 @@ const LoginPage = () => {
               >
                 Login with Google
               </Button>
-              <FacebookLogin
+              {/* <FacebookLogin
                 appId="1514730115943733"
                 autoLoad={false}
                 fields="name,email,picture"
@@ -128,8 +149,22 @@ const LoginPage = () => {
                 Login with Facebook
               </Button>
                 )}
-              />
+              /> */}
+              </div>
 
+            <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
+
+
+<Button
+    className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
+    shape="round"
+    color="pink_500"
+    size="sm"
+    variant="fill"
+    onClick={facebookSignIn}
+  >
+    Login with Facebook
+  </Button>
 
 
               {/* <TwitterLogin

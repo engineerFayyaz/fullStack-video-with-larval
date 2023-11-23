@@ -6,21 +6,17 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 
-function Action() {
-  const navigate = useNavigate();
+function TopTen() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Define the API URL
-    const apiUrl = " https://ourbrandtv.com/mobile/public/api/moviebygenre/3";
+    const apiUrl = "https://ourbrandtv.com/mobile/public/api/moviebygenre/3";
 
-    // Make the API request
+
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log("API Response:", response.data);
-
         if (Array.isArray(response.data.data)) {
           setData(response.data.data);
         } else {
@@ -36,7 +32,7 @@ function Action() {
   }, []);
 
   const renderSlides = () => {
-    const itemsPerPage = 6;
+    const itemsPerPage = 5; // Show 5 items at a time
     const totalSlides = Math.ceil(data.length / itemsPerPage);
 
     return Array.from({ length: totalSlides }).map((_, index) => {
@@ -46,7 +42,7 @@ function Action() {
         const imageUrl = movie.poster_image
           ? movie.poster_image
           : `https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`;
-    
+
         return (
           <div key={movie.movie_id}>
             <Link to={`/details/${movie.movie_id}`}>
@@ -61,28 +57,8 @@ function Action() {
         );
       });
 
-      // const slideItems = data.slice(startIndex, endIndex).map((movie) => (
-      //   const imageUrl = movie.poster_image
-      //   <div key={movie.movie_id}>
-      //     <Link to={`/details/${movie.movie_id}`}>
-      //       {/* <img
-      //         src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
-      //         alt={movie.title}
-      //         className="common-pointer h-[250px] md:h-auto w-full"
-      //         style={{ width: "180px" }}
-      //       /> */}
-      //       <img
-      //       src={imageUrl}
-      //       alt={movie.title}
-      //       className="common-pointer h-[250px] md:h-auto w-full"
-      //       style={{ width: "180px" }}
-      //     />
-      //     </Link>
-      //   </div>
-      // ));
-
       return (
-        <div key={index} className="flex justify-around">
+        <div key={index} className="flex justify-around gap-3 sm:gap-4">
           {slideItems}
         </div>
       );
@@ -90,56 +66,32 @@ function Action() {
   };
 
   return (
-    <>
-      <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3">
-        <Text
-          className="text-white-A700 text-xl w-auto"
+    <div className="max-w-full mx-auto mt-2 mb-2">
+      <Text
+          className="text-white-A700 text-xl w-auto m-3 mb-6"
           size="txtOpenSansRomanBold20WhiteA700"
         >
           Suspense
         </Text>
-
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <Carousel
-            showThumbs={false}
-            showArrows={true}
-            infiniteLoop={true}
-            centerMode={false}
-            centerSlidePercentage={25}
-            dynamicHeight={true}
-            renderIndicator={(onClickHandler, isSelected, index, label) => {
-              if (isSelected) {
-                return (
-                  <li
-                    style={{ background: "#fff", width: "10px", height: "10px" }}
-                    aria-label={`Selected: ${label} ${index + 1}`}
-                    title={`Selected: ${label} ${index + 1}`}
-                  />
-                );
-              }
-              return (
-                <li
-                  style={{ background: "#000", width: "10px", height: "10px" }}
-                  onClick={onClickHandler}
-                  onKeyDown={onClickHandler}
-                  value={index}
-                  key={index}
-                  role="button"
-                  tabIndex={0}
-                  title={`${label} ${index + 1}`}
-                  aria-label={`${label} ${index + 1}`}
-                />
-              );
-            }}
-          >
-            {renderSlides()}
-          </Carousel>
-        )}
-      </div>
-    </>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Carousel
+          showThumbs={false}
+          showArrows={true}
+          showStatus={false}
+          infiniteLoop={true}
+          centerMode={false}
+          centerSlidePercentage={25}
+          dynamicHeight={true}
+          itemsToShow={3}
+           // Set the number of items to show at a time
+        >
+          {renderSlides()}
+        </Carousel>
+      )}
+    </div>
   );
 }
 
-export default Action;
+export default TopTen;
