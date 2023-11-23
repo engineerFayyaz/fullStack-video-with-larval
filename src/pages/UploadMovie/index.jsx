@@ -26,7 +26,7 @@ const UploadMoviePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://mobile.codegifted.com/api/genre")
+      .get(" https://ourbrandtv.com/mobile/public/api/genre")
       .then((response) => {
         if (Array.isArray(response.data.data)) {
           setGenreList(response.data.data);
@@ -61,7 +61,7 @@ const UploadMoviePage = () => {
   };
 
   const handleSubmit = () => {
-    const apiUrl = "http://mobile.codegifted.com/api/store_movie";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/store_movie";
 
     const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);

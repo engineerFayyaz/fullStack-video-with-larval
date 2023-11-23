@@ -21,7 +21,7 @@ const DetailsPage = (props) => {
     if (movie_id) {
       // This is a movie ID, so fetch movie data
       axios
-        .get(`http://mobile.codegifted.com/api/movie/${movie_id}`)
+        .get(` https://ourbrandtv.com/mobile/public/api/movie/${movie_id}`)
         .then((response) => {
           // Handle movie data response
           if (response.data.status === "1" && response.data.data) {
@@ -38,7 +38,7 @@ const DetailsPage = (props) => {
       console.log("series_id:", series_id); // Log the series_id
       // Fetch series data based on series_id
       axios
-        .get(`http://mobile.codegifted.com/api/series/${series_id}`)
+        .get(` https://ourbrandtv.com/mobile/public/api/series/${series_id}`)
         .then((response) => {
           // Log the API response
 
@@ -68,7 +68,7 @@ const DetailsPage = (props) => {
       // Now, the user is logged in
       // You can proceed with adding to the wish list...
   
-      const response = await axios.post("http://mobile.codegifted.com/api/wishlist", {
+      const response = await axios.post(" https://ourbrandtv.com/mobile/public/api/wishlist", {
         user_id: user.id, // Use the actual user ID from your authentication system
         movie_id,
       });

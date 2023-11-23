@@ -13,7 +13,7 @@ const UpcomingEventTimerBar = () => {
     const fetchUpcomingTimes = async () => {
       try {
        const userIdToUse = user_id || 67; // If user_id is available, use it; otherwise, use 67
-const response = await axios.get(`http://mobile.codegifted.com/api/upcoming_movie/${userIdToUse}`);
+const response = await axios.get(` https://ourbrandtv.com/mobile/public/api/upcoming_movie/${userIdToUse}`);
         const { data } = response.data;
         const upcomingTimesData = data.map((movie) => movie.timeonly);
         setUpcomingTimes(upcomingTimesData);

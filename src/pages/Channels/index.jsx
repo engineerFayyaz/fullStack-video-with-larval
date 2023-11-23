@@ -16,8 +16,8 @@ const Channels = () => {
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://mobile.codegifted.com/api/series";
-    const liveapi = "http://mobile.codegifted.com/api/live";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/series";
+    const liveapi = " https://ourbrandtv.com/mobile/public/api/live";
     // Make the API request
     axios
       .get(apiUrl)

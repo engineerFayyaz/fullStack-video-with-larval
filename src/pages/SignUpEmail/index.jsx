@@ -30,7 +30,7 @@ function SignUpEmailPage() {
 
   const handleSubmit = async () => {
     try {
-      const apiUrl = "https://mobile.codegifted.com/api/updateprofile";
+      const apiUrl = " https://ourbrandtv.com/mobile/public/api/updateprofile";
   
       // Make a POST request to the API with user information
       const response = await axios.post(apiUrl, userInfo);

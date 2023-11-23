@@ -40,7 +40,7 @@ function SignUpOnePage() {
     e.preventDefault();
 
     // Define your API endpoint
-    const apiUrl = "http://mobile.codegifted.com/api/signup";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/signup";
 
     // Create a data object with the user's input
     const userData = {

@@ -15,7 +15,7 @@ const DetailsSeries = () => {
 
     // Fetch series data based on series_id
     axios
-      .get(`http://mobile.codegifted.com/api/series/${series_id}`)
+      .get(` https://ourbrandtv.com/mobile/public/api/series/${series_id}`)
       .then((response) => {
         console.log("API response:", response.data);
         if (response.data.status === "1" && response.data.data) {

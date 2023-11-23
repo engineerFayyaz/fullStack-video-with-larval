@@ -14,7 +14,7 @@ function Movies(props) {
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://mobile.codegifted.com/api/movie";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/movie";
 
     // Make the API request
     axios

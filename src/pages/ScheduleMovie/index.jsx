@@ -55,7 +55,7 @@ const ScheduleMovie = () => {
         const formattedDateTime = format(formData.upcoming_datetime, 'yyyy-MM-dd HH:mm:ss');
         
         const response = await axios.post(
-          "http://mobile.codegifted.com/api/storeschedule",
+          " https://ourbrandtv.com/mobile/public/api/storeschedule",
           { ...formData, upcoming_datetime: formattedDateTime }
         );
 
@@ -75,7 +75,7 @@ const ScheduleMovie = () => {
   
   useEffect(() => {
     axios
-      .get("http://mobile.codegifted.com/api/genre")
+      .get(" https://ourbrandtv.com/mobile/public/api/genre")
       .then((response) => {
         if (Array.isArray(response.data.data)) {
           setGenreList(response.data.data);

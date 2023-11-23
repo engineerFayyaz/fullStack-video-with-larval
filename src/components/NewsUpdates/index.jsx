@@ -13,7 +13,7 @@ function NewsUpdates() {
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://mobile.codegifted.com/api/moviebygenre/7";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/moviebygenre/7";
 
     // Make the API request
     axios

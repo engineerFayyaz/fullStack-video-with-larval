@@ -37,7 +37,7 @@ const LoginPage = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const apiUrl = "http://mobile.codegifted.com/api/login";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/login";
 
     const loginData = {
       email: email,

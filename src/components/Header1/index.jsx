@@ -33,7 +33,7 @@ const Header1 = (props) => {
 
   return (
     <>
-      <header className={`${props.className} pl-3 pr-1`}>
+      <header className={`${props.className} pl-4 pr-4`}>
         <Img
           className="h-20 sm:h-auto object-cover w-[7%] md:w-full"
           src="images/logo.png"

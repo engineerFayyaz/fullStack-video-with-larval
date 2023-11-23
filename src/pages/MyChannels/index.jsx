@@ -21,7 +21,7 @@ const MyChannels = () => {
   const displayAge = age ? age : Math.floor(Math.random() * (99 - 18 + 1)) + 18;
 
   useEffect(() => {
-    const apiUrl = "http://mobile.codegifted.com/api/series";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/series";
   
     axios
       .get(apiUrl)

@@ -13,7 +13,7 @@ function Talk() {
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://mobile.codegifted.com/api/moviebygenre/5";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/moviebygenre/5";
 
     // Make the API request
     axios

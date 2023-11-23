@@ -13,7 +13,7 @@ function FreetoWatch() {
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://mobile.codegifted.com/api/moviebygenre/1";
+    const apiUrl = "https://ourbrandtv.com/mobile/public/api/moviebygenre/1";
 
     // Make the API request
     axios

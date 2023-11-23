@@ -13,7 +13,7 @@ function SciFi() {
 
   useEffect(() => {
     // Define the API URL
-    const apiUrl = "http://mobile.codegifted.com/api/moviebygenre/6";
+    const apiUrl = " https://ourbrandtv.com/mobile/public/api/moviebygenre/6";
 
     // Make the API request
     axios

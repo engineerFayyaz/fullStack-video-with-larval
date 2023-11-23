@@ -1,6 +1,19 @@
 // Feedback.js
+import React from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Feedback() {
+  const handleSubmit = () => {
+    // Assume your form validation is successful
+    // Display toast
+    toast.success("Your message received successfully. We will get in touch with you shortly.");
+
+    // Reload the window
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000); // Reload after 3 seconds (adjust as needed)
+  };
   return (
     <div
       className="absolute mt-52 ml-48 
@@ -63,6 +76,7 @@ export default function Feedback() {
 										text-white font-bold 
 										py-2 px-4 rounded"
             type="button"
+            onClick={handleSubmit}
           >
             Submit
           </button>

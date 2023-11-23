@@ -27,7 +27,7 @@ const ForgotPassword = () => {
       }
 
       // Define your API endpoint for updating the password
-      const apiUrl = 'http://mobile.codegifted.com/api/updatepassword';
+      const apiUrl = ' https://ourbrandtv.com/mobile/public/api/updatepassword';
 
       // Replace 'userId' with the actual user ID
       const userId = '123'; // Replace with the user's ID
@@ -65,7 +65,7 @@ const ForgotPassword = () => {
   const handleResetPassword = async () => {
     try {
       // Define your API endpoint for sending a verification code
-      const apiUrl = 'http://mobile.codegifted.com/api/GetVerifyCode';
+      const apiUrl = ' https://ourbrandtv.com/mobile/public/api/GetVerifyCode';
 
       // Send a request to the API to get a verification code
       const response = await axios.post(apiUrl, {
