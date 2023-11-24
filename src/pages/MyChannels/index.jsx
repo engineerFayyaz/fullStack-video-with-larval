@@ -89,30 +89,30 @@ const MyChannels = () => {
           <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
           <div className="flex flex-col md:px-5 relative w-full">
             <Img
-              className="h-[370px] mx-auto object-cover w-full"
+              className="h-[370px] mx-auto object-cover w-full sm:h-[fit-content]"
               src="images/img_rectangle441.png"
               alt="rectangle441"
             />
             <Img
-              className="h-[276px] mb-[31px] ml-5 mt-[-85px] rounded-[50%] w-[276px] z-[1]"
+              className="h-[276px] mb-[31px] ml-3 mt-[-49px] rounded-[50%] w-[276px] z-[1] sm:h-[fit-content] sm:w-[100px] sm:mt-[-19px] sm:ml-0"
               src="images/img_ellipse70.png"
               alt="ellipseSeventy"
             />
-            <div className="flex flex-col items-start justify-start mt-[-200px] ml-[328px] w-[50%] z-[1]">
+            <div className="flex flex-col items-start justify-start mt-[-250px] ml-[20rem] w-[40%] sm:w-[50%] sm:mt-[-111px] sm:ml-[107px] z-[1]">
               <Text
-                className="text-4xl sm:text-[32px] md:text-[34px] text-center text-white-A700"
+                className="text-4xl sm:text-[18px] md:text-[34px] text-center text-white-A700"
                 size="txtOpenSansRomanBold36"
               >
                 {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
               </Text>
               <Text
-                className="text-white-A700 text-xl"
+                className="text-white-A700 text-xl sm:text-[13px]"
                 size="txtOpenSansRomanRegular20"
               >
                  {localStorage.getItem("uploadSuccessCount")} Movies Uploaded
               </Text>
               <Button
-                className="common-pointer cursor-pointer md:ml-[0]  mt-[26px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px]"
+                className="common-pointer btn cursor-pointer md:ml-[0]  mt-[6px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px] sm:w-[fit-content] sm:p-[3px] sm:text-[10px]"
                 onClick={() => {
                   handleUploadButtonClick(); // Call your function
                   navigate("/UploadMovie"); // Navigate after calling the function
@@ -126,9 +126,9 @@ const MyChannels = () => {
 
               {/* <br/> */}
 
-              <div className="flex flex-col items-start justify-start mt-[-200px] ml-[328px] w-[50%] z-[1]" style={{marginTop:"-87px",marginLeft:"720px"}}>
+              <div className="flex flex-col items-start justify-start mt-[-67px] ml-[290px] w-[70%] z-[1] sm:mt-[-36px] sm:ml-[110px] " >
               <Button
-                className="common-pointer cursor-pointer md:ml-[0]  mt-[26px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px]"
+                className="common-pointer btn cursor-pointer md:ml-[0]  mt-[6px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px] sm:w-[fit-content] sm:p-[3px] sm:text-[10px]"
                 onClick={() => {
                   handleUploadButtonClick(); // Call your function
                   navigate("/ScheduleMovie"); // Navigate after calling the function

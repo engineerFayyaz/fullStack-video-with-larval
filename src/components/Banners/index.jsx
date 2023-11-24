@@ -2,8 +2,7 @@ import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Text, Img, RatingBar } from "components";
-
-
+import "../../styles/index.css";
 const Banners = () => {
   const bannerImages = [
     {
@@ -42,7 +41,7 @@ const Banners = () => {
   ];
 
   return (
-    <div className="container">
+    <div className="container homePage-banner-carousel md:h-[fit-content]">
       <div className="row">
         <div className="col-md-12">
           {bannerImages.length > 0 ? (
@@ -63,18 +62,19 @@ const Banners = () => {
                       style={{ maxWidth: "100%", maxHeight: "550px" }}
                     />
                     <div
-                      style={{
-                        position: "absolute",
-                        bottom: "60px",
-                        left: "40px",
-                        color: "white",
-                        padding: "5px",
-                        borderRadius: "5px",
-                      }}
+                      // style={{
+                      //   position: "absolute",
+                      //   bottom: "60px",
+                      //   left: "40px",
+                      //   color: "white",
+                      //   padding: "5px",
+                      //   borderRadius: "5px",
+                      // }}
+                      className=" homePage-banner-carousel-content"
                     >
-                      <p style={{fontSize:"14px"}} className="text-left">{banner.channel}</p>
-                      <p style={{fontSize:"80px",fontWeight:"700",fontFamily:"arial"}} className="text-left">{banner.movie}</p>
-                      <p style={{fontSize:"29px",fontWeight:"500"}} className="text-left">{`${banner.resolution} | ${banner.runtime}`}</p>
+                      <p  className="text-left">{banner.channel}</p>
+                      <p  className="text-left banner-title">{banner.movie}</p>
+                      <p  className="text-left banner-time">{`${banner.resolution} | ${banner.runtime}`}</p>
                       <p className="flex flex-row items-center gap-4"> <RatingBar
                           className="flex justify-between w-[190px]"
                           // value={movieData.rating}

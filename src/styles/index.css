@@ -261,3 +261,41 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 .carousel .control-dots{
   display: none;
 }
+.homePage-banner-carousel .homePage-banner-carousel-content{
+  position: absolute;
+                        bottom: 60px;
+                        left: 40px;
+                        color: white;
+                        padding: 5px;
+                        border-radius: 5px;
+}
+.homePage-banner-carousel .banner-title{
+  font-size: 80px;
+  font-weight: 700;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.homePage-banner-carousel .banner-time{
+  font-size: 29px;
+  font-weight: 500;
+}
+@media only screen and (max-width:450px){
+  .homePage-banner-carousel .homePage-banner-carousel-content{
+    bottom: 10px;
+    left: 0px;
+  }
+  .homePage-banner-carousel .homePage-banner-carousel-content .banner-title{
+font-size: 30px;
+  }
+  .homePage-banner-carousel .homePage-banner-carousel-content .banner-time{
+    font-size: 15px;
+  }
+  .h-\[514px\].md\:h-\[526px\].mt-3.md\:px-5.relative.w-full{
+    height: fit-content;
+  }
+
+  /* /// my channels starts  */
+  .img.h-\[370px\].mx-auto.object-cover.w-full{
+    height: fit-content;
+  }
+}
+
