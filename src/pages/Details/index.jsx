@@ -129,7 +129,7 @@ const DetailsPage = (props) => {
           {movieData && (
             <Img
               className="h-[100%] m-auto w-full"
-              src={movieData.poster_image ? movieData.thumbnail_image : `https://ourbrandtv.com/assets/global/movie_thumb/${movieData.movie_id}.jpg`}
+              src={movieData.poster_image ? movieData.thumbnail_image : `https://ourbrandtv.com/admin//assets/global/movie_thumb/${movieData.movie_id}.jpg`}
               // src={`https://ourbrandtv.com/assets/global/movie_thumb/${movieData.movie_id}.jpg`}
               alt="lucifersOne"
             />

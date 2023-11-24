@@ -40,7 +40,7 @@ function TopTen() {
       const slideItems = data.slice(startIndex, endIndex).map((movie) => {
         const imageUrl = movie.poster_image
           ? movie.poster_image
-          : `https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`;
+          : `https://ourbrandtv.com/admin/assets/global/movie_thumb/${movie.movie_id}.jpg`;
 
         return (
           <div key={movie.movie_id}>

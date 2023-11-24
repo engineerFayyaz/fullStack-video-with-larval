@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Header1 from "components/Header1";
 
-const TestModel = () => {
+const Terms = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isChecked, setChecked] = useState(false);
   const handleCheckboxChange = () => {
@@ -175,4 +175,4 @@ const TestModel = () => {
   );
 };
 
-export default TestModel;
+export default Terms;

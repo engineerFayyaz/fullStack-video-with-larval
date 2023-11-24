@@ -82,9 +82,9 @@ function Movies(props) {
                             src={
                               movie.poster_image
                                 ? movie.thumbnail_image
-                                : `https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`
+                                : `https://ourbrandtv.com/admin/assets/global/movie_thumb/${movie.movie_id}.jpg`
                             }
-                            // src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.movie_id}.jpg`}
+                            // src={`https://ourbrandtv.com/admin/assets/global/movie_thumb/${movie.movie_id}.jpg`}
                             alt={movie.title}
                             className="common-pointer h-[250px] md:h-auto  w-full"
                             style={{ width: "220px" }}
