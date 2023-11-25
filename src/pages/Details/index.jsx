@@ -4,7 +4,6 @@ import { useParams, Link } from "react-router-dom";
 import { Text, Img, RatingBar } from "components";
 import { useNavigate } from "react-router-dom";
 import Header from "components/Header";
-import Header1 from "components/Header1";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useUser } from "redux/UserContext";
@@ -64,15 +63,15 @@ const DetailsPage = (props) => {
         toast.error("Please log in to add to the wish list");
         return;
       }
-  
+
       // Now, the user is logged in
       // You can proceed with adding to the wish list...
-  
+
       const response = await axios.post(" https://ourbrandtv.com/mobile/public/api/wishlist", {
         user_id: user.id, // Use the actual user ID from your authentication system
         movie_id,
       });
-  
+
       if (response.data.status === "success") {
         toast.success("Added to wish list successfully");
         // You might want to update the state or perform other actions after successful addition
@@ -83,11 +82,6 @@ const DetailsPage = (props) => {
       toast.error("Error adding to wish list");
     }
   };
-  
-
-  
-
-  // Your component JSX and rendering logic...
 
   return (
     <>
@@ -122,28 +116,25 @@ const DetailsPage = (props) => {
           ))}
         </div>
       )}
+
         <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center w-full" />
-        {/* <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" /> */}
 
         <div className="h-[600px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
           {movieData && (
             <Img
               className="h-[100%] m-auto w-full"
               src={movieData.poster_image ? movieData.thumbnail_image : `https://ourbrandtv.com/admin//assets/global/movie_thumb/${movieData.movie_id}.jpg`}
-              // src={`https://ourbrandtv.com/assets/global/movie_thumb/${movieData.movie_id}.jpg`}
               alt="lucifersOne"
             />
           )}
-          <div className="absolute bottom-[-10%] flex flex-col md:gap-10 gap-20 justify-start left-[4%] w-[66%]">
-            {movieData && (
+          {movieData && (
+            <div className="absolute bottom-[-10%] flex flex-col md:gap-10 gap-20 justify-start left-[4%] w-[66%]">
               <Img
                 className="common-pointer h-50 md:ml-[0] ml-[523px] w-44"
                 src="/images/icons8-pot-player.svg"
                 alt="group163539"
                 onClick={() => navigate(`/player?videoUrl=${movieData.url}`)}
               />
-            )}
-            {movieData && (
               <div className="flex flex-col h-[300px]  items-start justify-start w-full">
                 <div className="  w-full">
                   <div className="flex flex-col  justify-start m-auto w-full">
@@ -206,23 +197,8 @@ const DetailsPage = (props) => {
                       >
                         <button
                           className="flex items-center text-white"
-                          // onClick={addToWishList}
                           style={{fontWeight:"700",color:"blue",marginTop:"28px"}}
                         >
-                          {/* <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill={isInWishList ? "red" : "none"}
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            className="h-6 w-6 cursor-pointer"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="M12 21l-1.42-1.42M5.05 8H19a2 2 0 0 1 1.7 3.09l-7.3 9.13a1 1 0 0 1-1.4 0L3.3 11.09A2 2 0 0 1 5.05 8z"
-                            />
-                          </svg> */}
                           <span className="ml-2">
                             {isInWishList
                               ? "Remove from Wish List"
@@ -234,11 +210,10 @@ const DetailsPage = (props) => {
                   </div>
                 </div>
               </div>
-            )}
-
-            
-          </div>
+            </div>
+          )}
         </div>
+
         <div className="flex flex-col items-start justify-start max-w-[1329px] mb-10 mt-8 mx-auto md:px-5 w-full">
           <Text
             className="md:text-3xl sm:text-[28px] text-[32px] text-gray-100"
@@ -251,31 +226,13 @@ const DetailsPage = (props) => {
               ? movieData.description_long
               : "The film opens with Brando uttering the now-legendary line, 'I'm gonna make him an offer he can't refuse.' This phrase encapsulates the essence of the Corleone family's dealings, where negotiations often take on a sinister undertone. Brando's stoic demeanor and calculated approach to power dynamics make him an unforgettable figure in cinema history. As the story unfolds, we witness the Corleones navigating a dangerous world where allegiances are tested, and betrayals have severe consequences. The juxtaposition of the family's intimate moments with scenes of brutal violence creates a narrative tension that resonates throughout the film. Al Pacino's Michael Corleone undergoes a profound transformation from a reluctant outsider to a ruthless leader, showcasing the film's exploration of the corrupting nature of power."}
           </Text>
-          {/* <Text
-            className="mt-5 text-gray-100 text-sm w-full"
-            size="txtNunitoSansRegular14"
-          >
-            The film opens with Brando uttering the now-legendary line, "I'm
-            gonna make him an offer he can't refuse." This phrase encapsulates
-            the essence of the Corleone family's dealings, where negotiations
-            often take on a sinister undertone. Brando's stoic demeanor and
-            calculated approach to power dynamics make him an unforgettable
-            figure in cinema history. As the story unfolds, we witness the
-            Corleones navigating a dangerous world where allegiances are tested,
-            and betrayals have severe consequences. The juxtaposition of the
-            family's intimate moments with scenes of brutal violence creates a
-            narrative tension that resonates throughout the film. Al Pacino's
-            Michael Corleone undergoes a profound transformation from a
-            reluctant outsider to a ruthless leader, showcasing the film's
-            exploration of the corrupting nature of power.
-          </Text> */}
           <div className="flex flex-col font-poppins gap-2.5 items-start justify-start mt-[22px]">
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">
-                Seasons:{" "}
+                Seasons:
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                1
+              {movieData && movieData.title ? movieData.title : "1"}
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -283,7 +240,9 @@ const DetailsPage = (props) => {
                 Genre:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                Action, Thriller, Survival, Drama
+              {movieData && movieData.Genre_id ? movieData.Genre_id : "Action, Thriller, Survival, Drama"}
+              
+                {/* Action, Thriller, Survival, Drama */}
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -291,7 +250,9 @@ const DetailsPage = (props) => {
                 Directed by:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                Hwang Dong-hyuk
+              
+
+{movieData && movieData.director ? movieData.director : "Hwang Dong-hyuk"}
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -308,8 +269,7 @@ const DetailsPage = (props) => {
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
                 <>
-                  Lee Jung-jae, Park Hae-soo, Wi Ha-joon, Jung Ho-yeon, O
-                  Yeong-su, Heo Sung-tae,Anupam Tripathi, Kim Joo-ryoung
+                {movieData && movieData.description_short ? movieData.description_short : "Months ago"}
                 </>
               </span>
             </Text>
@@ -318,7 +278,7 @@ const DetailsPage = (props) => {
                 Production Companies:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                Netflix
+                Netflix and Ourbrand tv
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -326,64 +286,20 @@ const DetailsPage = (props) => {
                 Original release:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                September 17, 2021
+              {movieData && movieData.year ? movieData.year : "2023"}
+              </span>
+            </Text>
+            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+              <span className="text-gray-100 font-opensans text-left font-normal">
+                Published Date Ourbrand:{" "}
+              </span>
+              <span className="text-gray-100 font-opensans text-left font-bold">
+              
+              {movieData && movieData. created_at ? movieData.created_at : "2023"}
+
               </span>
             </Text>
           </div>
-        </div>
-        <div
-          className="flex sm:flex-col flex-row gap-8 items-start justify-start md:ml-[0] pl-[54px] w-[100%] md:w-full pt-3"
-          style={{ borderTop: "1px solid #2d2d2d" }}
-        >
-          <a
-            href="javascript:"
-            className="text-base text-white-A700"
-            style={{ fontSize: "13px" }}
-          >
-            <Text
-              size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/PrivacyPolicy")}
-            >
-              Privacy Policy
-            </Text>
-          </a>
-          <a
-            href="javascript:"
-            className="text-base text-white-A700"
-            style={{ fontSize: "13px" }}
-          >
-            <Text
-              size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/Disclaimer")}
-            >
-              Disclaimer
-            </Text>
-          </a>
-
-          <a
-            href="javascript:"
-            className="text-base text-white-A700"
-            style={{ fontSize: "13px" }}
-          >
-            <Text
-              size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/TermsConditions")}
-            >
-              Terms and Conditions
-            </Text>
-          </a>
-          <a
-            href="javascript:"
-            className="text-base text-white-A700"
-            style={{ fontSize: "13px" }}
-          >
-            <Text
-              size="txtOpenSansRomanRegular16"
-              onClick={() => navigate("/TermsOfUse")}
-            >
-              Terms Of Use
-            </Text>
-          </a>
         </div>
       </div>
     </>

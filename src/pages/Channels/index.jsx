@@ -120,7 +120,7 @@ const Channels = () => {
                           }}
                         >
                           <img
-                            src={`https://ourbrandtv.com/assets/global/movie_thumb/${movie.series_id}.jpg`}
+                            src={`https://ourbrandtv.com/admin//assets/global/movie_thumb/${movie.series_id}.jpg`}
                             alt={movie.title}
                             className="common-pointer h-[250px] md:h-auto  w-full"
                             style={{ width: "180px" }}

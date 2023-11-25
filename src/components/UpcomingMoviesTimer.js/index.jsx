@@ -3,22 +3,31 @@ import axios from "axios";
 import { useUser } from "redux/UserContext";
 
 const UpcomingEventTimerBar = () => {
-  const { user_id } = useUser(); // Assuming your user context provides the user_id
-
-  console.log("user",user_id)
+  const { user_id } = useUser();
 
   const [upcomingTimes, setUpcomingTimes] = useState([]);
 
   useEffect(() => {
     const fetchUpcomingTimes = async () => {
       try {
-       const userIdToUse = user_id || 67; // If user_id is available, use it; otherwise, use 67
-const response = await axios.get(` https://ourbrandtv.com/mobile/public/api/upcoming_movie/${userIdToUse}`);
-        const { data } = response.data;
-        const upcomingTimesData = data.map((movie) => movie.timeonly);
-        setUpcomingTimes(upcomingTimesData);
+        const userIdToUse = user_id || 67 || 1 || 2 || 3 || 4;
+        const response = await axios.get(`https://ourbrandtv.com/mobile/public/api/upcoming_movie/${userIdToUse}`);
+        
+        if (response.status === 200) {
+          const responseData = response.data;
+
+          // Check if responseData and responseData.data are present and are arrays
+          if (responseData && responseData.data && Array.isArray(responseData.data)) {
+            const upcomingTimesData = responseData.data.map((movie) => movie.timeonly);
+            setUpcomingTimes(upcomingTimesData);
+          } else {
+            console.error("Invalid data structure in API response:", responseData);
+          }
+        } else {
+          console.error("Error fetching upcoming times. Status:", response.status);
+        }
       } catch (error) {
-        console.error("Error fetching upcoming times:", error);
+        console.error("Error fetching upcoming times:", error.message);
       }
     };
 

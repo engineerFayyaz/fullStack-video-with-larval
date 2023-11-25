@@ -4,29 +4,56 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CheckBox, Line, Img, Button } from "components"; // Assuming these components are properly implemented
-import { useGoogleLogin } from "@react-oauth/google";
 import Header from "components/Header1"; // Assuming you want to use Header1
 import { useUser } from "redux/UserContext";
 import FacebookLogin from "react-facebook-login";
 import TwitterLogin from "react-twitter-login";
-import { auth } from "../../firebase"; 
+import {
+  signInWithPopup,
+  auth,
+  googleProvider,
+  facebookProvider,
+} from "../../services/Firebase";
+// import { googleAuthProvider, signInWithPopup } from '../../services/Firebase';
+// Now you can use auth, provider, and signInWithPopup in your cod
+import { signInWithTwitter } from "services/Firebase";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { userEmail, setUserData } = useUser();
-  const [userId, setUserId] = useState(null);
- 
+  const [googleUser, setGoogleUser] = useState(null);
 
-  const responseTwitter = (err, data) => {
-    if (err) {
-      console.error("Twitter login failed:", err);
-      toast.error("Twitter login failed.");
-    } else {
-      console.log("Twitter Login Response:", data);
-      setUserData({ user_id: data.user_id, userEmail: data.email });
-      navigate("/");
+  const signInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      console.log(result.user);
+      // Handle successful sign-in
+    } catch (error) {
+      if (error.code === "auth/popup-closed-by-user") {
+        console.error("User closed the popup without completing the sign-in.");
+        // Provide feedback to the user that the sign-in was canceled
+      } else {
+        console.error(error.message);
+        // Handle other errors
+      }
+    }
+  };
+
+  const signInWithFacebook = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
+      console.log(result.user);
+      // Handle successful sign-in
+    } catch (error) {
+      if (error.code === "auth/popup-closed-by-user") {
+        console.error("User closed the popup without completing the sign-in.");
+        // Provide feedback to the user that the sign-in was canceled
+      } else {
+        console.error(error.message);
+        // Handle other errors
+      }
     }
   };
 
@@ -59,41 +86,6 @@ const LoginPage = () => {
       });
   };
 
-  const responseFacebook = (response) => {
-    if (response.status === "connected") {
-      const { email, accessToken } = response;
-      setUserData({ user_id: response.data.user_id, userEmail: email });
-      navigate("/");
-    } else {
-      toast.error("Facebook login failed.");
-    }
-  };
-  const googleSignIn = async () => {
-    try {
-      const provider = new auth.GoogleAuthProvider(); // Use 'auth' instead of 'firebase.auth'
-      const result = await auth.signInWithPopup(provider);
-      // Handle the successful login
-      alert("Login successful. 😍");
-      navigate("/");
-    } catch (error) {
-      console.error("Google login failed:", error);
-      toast.error("Google login failed.");
-    }
-  };
-
-  const facebookSignIn = async () => {
-    try {
-      const provider = new auth.FacebookAuthProvider(); // Use 'auth' instead of 'firebase.auth'
-      const result = await auth.signInWithPopup(provider);
-      // Handle the successful login
-      alert("Login successful. 😍");
-      navigate("/");
-    } catch (error) {
-      console.error("Facebook login failed:", error);
-      toast.error("Facebook login failed.");
-    }
-  };
-
   return (
     <>
       <div className="bg-black-900 flex flex-col font-poppins items-center justify-end mx-auto p-[18px] w-full">
@@ -122,67 +114,29 @@ const LoginPage = () => {
             <Line className="bg-blue-600 h-0.5 mr-[253px] mt-[7px] w-[55%]" />
             <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
               <Button
-                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700"
-                onClick={googleSignIn}
-                shape="round"
-                color="pink_500"
-                size="sm"
-                variant="fill"
-              >
-                Login with Google
-              </Button>
-              {/* <FacebookLogin
-                appId="1514730115943733"
-                autoLoad={false}
-                fields="name,email,picture"
-                callback={responseFacebook}
-                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700"
-                render={(renderProps) => (
-                  <Button
                 className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
                 shape="round"
                 color="pink_500"
                 size="sm"
                 variant="fill"
-                onClick={renderProps.onClick}
+                onClick={signInWithGoogle}
               >
-                Login with Facebook
+                Login with Google
               </Button>
-                )}
-              /> */}
-              </div>
+            </div>
 
             <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
-
-
-<Button
-    className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
-    shape="round"
-    color="pink_500"
-    size="sm"
-    variant="fill"
-    onClick={facebookSignIn}
-  >
-    Login with Facebook
-  </Button>
-
-
-              {/* <TwitterLogin
-                authCallback={responseTwitter}
-                className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg "
+              <Button
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
                 shape="round"
                 color="pink_500"
                 size="sm"
                 variant="fill"
-                consumerKey="your-twitter-consumer-key"
-               consumerSecret="your-twitter-consumer-secret"
-               text="Login with Twitter"
-              //  style={{ padding: "11px", borderRadius: "3px", backgroundColor: "blue" }}
-              /> */}
-                
-              <p className="text-2xl mt-3 ml-auto mr-auto md:text-[22px] text-white-A700 sm:text-xl">
-                OR
-              </p>
+                onClick={signInWithFacebook}
+              >
+                Login with Facebook
+              </Button>
+
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px]  w-[100%] md:w-full min-w-[450px] sm:min-w-full">
                 <p className="text-lg text-white-A700">Email</p>
                 <input

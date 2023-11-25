@@ -32,7 +32,7 @@ function TopTen() {
   }, []);
 
   const renderSlides = () => {
-    const itemsPerPage = 5; // Show 5 items at a time
+    const itemsPerPage = 6; // Show 5 items at a time
     const totalSlides = Math.ceil(data.length / itemsPerPage);
 
     return Array.from({ length: totalSlides }).map((_, index) => {
