@@ -17,18 +17,42 @@ const UpcomingEventTimerBar = () => {
           const responseData = response.data;
 
           // Check if responseData and responseData.data are present and are arrays
-          if (responseData && responseData.data && Array.isArray(responseData.data)) {
+          if (responseData && responseData.data && Array.isArray(responseData.data) && responseData.data.length > 0) {
             const upcomingTimesData = responseData.data.map((movie) => movie.timeonly);
             setUpcomingTimes(upcomingTimesData);
           } else {
-            console.error("Invalid data structure in API response:", responseData);
+            console.error("No upcoming times in API response. Generating random schedule.");
+            generateRandomSchedule();
           }
         } else {
           console.error("Error fetching upcoming times. Status:", response.status);
+          generateRandomSchedule();
         }
       } catch (error) {
         console.error("Error fetching upcoming times:", error.message);
+        generateRandomSchedule();
       }
+    };
+
+    const generateRandomSchedule = () => {
+      const randomTimes = ["8:00PM", "9:30AM", "12:00PM", "1:00AM", "2:45AM"];
+      
+      // Get the current date and time
+      const currentDate = new Date();
+      
+      // Generate random dates and times for the next 30 days
+      const randomSchedule = Array.from({ length: 10 }, (_, index) => {
+        const randomDate = new Date();
+        randomDate.setDate(currentDate.getDate() + index + 1); // Increment the date
+        const formattedDate = `${randomDate.getMonth() + 1}-${randomDate.getDate()}-${randomDate.getFullYear()}`;
+        
+        return {
+          timeonly: randomTimes[index % randomTimes.length],
+          date: formattedDate,
+        };
+      });
+
+      setUpcomingTimes(randomSchedule);
     };
 
     fetchUpcomingTimes();
@@ -39,7 +63,9 @@ const UpcomingEventTimerBar = () => {
       <h4 style={{ color: "white" }}>Upcoming</h4>
       <div className="step-container">
         {upcomingTimes.map((upcomingTime, index) => (
-          <div key={index} className="step">{`${upcomingTime}`}</div>
+          <div key={index} className="step" title={`Date: ${upcomingTime.date}`}>
+            {`${upcomingTime.timeonly}`}
+          </div>
         ))}
       </div>
     </div>
