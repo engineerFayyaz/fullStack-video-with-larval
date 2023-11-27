@@ -34,11 +34,13 @@ const Header1 = (props) => {
   return (
     <>
       <header className={`${props.className} pl-4 pr-4`}>
+        <a href="/" className="h-20 sm:h-auto object-cover w-[7%] md:w-full">
         <Img
-          className="h-20 sm:h-auto object-cover w-[7%] md:w-full"
           src="images/logo.png"
+          
           alt="OurBrandTV"
         />
+        </a>
         <div className="flex md:flex-col flex-row md:gap-5 items-center justify-end md:ml-[0] ml-[0px] md:mt-0 my-[19px] w-[100%] md:w-full">
           <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[50%] md:w-full">
             <Button

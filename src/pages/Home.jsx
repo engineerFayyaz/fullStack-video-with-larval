@@ -71,6 +71,9 @@ const Home = () => {
         <li>
           <Link to="/MyChannels">MyChannels</Link>
         </li>
+        <li>
+          <Link to="/Terms">Terms</Link>
+        </li>
       </ul>
     </div>
   );

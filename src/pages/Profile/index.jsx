@@ -107,13 +107,13 @@ const ProfilePage = () => {
       // Generate the appropriate Stripe link based on the selected plan
       if (selectedPlan === "basic") {
         stripePaymentURL =
-          "https://checkout.stripe.com/c/pay/cs_live_a1aMsb6My2NiPg0hMgCA9yPoVYQjVLQsorzFrKmDq7FNaUV5UdmMxTlLLm#fidkdWxOYHwnPyd1blppbHNgWjA0SkZTUXZGUUxhbn8yc2oyTm9RazQzajRuZzx2YVZ8cW1Kd0RxXDNDYU43fzZia313PUxOM2EzRlMzNXxKU1NvXGRIZElSVm19ZkgxTEtGUmZcQXRRdG5zNTVxNH9XYVNwdycpJ3VpbGtuQH11anZgYUxhJz8nMnZMN2doPEgxPGk9N0JmZEBAJ3gl";
+          "https://buy.stripe.com/8wM4ju6zSapc3Kg6op";
       } else if (selectedPlan === "pro") {
         stripePaymentURL =
-          "https://checkout.stripe.com/c/pay/cs_live_a1f36Qdw4QvRC1sJmQYHAcB1owlZ5Y62TYwYSk1pygN6CKRTMuCqqalrGW#fidkdWxOYHwnPyd1blppbHNgWjA0SkZTUXZGUUxhbn8yc2oyTm9RazQzajRuZzx2YVZ8cW1Kd0RxXDNDYU43fzZia313PUxOM2EzRlMzNXxKU1NvXGRIZElSVm19ZkgxTEtGUmZcQXRRdG5zNTVxNH9XYVNwdycpJ3VpbGtuQH11anZgYUxhJz8nYVczNTZgZ1BmZHVmM1J2NTU3J3gl";
+          "https://buy.stripe.com/dR603ebUcapc6Ws002";
       } else if (selectedPlan === "faithBased") {
         stripePaymentURL =
-          "https://checkout.stripe.com/c/pay/cs_live_a1jOo0jTKs9PYVHpi7M5oQ9LBQSe3ek9s4D6L1TncXZWh3b6L7xNaoXyFP#fidkdWxOYHwnPyd1blppbHNgWjA0SkZTUXZGUUxhbn8yc2oyTm9RazQzajRuZzx2YVZ8cW1Kd0RxXDNDYU43fzZia313PUxOM2EzRlMzNXxKU1NvXGRIZElSVm19ZkgxTEtGUmZcQXRRdG5zNTVxNH9XYVNwdycpJ3VpbGtuQH11anZgYUxhJz8nPXJIMW9wM39WZHVmNk5iM2p1J3gl";
+          "https://buy.stripe.com/7sI2bm9M49l82GcaEE";
       }
 
       const stripePaymentWindow = window.open(stripePaymentURL, "_blank");

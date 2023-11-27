@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Movies from "pages/Movies";
-import Terms from "pages/Terms";
 // import ContactUs from "pages/ContactUs";
 const MyChannels = React.lazy(() => import("pages/MyChannels"));
 const UploadMovie = React.lazy(() => import("pages/UploadMovie"));
@@ -32,7 +31,7 @@ const ForgotPassword = React.lazy(()=> import("pages/ForgotPassword"));
 const ContactUs =React.lazy(()=>import("pages/ContactUs"));
 const Notification = React.lazy(()=> import("pages/Notification"))
 const TermsOfUse =React.lazy(()=>import("pages/TermsOfUse"))
-// const Terms = React.lazy(()=>import("pages/Terms"))
+const Terms = React.lazy(()=>import("pages/Terms"))
 const LiveStreaming = React.lazy(()=>import("pages/LiveStreaming"))
 const ScheduleMovie = React.lazy(()=>import("pages/ScheduleMovie"))
 // const PaymentPage =React.lazy(()=>import("pages/PaymentPage"))
