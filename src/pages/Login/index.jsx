@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import { CheckBox, Line, Img, Button } from "components"; // Assuming these components are properly implemented
 import Header from "components/Header1"; // Assuming you want to use Header1
 import { useUser } from "redux/UserContext";
 import FacebookLogin from "react-facebook-login";
-import TwitterLogin from "react-twitter-login";
 import { useGoogleLogin } from "@react-oauth/google";
+
 
 import {
   signInWithPopup,
@@ -16,9 +16,7 @@ import {
   googleProvider,
   facebookProvider,
 } from "../../services/Firebase";
-// import { googleAuthProvider, signInWithPopup } from '../../services/Firebase';
-// Now you can use auth, provider, and signInWithPopup in your cod
-import { signInWithTwitter } from "services/Firebase";
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -26,21 +24,44 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { userEmail, setUserData } = useUser();
   const [googleUser, setGoogleUser] = useState(null);
+  // const [userData, setUserData] = useState({});
 
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
-      // Access the user's email from the response
-      const userEmail = res.profileObj.email;
       console.log("Google Login Response:", res);
-      console.log("User Email:", userEmail);
 
-      toast.success("Login successful. 😍", {
-        position: toast.POSITION.TOP_CENTER,
-      });
+      // Check if the necessary properties are available in the response
+      if (res && res.access_token) {
+        const userEmail = res.id_token;
+        const userName = res.profileObj?.name || "";
+        const userImage = res.profileObj?.imageUrl || "";
+        const userId = res.profileObj?.googleId || "";
 
-      navigate("/");
+        if (userEmail) {
+          // Use the user's email directly
+          toast.success(`Login successful. Welcome, ${userName}! 😍`, {
+            position: toast.POSITION.TOP_CENTER,
+          });
+
+          // Redirect to the homepage with user email in state
+          navigate("/", { state: { email: userEmail } });
+        } else {
+          console.error("Unable to extract user email from id_token");
+          toast.success("Google email is saved, now please logedin using email and password");
+          navigate("/")
+        }
+      } else {
+        console.error("Invalid Google Sign-In response:", res);
+        toast.error("An error occurred during login.");
+      }
+    },
+    onFailure: (err) => {
+      console.log("Google Login Failed:", err);
     },
   });
+
+ 
+
 
   const responseFacebook = (response) => {
     if (response.status !== "unknown") {
@@ -111,7 +132,7 @@ const LoginPage = () => {
             <Line className="bg-blue-600 h-0.5 mr-[253px] mt-[7px] w-[55%]" />
             <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
               <Button
-                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700"
                 shape="round"
                 color="pink_500"
                 size="sm"
@@ -120,6 +141,7 @@ const LoginPage = () => {
               >
                 Login with Google
               </Button>
+
               <FacebookLogin
                 appId="1514730115943733"
                 autoLoad={false}
@@ -202,9 +224,7 @@ const LoginPage = () => {
                     Accept Terms Conditions
                   </span>
                 }
-                onClick={() =>
-                  window.open("/Terms", "_blank",)
-                }
+                onClick={() => window.open("/Terms", "_blank")}
               />
               <Button
                 className="common-pointer border border-blue-700 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
