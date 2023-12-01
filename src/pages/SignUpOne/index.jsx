@@ -5,37 +5,41 @@ import { useGoogleLogin } from "@react-oauth/google";
 import { Button, CheckBox, Img, Input, Line, Text } from "components";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import FacebookLogin from 'react-facebook-login';
+import FacebookLogin from "react-facebook-login";
 function SignUpOnePage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [Confirmpassword, setConfirmPassword] = useState("");
   // Add other state variables for additional fields if needed
   const navigate = useNavigate();
+
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
       // Access the user's email from the response
       const userEmail = res.profileObj.email;
       console.log("Google Login Response:", res);
       console.log("User Email:", userEmail);
-      alert("Login successful with Google. 😍");
-      // Now, you can use userEmail as needed (e.g., send it to your server)
-      // ...
 
-      navigate("/");
+      toast.success("Signup successful. 😍", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+      navigate("/login");
     },
   });
 
-
-
   const responseFacebook = (response) => {
-    if (response.status !== 'unknown') {
+    if (response.status !== "unknown") {
       console.log("Facebook Login Response:", response);
-      alert("Sign up with Facebook successful. 😍");
+      toast.success("Signup successful with Facebook. 😍", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      navigate("/login");
     } else {
       console.log("Facebook Login was cancelled or failed.");
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -113,26 +117,30 @@ function SignUpOnePage() {
                 variant="fill"
               >
                 Sign up with Google
+                <ToastContainer />
               </Button>
               <FacebookLogin
                 appId="1514730115943733"
                 autoLoad={false}
                 fields="name,email,picture"
                 callback={responseFacebook}
-                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700"
+                color="pink_500"
                 render={(renderProps) => (
                   <Button
-                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
-                shape="round"
-                color="pink_500"
-                size="sm"
-                variant="fill"
-                onClick={renderProps.onClick}
-              >
-                Sign up with Facebook
-              </Button>
+                    className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
+                    shape="round"
+                    color="pink_500"
+                    size="sm"
+                    variant="fill"
+                    onClick={renderProps.onClick}
+                  >
+                    Sign up with Facebook
+                  </Button>
                 )}
               />
+
+              {/* Toast container for notifications */}
+              <ToastContainer />
               {/* <Button
                 className="cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] mt-5 text-center text-lg"
                 shape="round"
@@ -164,7 +172,11 @@ function SignUpOnePage() {
                   variant="fill"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  style={{background:"#1D1D1D",border:"none",borderRadius:"6px"}}
+                  style={{
+                    background: "#1D1D1D",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
                 ></input>
               </div>
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px]  w-[100%] md:w-full min-w-[450px] sm:min-w-full">
@@ -183,7 +195,11 @@ function SignUpOnePage() {
                   variant="fill"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  style={{background:"#1D1D1D",border:"none",borderRadius:"6px"}}
+                  style={{
+                    background: "#1D1D1D",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
                 ></input>
               </div>
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px]  w-[100%] md:w-full min-w-[450px] sm:min-w-full">
@@ -202,7 +218,11 @@ function SignUpOnePage() {
                   variant="fill"
                   value={Confirmpassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  style={{background:"#1D1D1D",border:"none",borderRadius:"6px"}}
+                  style={{
+                    background: "#1D1D1D",
+                    border: "none",
+                    borderRadius: "6px",
+                  }}
                 ></input>
               </div>
               <CheckBox
@@ -210,7 +230,11 @@ function SignUpOnePage() {
                 inputClassName="border-2 border-blue-600 border-solid h-[25px] mr-[5px] w-[25px]"
                 name="rememberme"
                 id="rememberme"
-                label={<span style={{color:"white"}}>I accept the “Terms and Conditions”. </span>}
+                label={
+                  <span style={{ color: "white" }}>
+                    I accept the “Terms and Conditions”.{" "}
+                  </span>
+                }
               />
               <Button
                 className="common-pointer border border-blue-600 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-12 shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"

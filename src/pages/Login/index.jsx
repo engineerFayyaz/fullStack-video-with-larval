@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import { CheckBox, Line, Img, Button } from "components"; // Assuming these components are properly implemented
 import Header from "components/Header1"; // Assuming you want to use Header1
 import { useUser } from "redux/UserContext";
 import FacebookLogin from "react-facebook-login";
 import TwitterLogin from "react-twitter-login";
+import { useGoogleLogin } from "@react-oauth/google";
+
 import {
   signInWithPopup,
   auth,
@@ -25,35 +27,30 @@ const LoginPage = () => {
   const { userEmail, setUserData } = useUser();
   const [googleUser, setGoogleUser] = useState(null);
 
-  const signInWithGoogle = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      console.log(result.user);
-      // Handle successful sign-in
-    } catch (error) {
-      if (error.code === "auth/popup-closed-by-user") {
-        console.error("User closed the popup without completing the sign-in.");
-        // Provide feedback to the user that the sign-in was canceled
-      } else {
-        console.error(error.message);
-        // Handle other errors
-      }
-    }
-  };
+  const googleSignIn = useGoogleLogin({
+    onSuccess: (res) => {
+      // Access the user's email from the response
+      const userEmail = res.profileObj.email;
+      console.log("Google Login Response:", res);
+      console.log("User Email:", userEmail);
 
-  const signInWithFacebook = async () => {
-    try {
-      const result = await signInWithPopup(auth, facebookProvider);
-      console.log(result.user);
-      // Handle successful sign-in
-    } catch (error) {
-      if (error.code === "auth/popup-closed-by-user") {
-        console.error("User closed the popup without completing the sign-in.");
-        // Provide feedback to the user that the sign-in was canceled
-      } else {
-        console.error(error.message);
-        // Handle other errors
-      }
+      toast.success("Login successful. 😍", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+      navigate("/");
+    },
+  });
+
+  const responseFacebook = (response) => {
+    if (response.status !== "unknown") {
+      console.log("Facebook Login Response:", response);
+      toast.success("Login successful with Facebook. 😍", {
+        position: toast.POSITION.TOP_CENTER,
+      });
+      navigate("/login");
+    } else {
+      console.log("Facebook Login was cancelled or failed.");
     }
   };
 
@@ -119,24 +116,31 @@ const LoginPage = () => {
                 color="pink_500"
                 size="sm"
                 variant="fill"
-                onClick={signInWithGoogle}
+                onClick={() => googleSignIn()}
               >
                 Login with Google
               </Button>
+              <FacebookLogin
+                appId="1514730115943733"
+                autoLoad={false}
+                fields="name,email,picture"
+                callback={responseFacebook}
+                style={{ backgroundColor: "#2563EB" }}
+                render={(renderProps) => (
+                  <Button
+                    className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
+                    shape="round"
+                    // color="pink_500"
+                    size="sm"
+                    variant="fill"
+                    onClick={renderProps.onClick}
+                  >
+                    Log in with Facebook
+                  </Button>
+                )}
+              />
             </div>
-
             <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
-              <Button
-                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
-                shape="round"
-                color="pink_500"
-                size="sm"
-                variant="fill"
-                onClick={signInWithFacebook}
-              >
-                Login with Facebook
-              </Button>
-
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px]  w-[100%] md:w-full min-w-[450px] sm:min-w-full">
                 <p className="text-lg text-white-A700">Email</p>
                 <input
@@ -186,6 +190,21 @@ const LoginPage = () => {
                 name="rememberme"
                 id="rememberme"
                 label={<span style={{ color: "white" }}>Remember me</span>}
+              />
+
+              <CheckBox
+                className="leading-[normal] md:ml-[0] ml-[5px] mt-[19px] text-left text-lg"
+                inputClassName="border-2 border-blue-600 border-solid h-[25px] mr-[5px] w-[25px]"
+                name="rememberme"
+                id="rememberme"
+                label={
+                  <span style={{ color: "white" }}>
+                    Accept Terms Conditions
+                  </span>
+                }
+                onClick={() =>
+                  window.open("/Terms", "_blank",)
+                }
               />
               <Button
                 className="common-pointer border border-blue-700 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"

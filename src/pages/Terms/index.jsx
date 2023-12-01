@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header1 from "components/Header1";
 
 const Terms = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isChecked, setChecked] = useState(false);
+  
+  const navigate = useNavigate();
+  
   const handleCheckboxChange = () => {
     setChecked(!isChecked);
   };
@@ -16,6 +19,7 @@ const Terms = () => {
 
   const handleAcceptTerms = () => {
     closeModal();
+    navigate("/login");
   };
 
   const Heading = {
@@ -50,7 +54,7 @@ const Terms = () => {
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans gap-[31px] items-center justify-start mx-auto p-2 shadow-bs1 w-full">
-        <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
+        {/* <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" /> */}
         <Modal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
@@ -152,10 +156,10 @@ const Terms = () => {
                     onChange={handleCheckboxChange}
                   />
                   Checkbox Label
-                <p style={{color:"white",fontSize:"15px"}}>Checkbox is {isChecked ? "checked" : "unchecked"}.</p>
-
+                  <p style={{ color: "white", fontSize: "15px" }}>
+                    Checkbox is {isChecked ? "checked" : "unchecked"}.
+                  </p>
                 </label>
-
               </div>
               <Button
                 className="cursor-pointer font-semibold min-w-[257px] ml-3 md:ml-[0] mr-6 mt-6 text-[22px] text-center sm:text-lg md:text-xl"
