@@ -311,7 +311,7 @@ const ProfilePage = () => {
                 >
                   Choose
                 </Button>
-                <Button
+                {/* <Button
                   className="cursor-pointer font-semibold min-w-[257px] ml-3 md:ml-[0] mr-6 mt-3 text-[22px] text-center sm:text-lg md:text-xl"
                   shape="round"
                   color="blue_A700"
@@ -320,7 +320,7 @@ const ProfilePage = () => {
                   onClick={handleAcceptTerms}
                 >
                   <p style={{background:"blue",borderRadius:"40px", fontSize:"19px", padding:"10px",color:"white",}}>Terms and Conditions</p>
-                </Button>
+                </Button> */}
                 {showPaymentOptions && (
                   <div className="mt-4">
                     <label>Select Payment Method:</label>
