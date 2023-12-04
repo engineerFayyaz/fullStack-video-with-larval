@@ -1,7 +1,8 @@
 {
-  "name": "Binge",
+  "name": "ourbrandtv",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ourbrandtv.com",
   "dependencies": {
     "@dhiwise/react-switch": "^1.0.2",
     "@paypal/react-paypal-js": "^8.1.3",

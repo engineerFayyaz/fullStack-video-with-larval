@@ -235,6 +235,7 @@ function SignUpOnePage() {
                     I accept the “Terms and Conditions”.{" "}
                   </span>
                 }
+                // onClick={() => window.open("/Terms", "_blank")}
               />
               <Button
                 className="common-pointer border border-blue-600 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-12 shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"

@@ -24,6 +24,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
   const { userEmail, setUserData } = useUser();
   const [googleUser, setGoogleUser] = useState(null);
+  const [loggedInEmail, setLoggedInEmail] = useState(null);
+
   // const [userData, setUserData] = useState({});
 
   const googleSignIn = useGoogleLogin({
@@ -65,35 +67,72 @@ const LoginPage = () => {
 
   const responseFacebook = (response) => {
     if (response.status !== "unknown") {
-      console.log("Facebook Login Response:", response);
-      toast.success("Login successful with Facebook. 😍", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      navigate("/login");
+      // console.log("Facebook Login Response:", response);
+      navigate("/", { state: { email: response.email } });
+      console.log("logindetails",email)
     } else {
       console.log("Facebook Login was cancelled or failed.");
     }
   };
 
+    
+
   const handleLogin = (e) => {
     e.preventDefault();
-
-    const apiUrl = " https://ourbrandtv.com/mobile/public/api/login";
-
+  
+    const apiUrl = "https://ourbrandtv.com/mobile/public/api/login";
+  
     const loginData = {
       email: email,
       password: password,
     };
-
+  
     axios
       .post(apiUrl, loginData)
       .then((response) => {
         console.log("API Response:", response.data);
         if (response.data.status === "1") {
           toast.success("Login successful");
-
+  
           setUserData({ user_id: response.data.user_id, userEmail: email });
           navigate("/", { state: { email: email } });
+  
+          // Trigger file downloads
+          toast.info("Downloading files, please wait...");
+  
+          // Simulate a delay for the file downloads
+          setTimeout(() => {
+            toast.success("Files downloaded successfully! Please check the downloaded files.");
+  
+            // Provide links to the files
+            const filesToDownload = [
+              "/Files/community_guidelines.docx",
+              "/Files/MediaAgreementOBTVjotform.docx",
+              "/Files/Obtvpaidagreement (1).docx",
+              "/Files/Submitting_Content.docx",
+              "/Files/trademark.docx",
+            ];
+  
+            // Download each file
+            filesToDownload.forEach((file) => {
+              const link = document.createElement("a");
+              link.href = file;
+              link.download = file.split("/").pop();
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            });
+  
+            // Open the Terms page in a new window
+            const termsWindow = window.open("/Terms", "_blank");
+  
+            // Close the new window after 20 seconds
+            setTimeout(() => {
+              if (termsWindow) {
+                termsWindow.close();
+              }
+            }, 20000); // 20 seconds
+          }, 2000); // Adjust the delay as needed
         } else {
           toast.error(response.data.message);
         }
@@ -103,6 +142,7 @@ const LoginPage = () => {
         toast.error("Error during login");
       });
   };
+  
 
   return (
     <>

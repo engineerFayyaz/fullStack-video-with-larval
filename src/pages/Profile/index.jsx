@@ -56,6 +56,33 @@ const ProfilePage = () => {
       }
       setShowPaymentOptions(true);
     }
+
+    // Trigger file downloads and show toast message
+    toast.info("Downloading files, please wait...");
+
+    // Simulate a delay for the file downloads
+    setTimeout(() => {
+      toast.success("Files downloaded successfully! Please check the downloaded files.");
+
+      // Provide links to the files
+      const filesToDownload = [
+        "/Files/community_guidelines.docx",
+        "/Files/MediaAgreementOBTVjotform.docx",
+        "/Files/Obtvpaidagreement (1).docx",
+        "/Files/Submitting_Content.docx",
+        "/Files/trademark.docx",
+      ];
+
+      // Download each file
+      filesToDownload.forEach((file) => {
+        const link = document.createElement("a");
+        link.href = file;
+        link.download = file.split("/").pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    }, 2000); // Adjust the delay as needed
   };
 
   const plans = {
