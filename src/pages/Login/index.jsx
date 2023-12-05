@@ -280,12 +280,14 @@ const LoginPage = () => {
                 <a
                   href="javascript:"
                   className="sm:mt-0 mt-0.5 text-md text-white-A700_90"
+                  onClick={()=> navigate('/PrivacyPolicy')}
                 >
                   Privacy Policy
                 </a>
                 <a
                   href="javascript:"
                   className="mb-0.5 text-md text-white-A700_90"
+                  onClick={()=>navigate('/TermsConditions')}
                 >
                   Terms and Conditions
                 </a>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,Link} from "react-router-dom";
 import { useUser } from "redux/UserContext";
 import { Button, Img, Line, List, Text } from "components";
 import Header1 from "components/Header1";
@@ -55,34 +55,34 @@ const ProfilePage = () => {
         setShowPaymentOptionsFaithBased(true);
       }
       setShowPaymentOptions(true);
+
+      // Trigger file downloads and show toast message
+      toast.info("Downloading files, please wait...");
+
+      // Simulate a delay for the file downloads
+      setTimeout(() => {
+        toast.success("Files downloaded successfully! Please check the downloaded files.");
+
+        // Provide links to the files
+        const filesToDownload = [
+          "/Files/community_guidelines.docx",
+          "/Files/MediaAgreementOBTVjotform.docx",
+          "/Files/Obtvpaidagreement (1).docx",
+          "/Files/Submitting_Content.docx",
+          "/Files/trademark.docx",
+        ];
+
+        // Download each file
+        filesToDownload.forEach((file) => {
+          const link = document.createElement("a");
+          link.href = file;
+          link.download = file.split("/").pop();
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        });
+      }, 2000); // Adjust the delay as needed
     }
-
-    // Trigger file downloads and show toast message
-    toast.info("Downloading files, please wait...");
-
-    // Simulate a delay for the file downloads
-    setTimeout(() => {
-      toast.success("Files downloaded successfully! Please check the downloaded files.");
-
-      // Provide links to the files
-      const filesToDownload = [
-        "/Files/community_guidelines.docx",
-        "/Files/MediaAgreementOBTVjotform.docx",
-        "/Files/Obtvpaidagreement (1).docx",
-        "/Files/Submitting_Content.docx",
-        "/Files/trademark.docx",
-      ];
-
-      // Download each file
-      filesToDownload.forEach((file) => {
-        const link = document.createElement("a");
-        link.href = file;
-        link.download = file.split("/").pop();
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-    }, 2000); // Adjust the delay as needed
   };
 
   const plans = {
@@ -338,6 +338,21 @@ const ProfilePage = () => {
                 >
                   Choose
                 </Button>
+                <Link to="/Terms" onClick={(event) => { event.preventDefault(); window.open('/Terms', '_blank', 'width=1500,height=900,scrollbars=yes'); }}>
+                <Button
+                  className={`border cursor-pointer font-semibold min-w-[257px] ml-3 md:ml-[0] mr-6 mt-6 text-[22px] text-center sm:text-lg md:text-xl ${
+                    termsAccepted ? "active" : ""
+                  }`}
+                  shape="round"
+                  color="purple_A100"
+                  size="md"
+                  variant="fill"
+                  // onClick={() => window.open('/Terms', '_blank', 'width=1500,height=900,scrollbars=yes')}
+
+                >
+                  Terms and Conditions
+                </Button>
+                </Link>
                 {/* <Button
                   className="cursor-pointer font-semibold min-w-[257px] ml-3 md:ml-[0] mr-6 mt-3 text-[22px] text-center sm:text-lg md:text-xl"
                   shape="round"
