@@ -139,10 +139,15 @@ const MyChannels = () => {
               >
                 Schedule Movie / Show
               </Button>
+
+              
               </div>
+              
             </div>
           </div>
+          
         </div>
+        
         <Text
           className="ml-8 md:ml-[0] md:text-3xl sm:text-[28px] mt-[60px] text-[32px] text-center text-white-A700"
           size="txtOpenSansRomanBold32WhiteA700"

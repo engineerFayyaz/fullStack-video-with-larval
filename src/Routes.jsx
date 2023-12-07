@@ -32,7 +32,7 @@ const ContactUs =React.lazy(()=>import("pages/ContactUs"));
 const Notification = React.lazy(()=> import("pages/Notification"))
 const TermsOfUse =React.lazy(()=>import("pages/TermsOfUse"))
 const Terms = React.lazy(()=>import("pages/Terms"))
-const LiveStreaming = React.lazy(()=>import("pages/LiveStreaming"))
+const LiveStreamings = React.lazy(()=>import("pages/LiveStreamings"))
 const ScheduleMovie = React.lazy(()=>import("pages/ScheduleMovie"))
 // const PaymentPage =React.lazy(()=>import("pages/PaymentPage"))
 const ProjectRoutes = () => {
@@ -69,7 +69,7 @@ const ProjectRoutes = () => {
           <Route path="/Notification" element={<Notification/>}/>
           <Route path="/TermsOfUse" element={<TermsOfUse/>}/>
           <Route path="/Terms" element={<Terms/>}/>
-          <Route path="/LiveStreaming" element={<LiveStreaming/>}/>
+          <Route path="/LiveStreamings" element={<LiveStreamings/>}/>
           <Route path="/ScheduleMovie" element={<ScheduleMovie/>}/>
         </Routes>
       </Router>

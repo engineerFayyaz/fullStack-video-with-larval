@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Button, Img, Text } from "components";
 import { useUser } from "redux/UserContext";
 
@@ -35,11 +35,7 @@ const Header1 = (props) => {
     <>
       <header className={`${props.className} pl-4 pr-4`}>
         <a href="/" className="h-20 sm:h-auto object-cover w-[7%] md:w-full">
-        <Img
-          src="images/logo.png"
-          
-          alt="OurBrandTV"
-        />
+          <Img src="images/logo.png" alt="OurBrandTV" />
         </a>
         <div className="flex md:flex-col flex-row md:gap-5 items-center justify-end md:ml-[0] ml-[0px] md:mt-0 my-[19px] w-[100%] md:w-full">
           <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[50%] md:w-full">
@@ -105,20 +101,20 @@ const Header1 = (props) => {
             </div>
 
             <a
-  className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[83px]"
-  href="https://ourbrandtv.com/admin/index.php?home/signin"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Img
-    className="h-[22px] mb-px mr-2"
-    src="/images/admin.png"
-    alt="svgexport-6"
-  />
-  <div className="font-opensans text-base text-left text-white-A700">
-    Admin
-  </div>
-</a>
+              className="common-pointer bg-transparent cursor-pointer flex items-center justify-center min-w-[83px]"
+              href="https://ourbrandtv.com/admin/index.php?home/signin"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Img
+                className="h-[22px] mb-px mr-2"
+                src="/images/admin.png"
+                alt="svgexport-6"
+              />
+              <div className="font-opensans text-base text-left text-white-A700">
+                Admin
+              </div>
+            </a>
           </div>
           <Img
             className="h-[18px] md:ml-[0] ml-[25px] w-[18px] cursor-pointer sm:hidden"
@@ -179,16 +175,17 @@ const Header1 = (props) => {
                   >
                     Notification
                   </Text>
-                  {/* <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-[26px] w-[78%] md:w-full">
+                  <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-[26px] w-[78%] md:w-full">
                     <div className="flex flex-row gap-[35px] items-center justify-between w-full">
                       <Text
                         className="text-base text-white"
                         size="txtOpenSansRomanRegular16"
+                        onClick={() => navigate("/LiveStreamings")}
                       >
-                        Email Notification
+                        Live Streaming
                       </Text>
                     </div>
-                  </div> */}
+                  </div>
                   {/* <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-7">
                     <Text
                       className="text-base text-white"

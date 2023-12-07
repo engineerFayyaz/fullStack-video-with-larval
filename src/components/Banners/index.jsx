@@ -1,106 +1,76 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Text, Img, RatingBar } from "components";
+import { Text, RatingBar } from "components";
 import "../../styles/index.css";
+
 const Banners = () => {
-  const bannerImages = [
+  const bannerVideos = [
     {
-      url: "/banners/banner-1.jpg",
-      channel: "HBO",
-      movie: "The MEG2",
+      url: "images/ourbrandtv.mp4", // Replace with the actual video URL
+      channel: "OBT",
+      movie: "Our Brand Tv",
       runtime: "Runtime: 1250s",
       resolution: "Resolution: 4K",
-      rating: 4.5, // Replace with the actual rating
+      rating: 5, // Replace with the actual rating
     },
-    {
-      url: "/banners/banner2.jpg",
-      channel: "our brand tv",
-      movie: "The movies creator",
-      runtime: "Runtime: 1250s",
-      resolution: "Resolution: 4K",
-      rating: 4.5, // Replace with the actual rating
-    },
-    {
-      url: "/banners/doll-figures-3015495_1280.jpg",
-      channel: "CGF",
-      movie: "Cartoon Network",
-      runtime: "Runtime: 1250s",
-      resolution: "Resolution: 4K",
-      rating: 4.5, // Replace with the actual rating
-    },
-    {
-      url: "/banners/fantasy-4126847_1280.jpg",
-      channel: "Fighter",
-      movie: "The Figher KGF",
-      runtime: "Runtime: 1250s",
-      resolution: "Resolution: 4K",
-      rating: 4.5, // Replace with the actual rating
-    },
-     
+    // Add more video items as needed
   ];
 
   return (
     <div className="container homePage-banner-carousel md:h-[fit-content]">
-      <div className="row">
-        <div className="col-md-12">
-          {bannerImages.length > 0 ? (
-            <Carousel showThumbs={true} showStatus={false} infiniteLoop autoPlay>
-              {bannerImages.map((banner, index) => (
-                <div key={index}>
-                  <div
-                    style={{
-                      position: "relative",
-                      display: "flex",
-                      alignItems: "flex-end",
-                      justifyContent: "flex-start",
-                    }}
-                  >
-                    <img
-                      src={banner.url}
-                      alt={`Banner ${index + 1}`}
-                      style={{ maxWidth: "100%", maxHeight: "550px" }}
+    <div className="row">
+      <div className="col-md-12">
+        {bannerVideos.length > 0 ? (
+          <Carousel showThumbs={true} showStatus={false} infiniteLoop autoPlay>
+            {bannerVideos.map((video, index) => (
+              <div
+                key={index}
+                style={{
+                  width: "100vw",
+                  height: "100vh",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <video
+                  src={video.url}
+                  alt={`Banner Video ${index + 1}`}
+                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  autoPlay
+                  loop
+                  muted
+                />
+                <div className="homePage-banner-carousel-content">
+                  <p className="text-left">{video.channel}</p>
+                  <p className="text-left banner-title">{video.movie}</p>
+                  <p className="text-left banner-time">{`${video.resolution} | ${video.runtime}`}</p>
+                  <div className="flex flex-row items-center gap-4">
+                    <RatingBar
+                      className="flex justify-between w-[190px]"
+                      // value={video.rating}
+                      starCount={5}
+                      activeColor="#f1c644"
+                      size={30}
                     />
-                    <div
-                      // style={{
-                      //   position: "absolute",
-                      //   bottom: "60px",
-                      //   left: "40px",
-                      //   color: "white",
-                      //   padding: "5px",
-                      //   borderRadius: "5px",
-                      // }}
-                      className=" homePage-banner-carousel-content"
+                    <Text
+                      className="text-white-A700 text-xl pt-1"
+                      size="txtPoppinsRegular20WhiteA700"
                     >
-                      <p  className="text-left">{banner.channel}</p>
-                      <p  className="text-left banner-title">{banner.movie}</p>
-                      <p  className="text-left banner-time">{`${banner.resolution} | ${banner.runtime}`}</p>
-                      <p className="flex flex-row items-center gap-4"> <RatingBar
-                          className="flex justify-between w-[190px]"
-                          // value={movieData.rating}
-                          starCount={5}
-                          activeColor="#f1c644"
-                          size={30}
-                        ></RatingBar>
-                        <Text
-                        className="text-white-A700 text-xl pt-1"
-                        size="txtPoppinsRegular20WhiteA700"
-                      >
-                        5
-                      </Text>
-                        </p>
-                  
-                    </div>
+                      {video.rating}
+                    </Text>
                   </div>
                 </div>
-              ))}
-            </Carousel>
-          ) : (
-            <p>No banner images found.</p>
-          )}
-        </div>
+              </div>
+            ))}
+          </Carousel>
+        ) : (
+          <p>No banner videos found.</p>
+        )}
       </div>
     </div>
+  </div>
   );
 };
 
