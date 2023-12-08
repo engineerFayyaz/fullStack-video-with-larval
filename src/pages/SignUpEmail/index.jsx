@@ -36,7 +36,6 @@ function SignUpEmailPage() {
       const response = await axios.post(apiUrl, userInfo);
   
       // Check the response status code and log the response data for debugging
-      console.log("API Response:", response.status, response.data);
   
       if (response.status === 200) {
         // Redirect to the homepage and pass user information as state

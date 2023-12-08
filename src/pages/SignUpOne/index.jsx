@@ -17,8 +17,6 @@ function SignUpOnePage() {
     onSuccess: (res) => {
       // Access the user's email from the response
       const userEmail = res.profileObj.email;
-      console.log("Google Login Response:", res);
-      console.log("User Email:", userEmail);
 
       toast.success("Signup successful. 😍", {
         position: toast.POSITION.TOP_CENTER,
@@ -30,13 +28,12 @@ function SignUpOnePage() {
 
   const responseFacebook = (response) => {
     if (response.status !== "unknown") {
-      console.log("Facebook Login Response:", response);
       toast.success("Signup successful with Facebook. 😍", {
         position: toast.POSITION.TOP_CENTER,
       });
       navigate("/login");
     } else {
-      console.log("Facebook Login was cancelled or failed.");
+      toast.error("Facebook Login was cancelled or failed.");
     }
   };
 
@@ -58,7 +55,6 @@ function SignUpOnePage() {
       .post(apiUrl, userData)
       .then((response) => {
         // Handle the API response here
-        console.log("API Response:", response.data);
         toast.success(response.data.message);
         // navigate(`/signup?email=${email}&password=${password}`);
         navigate("/login");

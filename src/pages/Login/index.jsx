@@ -30,7 +30,6 @@ const LoginPage = () => {
 
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
-      console.log("Google Login Response:", res);
 
       // Check if the necessary properties are available in the response
       if (res && res.access_token) {
@@ -58,7 +57,7 @@ const LoginPage = () => {
       }
     },
     onFailure: (err) => {
-      console.log("Google Login Failed:", err);
+      toast.error("Google Login Failed:", err)
     },
   });
 
@@ -67,11 +66,10 @@ const LoginPage = () => {
 
   const responseFacebook = (response) => {
     if (response.status !== "unknown") {
-      // console.log("Facebook Login Response:", response);
       navigate("/", { state: { email: response.email } });
-      console.log("logindetails",email)
+
     } else {
-      console.log("Facebook Login was cancelled or failed.");
+      toast.info("Facebook Login was cancelled or failed.");
     }
   };
 
@@ -90,7 +88,6 @@ const LoginPage = () => {
     axios
       .post(apiUrl, loginData)
       .then((response) => {
-        console.log("API Response:", response.data);
         if (response.data.status === "1") {
           toast.success("Login successful");
   

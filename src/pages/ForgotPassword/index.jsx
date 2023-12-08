@@ -75,13 +75,13 @@ const ForgotPassword = () => {
       if (response.data.status === '1') {
         setIsCodeSent(true);
         setVerificationCode(response.data.verification_code);
-        console.log('Verification Code:', response.data);
+        toast.success('Verification Code:', response.data)
       } else {
         // Handle the case where the code was not sent (e.g., invalid email)
         setIsCodeSent(false);
       }
     } catch (error) {
-      console.error('Error sending verification code:', error);
+      toast.error('Error sending verification code:', error)
     }
   };
 

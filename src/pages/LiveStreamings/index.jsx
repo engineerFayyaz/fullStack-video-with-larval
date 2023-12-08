@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header1 from 'components/Header1';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const LiveStreamings = () => {
   const [isScreenSharing, setIsScreenSharing] = useState(false);
@@ -50,7 +52,7 @@ const LiveStreamings = () => {
     selectedScreen.audio.connect(audioContext.destination);
 
     // Call server-side API to start live streaming with selectedPlatform, accessToken, and selectedScreen
-    console.log(`Starting live streaming on ${selectedPlatform} with access token: ${accessToken} and stream key: ${streamKey}`);
+    toast.success(`Starting live streaming on ${selectedPlatform} with access token: ${accessToken} and stream key: ${streamKey}`);
     setIsStreaming(true);
   };
 
@@ -60,8 +62,9 @@ const LiveStreamings = () => {
     // Disconnect the audio source from the audio context
     selectedScreen.audio.disconnect();
 
+    toast.info(`Stopping live streaming on ${selectedPlatform} with access token: ${accessToken} and stream key: ${streamKey}`);
+
     // Call server-side API to stop live streaming with selectedPlatform and accessToken
-    console.log(`Stopping live streaming on ${selectedPlatform} with access token: ${accessToken} and stream key: ${streamKey}`);
     setIsStreaming(false);
   };
 

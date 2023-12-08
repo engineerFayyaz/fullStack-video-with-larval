@@ -1,18 +1,18 @@
 import React from 'react';
 import CookieConsent from 'react-cookie-consent';
+import { toast } from 'react-toastify';
 
 const App = () => {
   const handleAccept = () => {
     // Handle logic when the user accepts cookies
-    console.log('Cookies accepted');
-
+    toast.success('cookies accepted');
     // Save user information in a cookie
     document.cookie = 'userInfo=accepted; expires=365;';
   };
 
   const handleDecline = () => {
     // Handle logic when the user declines cookies
-    console.log('Cookies declined');
+    toast.error('Cookies declined');
   };
 
   return (

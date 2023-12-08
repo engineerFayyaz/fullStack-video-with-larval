@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
 import { Button, Img, List, Text } from "components";
 import ChannelBanner from "components/ChannelBanner";
 import Header1 from "components/Header1";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { toast } from "react-toastify";
 
 const Channels = () => {
   const navigate = useNavigate();
@@ -13,6 +17,17 @@ const Channels = () => {
   const [loading, setLoading] = useState(true);
   const [liveData, setLiveData] = useState([]);
   const email = location.state ? location.state.email : null;
+
+
+  const createCarouselSettings = () => {
+    return {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 6,
+      slidesToScroll: 6,
+    };
+  };
 
   useEffect(() => {
     // Define the API URL
@@ -39,18 +54,15 @@ const Channels = () => {
     axios
       .get(liveapi)
       .then((response) => {
-        console.log("API Response:", response.data); // Log the response data
-
         if (Array.isArray(response.data.data)) {
           setLiveData(response.data.data);
         } else {
-          console.error("Unexpected API response structure");
+          toast.error('Unexpected API response structure')
         }
 
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
         setLoading(false);
       });
   }, []);
@@ -120,7 +132,7 @@ const Channels = () => {
                           }}
                         >
                           <img
-                            src={`https://ourbrandtv.com/admin//assets/global/movie_thumb/${movie.series_id}.jpg`}
+                            src={`https://ourbrandtv.com/admin/assets/global/series_thumb/${movie.series_id}.jpg`}
                             alt={movie.title}
                             className="common-pointer h-[250px] md:h-auto  w-full"
                             style={{ width: "180px" }}

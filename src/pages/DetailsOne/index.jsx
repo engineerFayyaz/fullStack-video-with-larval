@@ -30,7 +30,7 @@ const DetailsOnePage = () => {
                 className="text-base text-gray-100 text-right"
                 size="txtOpenSansRomanBold16Gray100"
               >
-                Netflix’s Original
+                Ourbrandtv Original
               </Text>
               <div className="md:h-[137px] h-[198px] relative w-full">
                 <Text
@@ -205,7 +205,7 @@ const DetailsOnePage = () => {
                 Production Companies:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                Netflix
+                Ourbrandtv
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">

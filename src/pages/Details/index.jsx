@@ -34,7 +34,6 @@ const DetailsPage = (props) => {
           console.error("Error fetching movie data:", error);
         });
     } else if (series_id) {
-      console.log("series_id:", series_id); // Log the series_id
       // Fetch series data based on series_id
       axios
         .get(` https://ourbrandtv.com/mobile/public/api/series/${series_id}`)
@@ -67,10 +66,13 @@ const DetailsPage = (props) => {
       // Now, the user is logged in
       // You can proceed with adding to the wish list...
 
-      const response = await axios.post(" https://ourbrandtv.com/mobile/public/api/wishlist", {
-        user_id: user.id, // Use the actual user ID from your authentication system
-        movie_id,
-      });
+      const response = await axios.post(
+        " https://ourbrandtv.com/mobile/public/api/wishlist",
+        {
+          user_id: user.id, // Use the actual user ID from your authentication system
+          movie_id,
+        }
+      );
 
       if (response.data.status === "success") {
         toast.success("Added to wish list successfully");
@@ -86,36 +88,42 @@ const DetailsPage = (props) => {
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
-      {seriesData && (
-        <div className="bg-gray-900 p-4">
-          {Object.keys(seriesData).map((seasonId) => (
-            <div key={seasonId}>
-              <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
-                <span className="text-gray-100 font-opensans text-left font-normal">
-                  Season:{" "}
-                </span>
-                <span className="text-gray-100 font-opensans text-left font-bold">
-                  {seriesData[seasonId].title}
-                </span>
-              </Text>
-              {seriesData[seasonId].episodes.map((episode) => (
-                <div key={episode.episode_id}>
-                  <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
-                    <span className="text-gray-100 font-opensans text-left font-normal">
-                      Episode:{" "}
-                    </span>
-                    <span className="text-gray-100 font-opensans text-left font-bold">
-                      {episode.name}
-                    </span>
-                    {episode.url}
-                  </Text>
-                  {/* Add any additional information about the episode here */}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
+        {seriesData && (
+          <div className="bg-gray-900 p-4">
+            {Object.keys(seriesData).map((seasonId) => (
+              <div key={seasonId}>
+                <Text
+                  className="text-gray-100 text-xl"
+                  size="txtPoppinsRegular20"
+                >
+                  <span className="text-gray-100 font-opensans text-left font-normal">
+                    Season:{" "}
+                  </span>
+                  <span className="text-gray-100 font-opensans text-left font-bold">
+                    {seriesData[seasonId].title}
+                  </span>
+                </Text>
+                {seriesData[seasonId].episodes.map((episode) => (
+                  <div key={episode.episode_id}>
+                    <Text
+                      className="text-gray-100 text-xl"
+                      size="txtPoppinsRegular20"
+                    >
+                      <span className="text-gray-100 font-opensans text-left font-normal">
+                        Episode:{" "}
+                      </span>
+                      <span className="text-gray-100 font-opensans text-left font-bold">
+                        {episode.name}
+                      </span>
+                      {episode.url}
+                    </Text>
+                    {/* Add any additional information about the episode here */}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
 
         <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center w-full" />
 
@@ -123,7 +131,11 @@ const DetailsPage = (props) => {
           {movieData && (
             <Img
               className="h-[100%] m-auto w-full"
-              src={movieData.poster_image ? movieData.thumbnail_image : `https://ourbrandtv.com/admin//assets/global/movie_thumb/${movieData.movie_id}.jpg`}
+              src={
+                movieData.poster_image
+                  ? movieData.thumbnail_image
+                  : `https://ourbrandtv.com/admin//assets/global/movie_thumb/${movieData.movie_id}.jpg`
+              }
               alt="lucifersOne"
             />
           )}
@@ -197,12 +209,14 @@ const DetailsPage = (props) => {
                       >
                         <button
                           className="flex items-center text-white"
-                          style={{fontWeight:"700",color:"blue",marginTop:"28px"}}
+                          style={{
+                            fontWeight: "700",
+                            color: "blue",
+                            marginTop: "28px",
+                          }}
                         >
                           <span className="ml-2">
-                            {isInWishList
-                              ? "Remove from Wish List"
-                              : ""}
+                            {isInWishList ? "Remove from Wish List" : ""}
                           </span>
                         </button>
                       </div>
@@ -221,7 +235,7 @@ const DetailsPage = (props) => {
           >
             Desciption
           </Text>
-          <Text style={{color:"white"}}>
+          <Text style={{ color: "white" }}>
             {movieData && movieData.description_long
               ? movieData.description_long
               : "The film opens with Brando uttering the now-legendary line, 'I'm gonna make him an offer he can't refuse.' This phrase encapsulates the essence of the Corleone family's dealings, where negotiations often take on a sinister undertone. Brando's stoic demeanor and calculated approach to power dynamics make him an unforgettable figure in cinema history. As the story unfolds, we witness the Corleones navigating a dangerous world where allegiances are tested, and betrayals have severe consequences. The juxtaposition of the family's intimate moments with scenes of brutal violence creates a narrative tension that resonates throughout the film. Al Pacino's Michael Corleone undergoes a profound transformation from a reluctant outsider to a ruthless leader, showcasing the film's exploration of the corrupting nature of power."}
@@ -232,7 +246,7 @@ const DetailsPage = (props) => {
                 Seasons:
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-              {movieData && movieData.title ? movieData.title : "1"}
+                {movieData && movieData.title ? movieData.title : "1"}
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -240,8 +254,10 @@ const DetailsPage = (props) => {
                 Genre:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-              {movieData && movieData.Genre_id ? movieData.Genre_id : "Action, Thriller, Survival, Drama"}
-              
+                {movieData && movieData.Genre_id
+                  ? movieData.Genre_id
+                  : "Action, Thriller, Survival, Drama"}
+
                 {/* Action, Thriller, Survival, Drama */}
               </span>
             </Text>
@@ -250,9 +266,9 @@ const DetailsPage = (props) => {
                 Directed by:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-              
-
-{movieData && movieData.director ? movieData.director : "Hwang Dong-hyuk"}
+                {movieData && movieData.director
+                  ? movieData.director
+                  : "Hwang Dong-hyuk"}
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -269,7 +285,9 @@ const DetailsPage = (props) => {
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
                 <>
-                {movieData && movieData.description_short ? movieData.description_short : "Months ago"}
+                  {movieData && movieData.description_short
+                    ? movieData.description_short
+                    : "Months ago"}
                 </>
               </span>
             </Text>
@@ -278,7 +296,7 @@ const DetailsPage = (props) => {
                 Production Companies:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                Netflix and Ourbrand tv
+                Ourbrand tv
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -286,7 +304,7 @@ const DetailsPage = (props) => {
                 Original release:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-              {movieData && movieData.year ? movieData.year : "2023"}
+                {movieData && movieData.year ? movieData.year : "2023"}
               </span>
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
@@ -294,9 +312,9 @@ const DetailsPage = (props) => {
                 Published Date Ourbrand:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-              
-              {movieData && movieData. created_at ? movieData.created_at : "2023"}
-
+                {movieData && movieData.created_at
+                  ? movieData.created_at
+                  : "2023"}
               </span>
             </Text>
           </div>

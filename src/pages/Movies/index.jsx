@@ -20,7 +20,6 @@ function Movies(props) {
     axios
       .get(apiUrl)
       .then((response) => {
-        console.log("API Response:", response.data); // Log the response data
 
         if (Array.isArray(response.data.data)) {
           setData(response.data.data);

@@ -170,7 +170,6 @@ const ProfilePage = () => {
   };
 
   const handleTermsClick = () => {
-    console.log("Terms and Conditions button clicked");
     setShowTermsModal(true);
   };
   const handleAcceptTerms = () => {

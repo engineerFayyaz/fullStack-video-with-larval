@@ -8,7 +8,6 @@ const SignUpPage = () => {
   const searchParams = new URLSearchParams(location.search);
   const email = searchParams.get('email');
   const password = searchParams.get('password');
-  console.log("email",email)
 
 
   return (

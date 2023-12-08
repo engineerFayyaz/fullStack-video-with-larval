@@ -94,7 +94,6 @@ const UploadMoviePage = () => {
         localStorage.setItem("uploadSuccessCount", Number(successCount) + 1);
 
         toast.success("Movie uploaded successfully!");
-        console.log("API Response:", response.data.data);
         navigate("/MyChannels");
       } else {
         toast.error("API response is empty or missing data.");

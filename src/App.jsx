@@ -1,7 +1,7 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import React, { useState , useEffect } from "react";
 import Routes from "./Routes";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { UserProvider } from "redux/UserContext";
 import ReactModal from 'react-modal';
@@ -12,24 +12,31 @@ ReactModal.setAppElement('#root'); // or any other root element in your HTML
 
 function App() {
   const user= auth.currentUser;
-  console.log(user);
+
   const [userData, setUserData] = useState({});
-  console.log(userData);
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         // User is signed in, do something
-        console.log('User is signed in:', user);
+        toast.success('Welcome back!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       } else {
         // User is signed out, do something else
-        console.log('User is signed out');
+        
       }
     });
 
     // Cleanup the subscription when the component unmounts
     return () => unsubscribe();
   }, []);
-  console.log(user);
 
   return (
     <UserProvider>

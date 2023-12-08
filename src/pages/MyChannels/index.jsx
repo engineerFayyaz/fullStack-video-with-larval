@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Slider from "react-slick"; // Import the Slider component from react-slick
 import { Button, Img, List, Text } from "components";
 import ChannelBanner from "components/ChannelBanner";
 import { useUser } from "redux/UserContext";
 import Header1 from "components/Header1";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const MyChannels = () => {
   const navigate = useNavigate();
@@ -19,6 +22,15 @@ const MyChannels = () => {
   const age = useUser().age;
   const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
   const displayAge = age ? age : Math.floor(Math.random() * (99 - 18 + 1)) + 18;
+
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 6, // Adjust the number of slides to show
+    slidesToScroll: 6, // Adjust the number of slides to scroll
+  };
 
   useEffect(() => {
     const apiUrl = " https://ourbrandtv.com/mobile/public/api/series";
@@ -183,7 +195,7 @@ const MyChannels = () => {
                           }}
                         >
                           <img
-                            src={`https://ourbrandtv.com/admin/assets/global/movie_thumb/${movie.series_id}.jpg`}
+                            src={`https://ourbrandtv.com/admin/assets/global/series_thumb/${movie.series_id}.jpg`}
                             alt={movie.title}
                             className="common-pointer h-[250px] md:h-auto  w-full" style={{width:"180px"}}
                           />

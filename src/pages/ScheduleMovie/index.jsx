@@ -35,7 +35,6 @@ const ScheduleMovie = () => {
   const handleUpload = async () => {
     try {
       // Log the formData to check the user_id value
-      console.log("formData:", formData);
 
       // Check if the user is authorized based on user_id
       const allowedUserIds = [1, 2, 3, 4, 67];
@@ -59,7 +58,6 @@ const ScheduleMovie = () => {
           { ...formData, upcoming_datetime: formattedDateTime }
         );
 
-        console.log("Data uploaded successfully", response.data.data);
         toast.success("Movie Scheduled Successfully");
       } else {
         console.error("Upcoming datetime is undefined");
