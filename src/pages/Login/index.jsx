@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import {  toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { CheckBox, Line, Img, Button } from "components"; // Assuming these components are properly implemented
 import Header from "components/Header1"; // Assuming you want to use Header1
 import { useUser } from "redux/UserContext";
 import FacebookLogin from "react-facebook-login";
 import { useGoogleLogin } from "@react-oauth/google";
-
 
 import {
   signInWithPopup,
@@ -16,7 +15,6 @@ import {
   googleProvider,
   facebookProvider,
 } from "../../services/Firebase";
-
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -30,7 +28,6 @@ const LoginPage = () => {
 
   const googleSignIn = useGoogleLogin({
     onSuccess: (res) => {
-
       // Check if the necessary properties are available in the response
       if (res && res.access_token) {
         const userEmail = res.id_token;
@@ -48,8 +45,10 @@ const LoginPage = () => {
           navigate("/", { state: { email: userEmail } });
         } else {
           console.error("Unable to extract user email from id_token");
-          toast.success("Google email is saved, now please logedin using email and password");
-          navigate("/")
+          toast.success(
+            "Google email is saved, now please logedin using email and password"
+          );
+          navigate("/");
         }
       } else {
         console.error("Invalid Google Sign-In response:", res);
@@ -57,50 +56,53 @@ const LoginPage = () => {
       }
     },
     onFailure: (err) => {
-      toast.error("Google Login Failed:", err)
+      toast.error("Google Login Failed:", err);
     },
   });
-
- 
-
 
   const responseFacebook = (response) => {
     if (response.status !== "unknown") {
       navigate("/", { state: { email: response.email } });
-
     } else {
       toast.info("Facebook Login was cancelled or failed.");
     }
   };
 
-    
-
   const handleLogin = (e) => {
     e.preventDefault();
-  
+
+    // Check if the terms and conditions checkbox is checked
+    const termsCheckbox = document.getElementById("acceptTerms");
+    if (!termsCheckbox.checked) {
+      toast.error("Please accept the Terms and Conditions first.");
+      return;
+    }
+
     const apiUrl = "https://ourbrandtv.com/mobile/public/api/login";
-  
+
     const loginData = {
       email: email,
       password: password,
     };
-  
+
     axios
       .post(apiUrl, loginData)
       .then((response) => {
         if (response.data.status === "1") {
           toast.success("Login successful");
-  
+
           setUserData({ user_id: response.data.user_id, userEmail: email });
           navigate("/", { state: { email: email } });
-  
+
           // Trigger file downloads
           toast.info("Downloading files, please wait...");
-  
+
           // Simulate a delay for the file downloads
           setTimeout(() => {
-            toast.success("Files downloaded successfully! Please check the downloaded files.");
-  
+            toast.success(
+              "Files downloaded successfully! Please check the downloaded files."
+            );
+
             // Provide links to the files
             const filesToDownload = [
               "/Files/community_guidelines.docx",
@@ -109,7 +111,7 @@ const LoginPage = () => {
               "/Files/Submitting_Content.docx",
               "/Files/trademark.docx",
             ];
-  
+
             // Download each file
             filesToDownload.forEach((file) => {
               const link = document.createElement("a");
@@ -119,10 +121,10 @@ const LoginPage = () => {
               link.click();
               document.body.removeChild(link);
             });
-  
+
             // Open the Terms page in a new window
             const termsWindow = window.open("/Terms", "_blank");
-  
+
             // Close the new window after 20 seconds
             setTimeout(() => {
               if (termsWindow) {
@@ -139,7 +141,6 @@ const LoginPage = () => {
         toast.error("Error during login");
       });
   };
-  
 
   return (
     <>
@@ -252,16 +253,15 @@ const LoginPage = () => {
               />
 
               <CheckBox
+                id="acceptTerms" // Ensure this line is present with the correct ID
                 className="leading-[normal] md:ml-[0] ml-[5px] mt-[19px] text-left text-lg"
                 inputClassName="border-2 border-blue-600 border-solid h-[25px] mr-[5px] w-[25px]"
-                name="rememberme"
-                id="rememberme"
+                name="acceptTerms"
                 label={
                   <span style={{ color: "white" }}>
-                    Accept Terms Conditions
+                    Accept Terms and Conditions
                   </span>
                 }
-                onClick={() => window.open("/Terms", "_blank")}
               />
               <Button
                 className="common-pointer border border-blue-700 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
@@ -277,14 +277,14 @@ const LoginPage = () => {
                 <a
                   href="javascript:"
                   className="sm:mt-0 mt-0.5 text-md text-white-A700_90"
-                  onClick={()=> navigate('/PrivacyPolicy')}
+                  onClick={() => navigate("/PrivacyPolicy")}
                 >
                   Privacy Policy
                 </a>
                 <a
                   href="javascript:"
                   className="mb-0.5 text-md text-white-A700_90"
-                  onClick={()=>navigate('/TermsConditions')}
+                  onClick={() => navigate("/TermsConditions")}
                 >
                   Terms and Conditions
                 </a>
