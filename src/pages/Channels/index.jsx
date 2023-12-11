@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
-import Slider from "react-slick";
-import { Button, Img, List, Text } from "components";
-import ChannelBanner from "components/ChannelBanner";
+
+import { Img, List, Text } from "components";
+
 import Header1 from "components/Header1";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { toast } from "react-toastify";
+import Banners from "components/Banners";
 
 const Channels = () => {
   const navigate = useNavigate();
@@ -100,9 +101,8 @@ const Channels = () => {
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
         <Header1 className=" flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
         <div className="font-poppins h-[514px] md:h-[526px] mt-3 md:px-5 relative w-full">
-          <ChannelBanner />
+          <Banners/>
         </div>
-        all series can be get there:
         <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3" style={{marginTop:"80px"}}>
           <Text
             className="text-white-A700 text-xl w-auto"

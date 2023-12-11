@@ -1,0 +1,35 @@
+/* Banners.css */
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+  
+  .video-wrapper {
+    position: relative;
+    /* width: 100%; */
+    /* height: 80%; */
+    padding-bottom: 52.50%; /* Maintain a 16:9 aspect ratio for the video */
+    overflow: hidden;
+    /* object-fit: cover; */
+    background-position: center;
+  }
+  
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300vh;
+    /* height: 100%; */
+    /* object-fit: contain; */
+  }
+  
+  .homePage-banner-carousel-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+  }
+  

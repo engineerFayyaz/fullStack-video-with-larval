@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Img, List, PagerIndicator, RatingBar, Text } from "components";
+import {  List, Text } from "components";
 import FreetoWatch from "components/FreetoWatch";
 import TopTen from "components/TopTen";
 import Action from "components/Action/Index";
@@ -12,7 +12,6 @@ import Music from "components/Music";
 import Religious from "components/Religious";
 import Emotinal from "components/Emotinal";
 import Banners from "components/Banners";
-import { useLocation } from "react-router-dom";
 import Header1 from "components/Header1";
 import UpcomingMoviesTimer from "components/UpcomingMoviesTimer.js";
 import App from "components/CookieConsent"
