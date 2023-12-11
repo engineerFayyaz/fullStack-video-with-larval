@@ -18,13 +18,16 @@ const Banners = () => {
         <div className="col-md-12">
           {bannerVideos.length > 0 ? (
             <div className="video-wrapper">
+              <div className="videobanner">
               <video
                 src={bannerVideos[0].url}
                 alt={`Banner Video 1`}
+                className="videobanner"
                 autoPlay
                 loop
                 muted
               />
+              </div>
               <div className="homePage-banner-carousel-content">
                 <p className="text-left banner-title">
                   {/* {bannerVideos[0].movie} */}

@@ -17,15 +17,15 @@ const LiveStreamings = () => {
   const startScreenSharing = async () => {
     try {
       const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
-      const audioContext = new AudioContext();
-      const audioSource = audioContext.createMediaStreamSource(stream);
+      const newAudioContext = new AudioContext();
+      const audioSource = newAudioContext.createMediaStreamSource(stream);
       const videoTrack = stream.getVideoTracks()[0];
       const videoStream = new MediaStream([videoTrack]);
 
       videoRef.current.srcObject = videoStream;
       setIsScreenSharing(true);
       setSelectedScreen({ video: videoStream, audio: audioSource });
-      setAudioContext(audioContext);
+      setAudioContext(newAudioContext);
     } catch (error) {
       console.error('Error starting screen sharing:', error);
     }
