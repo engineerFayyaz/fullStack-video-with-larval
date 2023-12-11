@@ -21,15 +21,15 @@ const UpcomingEventTimerBar = () => {
             const upcomingTimesData = responseData.data.map((movie) => movie.timeonly);
             setUpcomingTimes(upcomingTimesData);
           } else {
-            console.error("No upcoming times in API response. Generating random schedule.");
+            // console.error("No upcoming times in API response. Generating random schedule.");
             generateRandomSchedule();
           }
         } else {
-          console.error("Error fetching upcoming times. Status:", response.status);
+          // console.error("Error fetching upcoming times. Status:", response.status);
           generateRandomSchedule();
         }
       } catch (error) {
-        console.error("Error fetching upcoming times:", error.message);
+        // console.error("Error fetching upcoming times:", error.message);
         generateRandomSchedule();
       }
     };
