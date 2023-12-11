@@ -23,18 +23,9 @@ const MyChannels = () => {
   const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
   const displayAge = age ? age : Math.floor(Math.random() * (99 - 18 + 1)) + 18;
 
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 6, // Adjust the number of slides to show
-    slidesToScroll: 6, // Adjust the number of slides to scroll
-  };
-
   useEffect(() => {
     const apiUrl = " https://ourbrandtv.com/mobile/public/api/series";
-  
+
     axios
       .get(apiUrl)
       .then((response) => {
@@ -47,24 +38,24 @@ const MyChannels = () => {
         } else {
           console.error("Unexpected API response structure");
         }
-  
+
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
         setLoading(false);
       });
-  
+
     // Retrieve uploadCount from localStorage
     const getUploadSuccessCount = () => {
       const localStorageKey = `uploadSuccessCount_${loggedInEmail}`;
-      const existingData = JSON.parse(localStorage.getItem(localStorageKey)) || {};
+      const existingData =
+        JSON.parse(localStorage.getItem(localStorageKey)) || {};
       return existingData.successCount || 0;
     };
-  
+
     const uploadSuccessCount = getUploadSuccessCount();
   }, [userEmail]);
-  
 
   const createRows = () => {
     const rows = [];
@@ -82,18 +73,18 @@ const MyChannels = () => {
     // Use the updater function to ensure proper state update based on the current state
     setUploadCount((prevCount) => {
       const updatedCount = prevCount + 1;
-  
+
       // Store the updated count in localStorage
       localStorage.setItem("uploadCount", updatedCount);
-  
+
       // Navigate to the UploadMovie page
       navigate("/UploadMovie");
-  
+
       // Return the updated count to set the state
       return updatedCount;
     });
   };
- 
+
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans gap-[45px] items-start justify-start mx-auto py-2 w-full">
@@ -105,23 +96,33 @@ const MyChannels = () => {
               src="images/img_rectangle441.png"
               alt="rectangle441"
             />
-            <Img
-              className="h-[276px] mb-[31px] ml-3 mt-[-49px] rounded-[50%] w-[276px] z-[1] sm:h-[fit-content] sm:w-[100px] sm:mt-[-19px] sm:ml-0"
-              src="images/img_ellipse70.png"
-              alt="ellipseSeventy"
-            />
+           
             <div className="flex flex-col items-start justify-start mt-[-250px] ml-[20rem] w-[40%] sm:w-[50%] sm:mt-[-111px] sm:ml-[107px] z-[1]">
-              <Text
-                className="text-4xl sm:text-[18px] md:text-[34px] text-center text-white-A700"
+            <Text
+                className="h-[276px] mb-[31px] ml-3 mt-[-49px] rounded-[50%] w-[276px] z-[1] sm:h-[fit-content] sm:w-[100px] sm:mt-[-19px] sm:ml-0 text-4xl sm:text-[18px] md:text-[34px] text-center text-white-A700"
                 size="txtOpenSansRomanBold36"
+                style={{
+                  marginTop: "162px",
+                  fontSize: "70px",
+                  borderRadius: "50%",
+                  width: "140px",
+                  height: "140px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  background: "#2C2C2C",
+                  marginLeft: "-14px",
+                }}
               >
-                {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
+                {emailPrefix && (
+                  <p>{emailPrefix.charAt(0).toUpperCase()}</p>
+                )}
               </Text>
               <Text
                 className="text-white-A700 text-xl sm:text-[13px]"
                 size="txtOpenSansRomanRegular20"
               >
-                 {localStorage.getItem("uploadSuccessCount")} Movies Uploaded
+                {localStorage.getItem("uploadSuccessCount")} Movies Uploaded
               </Text>
               <Button
                 className="common-pointer btn cursor-pointer md:ml-[0]  mt-[6px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px] sm:w-[fit-content] sm:p-[3px] sm:text-[10px]"
@@ -138,28 +139,24 @@ const MyChannels = () => {
 
               {/* <br/> */}
 
-              <div className="flex flex-col items-start justify-start mt-[-67px] ml-[290px] w-[70%] z-[1] sm:mt-[-36px] sm:ml-[110px] " >
-              <Button
-                className="common-pointer btn cursor-pointer md:ml-[0]  mt-[6px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px] sm:w-[fit-content] sm:p-[3px] sm:text-[10px]"
-                onClick={() => {
-                  handleUploadButtonClick(); // Call your function
-                  navigate("/ScheduleMovie"); // Navigate after calling the function
-                }}
-                color="pink_500"
-                size="md"
-                variant="fill"
-              >
-                Schedule Movie / Show
-              </Button>
-
-              
+              <div className="flex flex-col items-start justify-start mt-[-67px] ml-[290px] w-[70%] z-[1] sm:mt-[-36px] sm:ml-[110px] ">
+                <Button
+                  className="common-pointer btn cursor-pointer md:ml-[0]  mt-[6px] rounded-br-[3px] rounded-tr-[3px] text-base text-center w-[271px] sm:w-[fit-content] sm:p-[3px] sm:text-[10px]"
+                  onClick={() => {
+                    handleUploadButtonClick(); // Call your function
+                    navigate("/ScheduleMovie"); // Navigate after calling the function
+                  }}
+                  color="pink_500"
+                  size="md"
+                  variant="fill"
+                >
+                  Schedule Movie / Show
+                </Button>
               </div>
-              
             </div>
           </div>
-          
         </div>
-        
+
         <Text
           className="ml-8 md:ml-[0] md:text-3xl sm:text-[28px] mt-[60px] text-[32px] text-center text-white-A700"
           size="txtOpenSansRomanBold32WhiteA700"
@@ -180,29 +177,25 @@ const MyChannels = () => {
               createRows().map((row, rowIndex) => (
                 <div
                   key={rowIndex}
-                  className="flex flex-row gap-3 items-center  w-full"
+                  className="flex flex-row gap-3 items-center w-full"
                 >
-                  {row.map((movie) => {
-                    // Store movie_id in a variable
-                    const movieId = movie.series_id;
-
-                    return (
-                      <div key={movie.series_id}>
-                        <Link
-                          to={{
-                            pathname: `/detailsseries/${movie.series_id}`,
-                            state: { data: data },
-                          }}
-                        >
-                          <img
-                            src={`https://ourbrandtv.com/admin/assets/global/series_thumb/${movie.series_id}.jpg`}
-                            alt={movie.title}
-                            className="common-pointer h-[250px] md:h-auto  w-full" style={{width:"180px"}}
-                          />
-                        </Link>
-                      </div>
-                    );
-                  })}
+                  {row.map((movie) => (
+                    <div key={movie.series_id}>
+                      <Link
+                        to={{
+                          pathname: `/detailsseries/${movie.series_id}`,
+                          state: { data: data },
+                        }}
+                      >
+                        <img
+                          src={`https://ourbrandtv.com/admin/assets/global/series_thumb/${movie.series_id}.jpg`}
+                          alt={movie.title}
+                          className="common-pointer h-[250px] md:h-auto w-full"
+                          style={{ width: "180px" }}
+                        />
+                      </Link>
+                    </div>
+                  ))}
                 </div>
               ))
             )}

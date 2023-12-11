@@ -103,7 +103,7 @@ const Channels = () => {
         <div className="font-poppins h-[514px] md:h-[526px] mt-3 md:px-5 relative w-full">
           <Banners/>
         </div>
-        <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3" style={{marginTop:"80px"}}>
+        <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full pl-3" style={{marginTop:"210px"}}>
           <Text
             className="text-white-A700 text-xl w-auto"
             size="txtOpenSansRomanBold20WhiteA700"
