@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,38 +27,76 @@ const LoginPage = () => {
   // const [userData, setUserData] = useState({});
 
   const googleSignIn = useGoogleLogin({
-    onSuccess: (res) => {
-      // Check if the necessary properties are available in the response
-      if (res && res.access_token) {
-        const userEmail = res.id_token;
+    onSuccess: async (res) => {
+      try {
+        console.log("Google Sign-In Response:", res); 
+        setGoogleUser(res);
+        console.log("Google User",googleUser); 
+        // Extract the user's email from the response 
+  
+        let userEmail = "";
+  
+        // Try extracting email from different possible places in the response
+        if (res.profileObj?.email) {
+          userEmail = res.profileObj.email;
+          console.log("userEmail",userEmail)
+        } else if (res.email) {
+          userEmail = res.email;
+        } else if (res.dt?.email) {
+          userEmail = res.dt.email;
+        } else if (res.accessToken) {
+          // Fetch user information using the Google API
+          const userInfoResponse = await fetch(`https://www.googleapis.com/oauth2/v2/userinfo?access_token=${res.accessToken}`);
+          const userInfo = await userInfoResponse.json();
+  
+          userEmail = userInfo.email;
+        }
+  
         const userName = res.profileObj?.name || "";
-        const userImage = res.profileObj?.imageUrl || "";
-        const userId = res.profileObj?.googleId || "";
-
+  
         if (userEmail) {
           // Use the user's email directly
           toast.success(`Login successful. Welcome, ${userName}! 😍`, {
             position: toast.POSITION.TOP_CENTER,
           });
+  
+          // Store the logged-in email in local storage
+          localStorage.setItem("loggedInEmail", userEmail);
 
+        
+  
           // Redirect to the homepage with user email in state
           navigate("/", { state: { email: userEmail } });
         } else {
-          console.error("Unable to extract user email from id_token");
-          toast.success(
-            "Google email is saved, now please logedin using email and password"
-          );
+          // console.error("Unable to extract user email from Google Sign-In response");
+           toast.success("Google Data is saved ");
           navigate("/");
         }
-      } else {
-        console.error("Invalid Google Sign-In response:", res);
-        toast.error("An error occurred during login.");
+      } catch (error) {
+        console.error("Error during Google Sign-In:", error);
+        toast.error("An error occurred during Google Sign-In. Please try again.");
       }
     },
     onFailure: (err) => {
-      toast.error("Google Login Failed:", err);
+      console.error("Google Login Failed:", err);
+      toast.error("Google Login Failed. Please try again.");
+  
+      // Log more details about the error
+      if (err && err.error) {
+        console.error("Google Sign-In Error Details:", err.error);
+      }
+  
+      // Log the entire error object
+      console.error("Google Sign-In Full Error:", err);
     },
   });
+  
+
+  const handleGoogleSignIn = useCallback(() => {
+    googleSignIn();
+  }, [googleSignIn]);
+
+  
 
   const responseFacebook = (response) => {
     if (response.status !== "unknown") {

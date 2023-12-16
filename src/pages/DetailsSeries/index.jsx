@@ -12,33 +12,62 @@ const DetailsSeries = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Fetch series data
     axios
-      .get(`https://ourbrandtv.com/mobile/public/api/series/${series_id}`)
+      .get(`https://ourbrandtv.com/mobile/public/api/series2`)
       .then((response) => {
         if (response.data.status === "1" && response.data.data) {
-          const seriesData = response.data.data;
-          setSeriesData(seriesData);
+          // Find the series with the matching series_id
+          const selectedSeries = response.data.data.find(
+            (series) => series.series_id === series_id
+          );
+
+          if (selectedSeries) {
+            setSeriesData(selectedSeries);
+
+            // Check if there are seasons in the selected series
+            if (selectedSeries.seasons && selectedSeries.seasons.length > 0) {
+              // Use the first season_id for simplicity, modify as needed
+              const season_id = selectedSeries.seasons[0].season_id;
+
+              // Fetch episodes data using season_id
+              axios
+                .get(
+                  `https://ourbrandtv.com/mobile/public/api/getepisode/${season_id}`
+                )
+                .then((episodeResponse) => {
+                  if (
+                    episodeResponse.data.status === "1" &&
+                    episodeResponse.data.data
+                  ) {
+                    const episodesData = episodeResponse.data.data;
+                    console.log("episodesdata", episodesData);
+                    setEpisodes(episodesData);
+                  } else {
+                    console.error(
+                      "Unexpected episodes API response structure",
+                      episodeResponse.data
+                    );
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error fetching episodes data:", error);
+                });
+            } else {
+              console.warn("No seasons found in the selected series data");
+            }
+          } else {
+            console.error(`No series found with series_id ${series_id}`);
+          }
         } else {
-          console.error("Unexpected series API response structure");
+          console.error(
+            "Unexpected series API response structure",
+            response.data
+          );
         }
       })
       .catch((error) => {
         console.error("Error fetching series data:", error);
-      });
-  
-    axios
-      .get(`https://ourbrandtv.com/mobile/public/api/getepisode/${series_id}`)
-      .then((response) => {
-        console.log("Episode API response:", response.data); // Add this line for debugging
-        if (response.data.status === "1" && response.data.data) {
-          const episodesData = response.data.data;
-          setEpisodes(episodesData);
-        } else {
-          console.error("Unexpected episodes API response structure");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching episodes data:", error);
       });
   }, [series_id]);
 
@@ -133,17 +162,31 @@ const DetailsSeries = () => {
           <div className="flex flex-col font-poppins gap-2.5 items-start justify-start mt-[22px]">
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">
-                Episodes:
+                Episodes:{" "}
               </span>
-              <span className="text-gray-100 font-opensans text-left font-bold">
+              <span className="text-gray-100 font-opensans text-left font-bold d-flex">
                 {episodes.map((episode) => (
                   <div key={episode.episode_id}>
+                    <Img
+                      className="h-[50%] m-auto  w-[50%]"
+                      src={`https://ourbrandtv.com/admin/assets/global/series_thumb/${seriesData.series_id}.jpg`}
+                      onClick={() =>
+                        navigate(`/player?videoUrl=${episode.url}`)
+                      }
+                      alt="lucifersOne"
+                    />
                     <a
-                      href={episode.url}
-                      target="_blank"
+                      
+                      // target="_blank"
+
+                      onClick={() =>
+                        navigate(`/player?videoUrl=${episode.url}`)
+                      }
+                     
                       rel="noopener noreferrer"
                     >
                       {episode.title}
+                      {console.log("epi".episode)}
                     </a>
                   </div>
                 ))}
@@ -194,7 +237,7 @@ const DetailsSeries = () => {
               <span className="text-gray-100 font-opensans text-left font-bold">
                 <>
                   Lee Jung-jae, Park Hae-soo, Wi Ha-joon, Jung Ho-yeon, O
-                  Yeong-su, Heo Sung-tae,Anupam Tripathi, Kim Joo-ryoung
+                  Yeong-su, Heo Sung-tae, Anupam Tripathi, Kim Joo-ryoung
                 </>
               </span>
             </Text>
@@ -244,7 +287,6 @@ const DetailsSeries = () => {
               Disclaimer
             </Text>
           </a>
-
           <a
             href="javascript:"
             className="text-base text-white-A700"
