@@ -97,16 +97,15 @@ const MyChannels = () => {
               alt="rectangle441"
             />
            
-            <div className="flex flex-col items-start justify-start mt-[-250px] ml-[20rem] w-[40%] sm:w-[50%] sm:mt-[-111px] sm:ml-[107px] z-[1]">
+            <div className="flex flex-col items-start justify-start mt-[-250px] ml-[3rem] w-[40%] sm:w-[50%] sm:mt-[-13rem] sm:ml-[2rem] z-[1]">
             <Text
-                className="h-[276px] mb-[31px] ml-3 mt-[-49px] rounded-[50%] w-[276px] z-[1] sm:h-[fit-content] sm:w-[100px] sm:mt-[-19px] sm:ml-0 text-4xl sm:text-[18px] md:text-[34px] text-center text-white-A700"
+                className="h-[180px] mb-[31px] ml-3 mt-[-49px] rounded-[50%] w-[180px] z-[1] sm:h-[fit-content] sm:w-[100px] sm:mb-[10px] sm:h-[100px] sm:mt-[-19px] sm:ml-0 text-4xl sm:text-[18px] md:text-[34px] text-center text-white-A700"
                 size="txtOpenSansRomanBold36"
                 style={{
                   marginTop: "162px",
                   fontSize: "70px",
                   borderRadius: "50%",
-                  width: "140px",
-                  height: "140px",
+                 
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",

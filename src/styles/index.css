@@ -2,6 +2,15 @@
   box-sizing: border-box;
   line-height: normal;
 }
+@media (max-width: 500px) {
+.md\:px-5 {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+}
+.mt-8 {
+  margin-top: -9rem !important;
+}
+}
 body {
   font-family: "Roboto", sans-serif !important;
   margin: 0;
@@ -327,21 +336,26 @@ font-size: 30px;
   object-fit: cover;
 }
 
-@media only screen and (max-width:450px){
+@media only screen and (max-width:500px){
   video {
     width: 100% !important;
     height: 100% !important;
     object-fit: cover;
 }
 .upcomong-time{
-  margin-left: -70px;
+  margin-left: -30px;
   width: 360px;
   font-size: 8px;
   gap: 2px;
 
 }
+.sm\:gap-4 {
+  gap: 10px !important;
 }
-
+.carousel .slider-wrapper{
+  height: 70px;
+}
+}
 
 
 @media (max-width: 550px)

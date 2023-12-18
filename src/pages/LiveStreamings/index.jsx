@@ -16,7 +16,7 @@ const LiveStreamings = () => {
 
   const startScreenSharing = async () => {
     try {
-      const stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+      const stream = await navigator.mediaDevices.getDisplayMedia({ video: { width: 1920, height: 1080 }, audio: true });
       const newAudioContext = new AudioContext();
       const audioSource = newAudioContext.createMediaStreamSource(stream);
       const videoTrack = stream.getVideoTracks()[0];
@@ -48,10 +48,8 @@ const LiveStreamings = () => {
   const startLive = async () => {
     if (!selectedPlatform || !accessToken || !selectedScreen) return;
 
-    // Connect the audio source to the audio context's destination (speakers)
     selectedScreen.audio.connect(audioContext.destination);
 
-    // Call server-side API to start live streaming with selectedPlatform, accessToken, and selectedScreen
     toast.success(`Starting live streaming on ${selectedPlatform} with access token: ${accessToken} and stream key: ${streamKey}`);
     setIsStreaming(true);
   };
@@ -59,12 +57,10 @@ const LiveStreamings = () => {
   const stopLive = async () => {
     if (!selectedPlatform || !accessToken) return;
 
-    // Disconnect the audio source from the audio context
     selectedScreen.audio.disconnect();
 
     toast.info(`Stopping live streaming on ${selectedPlatform} with access token: ${accessToken} and stream key: ${streamKey}`);
 
-    // Call server-side API to stop live streaming with selectedPlatform and accessToken
     setIsStreaming(false);
   };
 
@@ -77,7 +73,6 @@ const LiveStreamings = () => {
   };
 
   useEffect(() => {
-    // Cleanup audio context on component unmount
     return () => {
       if (audioContext && audioContext.state !== 'closed') {
         audioContext.close();

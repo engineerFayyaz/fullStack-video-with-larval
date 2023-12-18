@@ -189,7 +189,7 @@ const LoginPage = () => {
             src="images/logo.png"
             alt="whatsappimage"
           />
-          <div className="flex flex-col  items-center justify-start w-[40%]">
+          <div className="flex flex-col   items-center justify-start w-[40%]">
             <div className="flex flex-row justify-between w-[100%] md:w-full">
               <a
                 href="javascript:"

@@ -59,8 +59,8 @@ const UpcomingEventTimerBar = () => {
   }, [user_id]);
 
   return (
-    <div className="row" style={{ margin: "20px 60px" }}>
-      <h4 style={{ color: "white", marginLeft:"-59px",marginTop:"155px" }}>Upcoming</h4>
+    <div className="row" style={{ margin: "20px 0px 0px 40px " }}>
+      <h4 style={{ color: "white",fontWeight:"700",fontSize:"20px", marginLeft:"-30px",marginTop:"155px",marginBottom:"15px" }}>Upcoming</h4>
       <div className="step-container upcomong-time">
         {upcomingTimes.map((upcomingTime, index) => (
           <div key={index} className="step" title={`Date: ${upcomingTime.date}`}>

@@ -15,7 +15,7 @@ const Banners = () => {
   return (
     <div className="container homePage-banner-carousel md:h-[fit-content]">
       <div className="row">
-        <div className="col-md-12">
+        <div className="col-md">
           {bannerVideos.length > 0 ? (
             <div className="video-wrapper">
               <div className="videobanner">

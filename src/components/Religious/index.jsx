@@ -58,7 +58,7 @@ function TopTen() {
       });
 
       return (
-        <div key={index} className="flex justify-around gap-3 sm:gap-4">
+        <div key={index} className="flex justify-start gap-3 sm:gap-4">
           {slideItems}
         </div>
       );

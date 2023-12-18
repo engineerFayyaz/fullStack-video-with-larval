@@ -57,7 +57,7 @@ function TopTen() {
       });
 
       return (
-        <div key={index} className="flex justify-around gap-3 sm:gap-4">
+        <div key={index} className="flex justify-start gap-3 sm:gap-4">
           {slideItems}
         </div>
       );
@@ -65,7 +65,7 @@ function TopTen() {
   };
 
   return (
-    <div className="max-w-full mx-auto mt-2 mb-2">
+    <div className="max-w-full mt-2 mb-2">
       <Text
           className="text-white-A700 text-xl w-auto m-3 mb-6"
           size="txtOpenSansRomanBold20WhiteA700"
