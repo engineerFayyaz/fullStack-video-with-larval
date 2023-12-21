@@ -37,7 +37,7 @@ const ScheduleMovie = React.lazy(()=>import("pages/ScheduleMovie"))
 // const PaymentPage =React.lazy(()=>import("pages/PaymentPage"))
 const ProjectRoutes = () => {
   return (
-    <React.Suspense fallback={<>Ourbrand tv Loading...</>}>
+    <React.Suspense fallback={<></>}>
       <Router>
         <Routes>
           <Route path="/Login" element={<Login />} />
