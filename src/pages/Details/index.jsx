@@ -14,6 +14,7 @@ const DetailsPage = (props) => {
   const [seriesData, setSeriesData] = useState([]);
   const [isInWishList, setIsInWishList] = useState(false);
   const navigate = useNavigate();
+  const [isFullDescriptionVisible, setFullDescriptionVisible] = useState(false);
   const { user } = useUser(); // Get the user object from the context
 
   useEffect(() => {
@@ -53,6 +54,23 @@ const DetailsPage = (props) => {
         });
     }
   }, [movie_id, series_id]);
+
+  const truncateDescription = (text, maxLength) => {
+    if (text.length <= maxLength) {
+      return text;
+    }
+    const truncatedText = text.slice(0, maxLength);
+    return truncatedText.slice(0, truncatedText.lastIndexOf(" ")) + " ...";
+  };
+
+  const truncatedDescription =
+    movieData && movieData.description_short
+      ? truncateDescription(movieData.description_short, 50)
+      : "Months ago";
+
+  const toggleDescriptionVisibility = () => {
+    setFullDescriptionVisible(!isFullDescriptionVisible);
+  };
 
   const addToWishList = async () => {
     try {
@@ -284,12 +302,18 @@ const DetailsPage = (props) => {
                 Starring:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                <>
-                  {movieData && movieData.description_short
-                    ? movieData.description_short
-                    : "Months ago"}
-                </>
+                {isFullDescriptionVisible
+                  ? movieData.description_short
+                  : truncatedDescription}
               </span>
+              {!isFullDescriptionVisible && (
+                <button
+                  onClick={toggleDescriptionVisibility}
+                  className="read-more-button"
+                >
+                  Read More
+                </button>
+              )}
             </Text>
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">
