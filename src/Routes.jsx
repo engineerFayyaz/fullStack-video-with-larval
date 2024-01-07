@@ -40,6 +40,7 @@ const ProjectRoutes = () => {
     <React.Suspense fallback={<></>}>
       <Router>
         <Routes>
+        <Route path="/" element={<HomePage />} />
           <Route path="/Login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/MyWishlist" element={<MyWishlist />} />
@@ -48,7 +49,6 @@ const ProjectRoutes = () => {
           <Route path="/signupone" element={<SignUpOne />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signupemail" element={<SignUpEmail />} />
-          <Route path="/" element={<HomePage />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/Channels" element={<Channels />} />
           <Route path="/details/:movie_id" element={<Details />} />

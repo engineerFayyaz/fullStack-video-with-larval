@@ -7,11 +7,49 @@ import { Carousel } from "react-responsive-carousel";
 import { Link } from "react-router-dom";
 
 function TopTen() {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [genreData, setGenreData] = useState([]);
+  const [loadingGenres, setLoadingGenres] = useState(true);
 
   useEffect(() => {
-    const apiUrl = "https://ourbrandtv.com/mobile/public/api/moviebygenre/1";
+    const genreApiUrl = "https://ourbrandtv.com/mobile/public/api/genre";
+
+    axios
+      .get(genreApiUrl)
+      .then((response) => {
+        if (Array.isArray(response.data.data)) {
+          setGenreData(response.data.data);
+        } else {
+          console.error("Unexpected API response structure for genres");
+        }
+
+        setLoadingGenres(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching genres:", error);
+        setLoadingGenres(false);
+      });
+  }, []);
+
+  return (
+    <div>
+      {loadingGenres ? (
+        <p>Loading genres...</p>
+      ) : (
+        genreData.map((genre) => (
+          <GenreCarousel key={genre.genre_id} genreId={genre.genre_id} genreName={genre.name} />
+        ))
+      )}
+    </div>
+  );
+}
+
+function GenreCarousel({ genreId, genreName }) {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+
+  useEffect(() => {
+    const apiUrl = `https://ourbrandtv.com/mobile/public/api/moviebygenre/${genreId}`;
 
     axios
       .get(apiUrl)
@@ -19,19 +57,19 @@ function TopTen() {
         if (Array.isArray(response.data.data)) {
           setData(response.data.data);
         } else {
-          console.error("Unexpected API response structure");
+          console.error("Unexpected API response structure for movies by genre");
         }
 
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error);
+        console.error(`Error fetching data for genre ${genreName}:`, error);
         setLoading(false);
       });
-  }, []);
+  }, [genreId, genreName]);
 
   const renderSlides = () => {
-    const itemsPerPage = 6; // Show 5 items at a time
+    const itemsPerPage = 6; // Show 6 items at a time
     const totalSlides = Math.ceil(data.length / itemsPerPage);
 
     return Array.from({ length: totalSlides }).map((_, index) => {
@@ -65,13 +103,14 @@ function TopTen() {
   };
 
   return (
-    <div className="max-w-full  mt-2 mb-2">
+    <div className="max-w-full mt-2 mb-2">
       <Text
-          className="text-white-A700 text-xl w-auto m-3 mb-6"
-          size="txtOpenSansRomanBold20WhiteA700"
-        >
-          Action
-        </Text>
+        className="text-white-A700 text-xl w-auto m-3 mb-6"
+        size="txtOpenSansRomanBold20WhiteA700"
+      >
+        {genreName}
+        {console.log("genreName",genreName)}
+      </Text>
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -84,7 +123,6 @@ function TopTen() {
           centerSlidePercentage={25}
           dynamicHeight={true}
           itemsToShow={3}
-           // Set the number of items to show at a time
         >
           {renderSlides()}
         </Carousel>

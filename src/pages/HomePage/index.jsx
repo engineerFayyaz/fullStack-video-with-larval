@@ -32,16 +32,6 @@ const HomePage = () => {
         <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
         <UpcomingMoviesTimer />
           <FreetoWatch />
-          <TopTen />
-          <Action />
-          <Adventure />
-          <Talk />
-          <SciFi />
-          <NewsUpdates />
-          <Music />
-          <Religious />
-          <Emotinal />
-          <App/>
           <List
             className="flex flex-col gap-8 items-center w-full"
             orientation="vertical"
