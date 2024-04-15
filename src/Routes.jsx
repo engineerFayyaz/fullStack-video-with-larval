@@ -35,6 +35,7 @@ const Terms = React.lazy(()=>import("pages/Terms"))
 const LiveStreamings = React.lazy(()=>import("pages/LiveStreamings"))
 const ScheduleMovie = React.lazy(()=>import("pages/ScheduleMovie"))
 // const PaymentPage =React.lazy(()=>import("pages/PaymentPage"))
+const DeleteUserData =React.lazy(()=>import("pages/UserData"))
 const ProjectRoutes = () => {
   return (
     <React.Suspense fallback={<></>}>
@@ -71,6 +72,7 @@ const ProjectRoutes = () => {
           <Route path="/Terms" element={<Terms/>}/>
           <Route path="/LiveStreamings" element={<LiveStreamings/>}/>
           <Route path="/ScheduleMovie" element={<ScheduleMovie/>}/>
+          <Route path="/request-to-delete-data" element={<DeleteUserData/>}/>
         </Routes>
       </Router>
     </React.Suspense>

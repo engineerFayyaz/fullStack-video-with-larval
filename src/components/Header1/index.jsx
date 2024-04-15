@@ -209,6 +209,17 @@ const Header1 = (props) => {
                     </Text>
                   </a>
                   <a
+                    href="javascript:"
+                    className="md:ml-[0] ml-[33px] mt-6 text-base text-white"
+                  >
+                    <Text
+                      size="txtOpenSansRomanRegular16"
+                      onClick={() => navigate("/request-to-delete-data")}
+                    >
+                      Delete Your Data
+                    </Text>
+                  </a>
+                  <a
                     className="md:ml-[0] ml-[33px] mt-[27px] text-base text-white cursor-pointer"
                     onClick={handleLogout}
                   >
