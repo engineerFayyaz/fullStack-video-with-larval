@@ -39,7 +39,7 @@ const DeleteUserData = () => {
             />
           </div>
           {/* Second Container */}
-          <div className="w-1/2 flex flex-col items-center justify-start">
+          <div className="flex flex-col items-center justify-start">
             <div className="flex flex-col items-center justify-start w-[80%] mt-5">
               <p lassName="text-white-A700 text-lg mb-3" style={{color:"white"}}>
               Ensure data privacy: Regularly delete unnecessary data to maintain security. Keep your records streamlined and safe with OurBrand TV. Simplify your data management for a safer digital environment.
