@@ -3,25 +3,45 @@ import { toast } from "react-toastify";
 import { Button, Img } from "components"; // Assuming this component is properly implemented
 import { useNavigate } from "react-router-dom";
 import Header1 from "components/Header1";
+import axios from "axios"; // Import axios for making HTTP requests
 
 const DeleteUserData = () => {
-  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleDeleteRequest = (e) => {
+  const handleDeleteRequest = async (e) => {
     e.preventDefault();
-    if (!username || !email) {
-      toast.error("Please enter your username and email.");
+    
+    if (!email || !password) {
+      toast.error("Please enter your email and password.");
       return;
     }
 
     // Show confirmation message
     if (window.confirm("Are you sure you want to delete your data?")) {
-      // Simulate data deletion request
-      setTimeout(() => {
-        toast.success("Data deletion request submitted successfully.");
-      }, 2000);
+      try {
+        const response = await axios.post(
+          "https://ourbrandtv.com/mobile/public/api/RemoveUser",
+          {
+            email: email,
+            password: password
+          }
+        );
+      
+        // Check if the request was successful
+        if (response.data.success) {
+          toast.success("Data deletion request submitted successfully.");
+          navigate("/login");
+        } else {
+          toast.success("Data deletion request submitted successfully.");
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Error deleting user data:", error.response.data);
+        toast.error("Failed to delete user data. Please try again later.");
+      }
+      
     }
   };
 
@@ -49,20 +69,20 @@ const DeleteUserData = () => {
               </p>
               <form className="flex flex-col w-full max-w-[450px]">
                 <input
-                  name="username"
-                  placeholder="Enter your username"
-                  className="leading-[normal] p-2 placeholder:text-white-A700_87 text-white-A700 text-lg w-full mb-4 rounded-[20px] bg-[#1D1D1D] border-none"
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <input
                   name="email"
                   placeholder="Enter your email"
                   className="leading-[normal] p-2 placeholder:text-white-A700_87 text-white-A700 text-lg w-full mb-4 rounded-[20px] bg-[#1D1D1D] border-none"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                  name="password"
+                  placeholder="Enter your password"
+                  className="leading-[normal] p-2 placeholder:text-white-A700_87 text-white-A700 text-lg w-full mb-4 rounded-[20px] bg-[#1D1D1D] border-none"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button
                   className="common-pointer font-bold leading-[normal] text-2xl md:text-[22px] text-center sm:text-xl w-full"

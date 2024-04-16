@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,8 +23,15 @@ const LoginPage = () => {
   const { userEmail, setUserData } = useUser();
   const [googleUser, setGoogleUser] = useState(null);
   const [loggedInEmail, setLoggedInEmail] = useState(null);
+  const [filesDownloaded, setFilesDownloaded] = useState(false); // State to track whether files have been downloaded
 
-  // const [userData, setUserData] = useState({});
+  useEffect(() => {
+    // Check if files have been downloaded for the current user
+    const hasDownloadedFiles = localStorage.getItem("filesDownloaded");
+    if (hasDownloadedFiles) {
+      setFilesDownloaded(true);
+    }
+  }, []);
 
   const googleSignIn = useGoogleLogin({
     onSuccess: async (res) => {
@@ -90,13 +97,6 @@ const LoginPage = () => {
       console.error("Google Sign-In Full Error:", err);
     },
   });
-  
-
-  const handleGoogleSignIn = useCallback(() => {
-    googleSignIn();
-  }, [googleSignIn]);
-
-  
 
   const responseFacebook = (response) => {
     if (response.status !== "unknown") {
@@ -132,44 +132,48 @@ const LoginPage = () => {
           setUserData({ user_id: response.data.user_id, userEmail: email });
           navigate("/", { state: { email: email } });
 
-          // Trigger file downloads
-          toast.info("Downloading files, please wait...");
+          // Trigger file downloads only if they haven't been downloaded before
+          if (!filesDownloaded) {
+            // Set the flag indicating files have been downloaded for the current user
+            localStorage.setItem("filesDownloaded", true);
 
-          // Simulate a delay for the file downloads
-          setTimeout(() => {
-            toast.success(
-              "Files downloaded successfully! Please check the downloaded files."
-            );
-
-            // Provide links to the files
-            const filesToDownload = [
-              "/Files/community_guidelines.docx",
-              "/Files/MediaAgreementOBTVjotform.docx",
-              "/Files/Obtvpaidagreement (1).docx",
-              "/Files/Submitting_Content.docx",
-              "/Files/trademark.docx",
-            ];
-
-            // Download each file
-            filesToDownload.forEach((file) => {
-              const link = document.createElement("a");
-              link.href = file;
-              link.download = file.split("/").pop();
-              document.body.appendChild(link);
-              link.click();
-              document.body.removeChild(link);
-            });
-
-            // Open the Terms page in a new window
-            const termsWindow = window.open("/Terms", "_blank");
-
-            // Close the new window after 20 seconds
+            // Simulate a delay for the file downloads
+            toast.info("Downloading files, please wait...");
             setTimeout(() => {
-              if (termsWindow) {
-                termsWindow.close();
-              }
-            }, 20000); // 20 seconds
-          }, 2000); // Adjust the delay as needed
+              toast.success(
+                "Files downloaded successfully! Please check the downloaded files."
+              );
+
+              // Provide links to the files
+              const filesToDownload = [
+                "/Files/community_guidelines.docx",
+                "/Files/MediaAgreementOBTVjotform.docx",
+                "/Files/Obtvpaidagreement (1).docx",
+                "/Files/Submitting_Content.docx",
+                "/Files/trademark.docx",
+              ];
+
+              // Download each file
+              filesToDownload.forEach((file) => {
+                const link = document.createElement("a");
+                link.href = file;
+                link.download = file.split("/").pop();
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              });
+
+              // Open the Terms page in a new window
+              const termsWindow = window.open("/Terms", "_blank");
+
+              // Close the new window after 20 seconds
+              setTimeout(() => {
+                if (termsWindow) {
+                  termsWindow.close();
+                }
+              }, 20000); // 20 seconds
+            }, 2000); // Adjust the delay as needed
+          }
         } else {
           toast.error(response.data.message);
         }
