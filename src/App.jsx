@@ -1,5 +1,5 @@
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Routes from "./Routes";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -11,14 +11,17 @@ import { auth } from "../src/services/Firebase";
 ReactModal.setAppElement('#root'); // or any other root element in your HTML
 
 function App() {
-  const user= auth.currentUser;
+  // Current user from Firebase authentication
+  const user = auth.currentUser;
 
-  const [userData, setUserData] = useState({});
+  // State to store user data
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        // User is signed in, do something
+        // User is signed in
+        setUserData(user); // Store user data
         toast.success('Welcome back!', {
           position: "top-right",
           autoClose: 5000,
@@ -27,10 +30,11 @@ function App() {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          });
+        });
       } else {
-        // User is signed out, do something else
-        
+        // User is signed out
+        setUserData(null); // Clear user data
+        toast.info('You have been signed out.');
       }
     });
 
@@ -40,10 +44,10 @@ function App() {
 
   return (
     <UserProvider>
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
-      <Routes />
-      <ToastContainer />
-    </GoogleOAuthProvider>
+      <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}>
+        <Routes />
+        <ToastContainer />
+      </GoogleOAuthProvider>
     </UserProvider>
   );
 }

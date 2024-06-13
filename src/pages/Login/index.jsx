@@ -1,29 +1,21 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import { CheckBox, Line, Img, Button } from "components"; // Assuming these components are properly implemented
-import Header from "components/Header1"; // Assuming you want to use Header1
-import { useUser } from "redux/UserContext";
-import FacebookLogin from "react-facebook-login";
-import { useGoogleLogin } from "@react-oauth/google";
-
-import {
-  signInWithPopup,
-  auth,
-  googleProvider,
-  facebookProvider,
-} from "../../services/Firebase";
-
+import { auth, GoogleAuthProvider, FacebookAuthProvider, signInWithPopup } from '../../FirebaseConfig'; // Adjust the path as needed
+import { useUser } from "../../redux/UserContext";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { userEmail, setUserData } = useUser();
-  const [googleUser, setGoogleUser] = useState(null);
-  const [loggedInEmail, setLoggedInEmail] = useState(null);
+  // const { setEmail: setUserEmail } = useUser();
   const [filesDownloaded, setFilesDownloaded] = useState(false); // State to track whether files have been downloaded
+  const { setUserEmail } = useUser();
+
+  const googleProvider = new GoogleAuthProvider();
+  const facebookProvider = new FacebookAuthProvider();
 
   useEffect(() => {
     // Check if files have been downloaded for the current user
@@ -33,76 +25,41 @@ const LoginPage = () => {
     }
   }, []);
 
-  const googleSignIn = useGoogleLogin({
-    onSuccess: async (res) => {
-      try {
-        console.log("Google Sign-In Response:", res); 
-        setGoogleUser(res);
-        console.log("Google User",googleUser); 
-        // Extract the user's email from the response 
-  
-        let userEmail = "";
-  
-        // Try extracting email from different possible places in the response
-        if (res.profileObj?.email) {
-          userEmail = res.profileObj.email;
-          console.log("userEmail",userEmail)
-        } else if (res.email) {
-          userEmail = res.email;
-        } else if (res.dt?.email) {
-          userEmail = res.dt.email;
-        } else if (res.accessToken) {
-          // Fetch user information using the Google API
-          const userInfoResponse = await fetch(`https://www.googleapis.com/oauth2/v2/userinfo?access_token=${res.accessToken}`);
-          const userInfo = await userInfoResponse.json();
-  
-          userEmail = userInfo.email;
-        }
-  
-        const userName = res.profileObj?.name || "";
-  
-        if (userEmail) {
-          // Use the user's email directly
-          toast.success(`Login successful. Welcome, ${userName}! 😍`, {
-            position: toast.POSITION.TOP_CENTER,
-          });
-  
-          // Store the logged-in email in local storage
-          localStorage.setItem("loggedInEmail", userEmail);
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      const userEmail = user.email;
 
-        
-  
-          // Redirect to the homepage with user email in state
-          navigate("/", { state: { email: userEmail } });
-        } else {
-          // console.error("Unable to extract user email from Google Sign-In response");
-           toast.success("Google Data is saved ");
-          navigate("/");
-        }
-      } catch (error) {
-        console.error("Error during Google Sign-In:", error);
-        toast.error("An error occurred during Google Sign-In. Please try again.");
-      }
-    },
-    onFailure: (err) => {
-      console.error("Google Login Failed:", err);
-      toast.error("Google Login Failed. Please try again.");
-  
-      // Log more details about the error
-      if (err && err.error) {
-        console.error("Google Sign-In Error Details:", err.error);
-      }
-  
-      // Log the entire error object
-      console.error("Google Sign-In Full Error:", err);
-    },
-  });
+      toast.success(`Login successful. Welcome, ${user.displayName}! 😍`, {
+        position: toast.POSITION.TOP_CENTER,
+      });
 
-  const responseFacebook = (response) => {
-    if (response.status !== "unknown") {
-      navigate("/", { state: { email: response.email } });
-    } else {
-      toast.info("Facebook Login was cancelled or failed.");
+      localStorage.setItem("loggedInEmail", userEmail);
+      setUserEmail(userEmail); // Set the email in the context
+      navigate("/", { state: { email: userEmail } });
+    } catch (error) {
+      console.error("Error during Google Sign-In:", error);
+      toast.error("An error occurred during Google Sign-In. Please try again.");
+    }
+  };
+
+  const handleFacebookLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, facebookProvider);
+      const user = result.user;
+      const userEmail = user.email;
+
+      toast.success(`Login successful. Welcome, ${user.displayName}! 😍`, {
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+      localStorage.setItem("loggedInEmail", userEmail);
+      setUserEmail(userEmail); // Set the email in the context
+      navigate("/", { state: { email: userEmail } });
+    } catch (error) {
+      console.error("Error during Facebook Sign-In:", error);
+      toast.error("An error occurred during Facebook Sign-In. Please try again.");
     }
   };
 
@@ -129,7 +86,7 @@ const LoginPage = () => {
         if (response.data.status === "1") {
           toast.success("Login successful");
 
-          setUserData({ user_id: response.data.user_id, userEmail: email });
+          setUserEmail(email); // Set the email in the context
           navigate("/", { state: { email: email } });
 
           // Trigger file downloads only if they haven't been downloaded before
@@ -217,30 +174,20 @@ const LoginPage = () => {
                 color="pink_500"
                 size="sm"
                 variant="fill"
-                onClick={() => googleSignIn()}
+                onClick={handleGoogleLogin}
               >
                 Login with Google
               </Button>
 
-              <FacebookLogin
-                appId="1514730115943733"
-                autoLoad={false}
-                fields="name,email,picture"
-                callback={responseFacebook}
-                style={{ backgroundColor: "#2563EB" }}
-                render={(renderProps) => (
-                  <Button
-                    className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
-                    shape="round"
-                    // color="pink_500"
-                    size="sm"
-                    variant="fill"
-                    onClick={renderProps.onClick}
-                  >
-                    Log in with Facebook
-                  </Button>
-                )}
-              />
+              <Button
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700 "
+                shape="round"
+                size="sm"
+                variant="fill"
+                onClick={handleFacebookLogin}
+              >
+                Log in with Facebook
+              </Button>
             </div>
             <div className="flex flex-col items-start justify-start mr-0.5 mt-[50px] w-[87%] md:w-full">
               <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px]  w-[100%] md:w-full min-w-[450px] sm:min-w-full">
@@ -255,88 +202,67 @@ const LoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   style={{
-                    background: "#1D1D1D",
-                    border: "none",
-                    borderRadius: "6px",
+                    background: "#1C1C1C",
+                    border: "1px solid #666",
+                    color: "#fff",
                   }}
-                />
+                ></input>
               </div>
-              <div className="flex flex-col gap-2.5 items-start justify-start md:ml-[0] ml-[5px] mt-[19px] w-[100%] md:w-full min-w-[450px] sm:min-w-full">
+              <div className="flex flex-col gap-2.5 items-start justify-start mt-7 md:ml-[0] ml-[5px] w-full min-w-[450px] sm:min-w-full">
                 <p className="text-lg text-white-A700">Password</p>
                 <input
-                  name="password_One"
+                  name="password"
                   placeholder="Password"
-                  className="leading-[normal]  p-2 placeholder:text-white-A700_87 text-left text-lg w-full text-white-A700"
+                  className="leading-[normal] text-lg p-2 placeholder:text-white-A700_87 text-white-A700 text-left w-full"
                   wrapClassName="rounded-[20px] w-full"
                   type="password"
                   variant="fill"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{
-                    background: "#1D1D1D",
-                    border: "none",
-                    borderRadius: "6px",
+                    background: "#1C1C1C",
+                    border: "1px solid #666",
+                    color: "#fff",
                   }}
+                ></input>
+              </div>
+              <div className="flex flex-col gap-[15px] items-start justify-start md:ml-[0] ml-[5px] mt-7 w-full min-w-[450px] sm:min-w-full">
+                <CheckBox
+                  id="acceptTerms"
+                  name="remember"
+                  label="By clicking here, you agree to Our Terms and Conditions."
+                  inputClassName="h-5 mr-[5px] w-5"
+                  className="leading-[normal] text-lg text-white-A700"
+                  shape="rounded"
+                  variant="outline_white_a700"
                 />
                 <a
                   href="javascript:"
-                  onClick={() => navigate("/forgot-password")} // Navigate to the Forgot Password page
-                  className="text-md text-white-A700_90"
+                  className="text-blue-600 text-left text-lg"
                 >
-                  Forgot Password
+                  Forgot Password?
                 </a>
               </div>
-              <CheckBox
-                className="leading-[normal] md:ml-[0] ml-[5px] mt-[19px] text-left text-lg"
-                inputClassName="border-2 border-blue-600 border-solid h-[25px] mr-[5px] w-[25px]"
-                name="rememberme"
-                id="rememberme"
-                label={<span style={{ color: "white" }}>Remember me</span>}
-              />
-
-              <CheckBox
-                id="acceptTerms" // Ensure this line is present with the correct ID
-                className="leading-[normal] md:ml-[0] ml-[5px] mt-[19px] text-left text-lg"
-                inputClassName="border-2 border-blue-600 border-solid h-[25px] mr-[5px] w-[25px]"
-                name="acceptTerms"
-                label={
-                  <span style={{ color: "white" }}>
-                    Accept Terms and Conditions
-                  </span>
-                }
-              />
               <Button
-                className="common-pointer border border-blue-700 border-solid cursor-pointer font-bold leading-[normal] min-w-[225px] md:ml-[0] ml-[118px] mt-[50px] shadow-bs2 text-2xl md:text-[22px] text-center sm:text-xl"
+                className="common-pointer cursor-pointer font-bold leading-[normal] min-w-[450px] sm:min-w-full md:ml-[0] ml-[5px] text-center text-lg text-white-700 rounded-[3px] p-[11px] bg-blue-600 text-white-A700"
                 shape="round"
                 color="pink_500"
-                size="xs"
+                size="sm"
                 variant="fill"
                 onClick={handleLogin}
               >
-                Login
+                Log In
               </Button>
-              <div className="flex sm:flex-col flex-row gap-2 items-start justify-between mt-[18px] w-full min-w-[450px] sm:min-w-full">
+              <p className="text-lg md:ml-[0] ml-[5px] mt-7 text-white-A700">
+                Not a member yet?{" "}
                 <a
                   href="javascript:"
-                  className="sm:mt-0 mt-0.5 text-md text-white-A700_90"
-                  onClick={() => navigate("/PrivacyPolicy")}
+                  className="text-blue-600 text-lg"
+                  onClick={() => navigate("/SignUpOne")}
                 >
-                  Privacy Policy
+                  Sign Up
                 </a>
-                <a
-                  href="javascript:"
-                  className="mb-0.5 text-md text-white-A700_90"
-                  onClick={() => navigate("/TermsConditions")}
-                >
-                  Terms and Conditions
-                </a>
-                <p
-                  className="mb-0.5 text-md text-white-A700_90"
-                  onClick={() => navigate("/Disclaimer")}
-                >
-                  Disclaimer
-                </p>
-              </div>
+              </p>
             </div>
           </div>
         </div>

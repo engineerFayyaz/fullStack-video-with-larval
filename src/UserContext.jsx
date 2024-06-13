@@ -5,8 +5,12 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [email, setEmail] = useState('');
 
+  const setUserEmail = (newEmail) => {
+    setEmail(newEmail);
+  };
+
   return (
-    <UserContext.Provider value={{ email, setEmail }}>
+    <UserContext.Provider value={{ email, setUserEmail }}>
       {children}
     </UserContext.Provider>
   );

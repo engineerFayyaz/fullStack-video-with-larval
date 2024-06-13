@@ -1,12 +1,13 @@
 import React from "react";
-import { useNavigate , useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Img, Text } from "components";
 import { useUser } from "redux/UserContext";
+
 const Header = (props) => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const { userEmail } = useUser();
-  const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
+  const { email } = useUser();
+  const emailPrefix = email ? email.split("@")[0] : "";
+
   return (
     <>
       <header className={props.className}>
@@ -97,7 +98,7 @@ const Header = (props) => {
             variant="fill"
           >
             <div className="font-bold font-opensans text-base text-center">
-            {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
+              {emailPrefix ? emailPrefix.toUpperCase() : "GUEST"}
             </div>
           </Button>
         </div>

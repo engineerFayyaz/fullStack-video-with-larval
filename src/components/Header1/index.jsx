@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Button, Img, Text } from "components";
 import { useUser } from "redux/UserContext";
 
@@ -12,11 +12,8 @@ const Header1 = (props) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const handleLogout = () => {
-    // You can add your logout logic here.
-    // For example, clear user session data and redirect to the login page.
-    // Replace the following lines with your actual logout implementation:
-    // clearUserData();
-    navigate("/login"); // Redirect to the login page
+    // Implement your logout logic here, such as clearing user data and redirecting to login page.
+    navigate("/login");
   };
 
   const openSearchBar = () => {
@@ -35,10 +32,9 @@ const Header1 = (props) => {
     <>
       <header className={`${props.className} pl-4 pr-4`}>
         <div className="logo">
-        <a href="/" className="h-20 sm:h-auto object-cover w-[7%] md:w-full">
-
-          <Img src="images/logo.png" alt="OurBrandTV" />
-        </a>
+          <a href="/" className="h-20 sm:h-auto object-cover w-[7%] md:w-full">
+            <Img src="images/logo.png" alt="OurBrandTV" />
+          </a>
         </div>
         <div className="flex md:flex-col flex-row md:gap-5 items-center justify-end md:ml-[0] ml-[0px] md:mt-0 my-[19px] w-[100%] md:w-full">
           <div className="flex sm:flex-col flex-row sm:gap-10 items-start justify-between w-[50%] md:w-full">
@@ -145,7 +141,7 @@ const Header1 = (props) => {
                 className="font-bold font-opensans text-base text-left pr-3"
                 style={{ color: "white" }}
               >
-                {emailPrefix && <p>{emailPrefix.toUpperCase()}</p>}
+                {emailPrefix ? emailPrefix.toUpperCase() : "GUEST"}
               </div>
               {dropdownVisible && (
                 <div
@@ -189,14 +185,6 @@ const Header1 = (props) => {
                       </Text>
                     </div>
                   </div>
-                  {/* <div className="flex flex-col items-center justify-start md:ml-[0] ml-[33px] mt-7">
-                    <Text
-                      className="text-base text-white"
-                      size="txtOpenSansRomanRegular16"
-                    >
-                      Language
-                    </Text>
-                  </div> */}
                   <a
                     href="javascript:"
                     className="md:ml-[0] ml-[33px] mt-6 text-base text-white"
@@ -258,7 +246,7 @@ const Header1 = (props) => {
                 borderRadius: "5px",
               }}
               onClick={() => {
-                alert("No result Found....! try again later..");
+                alert("No result found...! Try again later.");
               }}
             >
               Search

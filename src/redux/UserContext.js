@@ -13,8 +13,8 @@ export function UserProvider({ children }) {
   // Use the initial value or set it to an empty object if not found in localStorage
   const [userData, setUserData] = useState(initialUserData || {});
 
-  // Extract user_id and userEmail from the userData
-  const { user_id, userEmail } = userData;
+  // Extract userEmail from the userData
+  const { userEmail } = userData;
 
   // Update localStorage when userData changes
   useEffect(() => {
@@ -26,8 +26,13 @@ export function UserProvider({ children }) {
     }
   }, [userData]);
 
+  // Define a function to set user email
+  const setUserEmail = (email) => {
+    setUserData(prevUserData => ({ ...prevUserData, userEmail: email }));
+  };
+
   return (
-    <UserContext.Provider value={{ user_id, userEmail, setUserData }}>
+    <UserContext.Provider value={{ userEmail, setUserEmail }}>
       {children}
     </UserContext.Provider>
   );

@@ -15,11 +15,10 @@ import Banners from "components/Banners";
 import Header1 from "components/Header1";
 import UpcomingMoviesTimer from "components/UpcomingMoviesTimer.js";
 import App from "components/CookieConsent"
-
+import Chats from "components/ChatComponent";
 const HomePage = () => {
   const navigate = useNavigate();
   const eventDate = "2023-12-31T23:59:59";
-
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
@@ -28,9 +27,12 @@ const HomePage = () => {
 
         <div className="h-[514px] md:h-[526px] mt-3 md:px-5 relative w-full">
           <Banners />
+          
         </div>
         <div className="flex flex-col gap-8 items-start justify-start max-w-[1432px] mb-2 mt-8 mx-auto overflow-auto md:px-5 w-full">
         <UpcomingMoviesTimer />
+
+        <Chats/>
           <FreetoWatch />
           <List
             className="flex flex-col gap-8 items-center w-full"

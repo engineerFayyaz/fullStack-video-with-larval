@@ -109,7 +109,6 @@ function GenreCarousel({ genreId, genreName }) {
         size="txtOpenSansRomanBold20WhiteA700"
       >
         {genreName}
-        {console.log("genreName",genreName)}
       </Text>
       {loading ? (
         <p>Loading...</p>
