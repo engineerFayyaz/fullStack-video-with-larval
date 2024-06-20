@@ -5,8 +5,8 @@ import { useUser } from "redux/UserContext";
 
 const Header = (props) => {
   const navigate = useNavigate();
-  const { email } = useUser();
-  const emailPrefix = email ? email.split("@")[0] : "";
+  const { userEmail } = useUser();
+  const emailPrefix = userEmail ? userEmail.split("@")[0] : "";
 
   return (
     <>
@@ -99,6 +99,7 @@ const Header = (props) => {
           >
             <div className="font-bold font-opensans text-base text-center">
               {emailPrefix ? emailPrefix.toUpperCase() : "GUEST"}
+              {console.log("email prefix",emailPrefix)}
             </div>
           </Button>
         </div>

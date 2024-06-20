@@ -10,13 +10,13 @@ import axios from 'axios';
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBDmP8ZRFu1G1IpiD_aYeFq-8EoaeeGwbg",
-  authDomain: "web-video-straming.firebaseapp.com",
-  projectId: "web-video-straming",
-  storageBucket: "web-video-straming.appspot.com",
-  messagingSenderId: "200003565474",
-  appId: "1:200003565474:web:759f6c524639c6e0f7e4fb",
-  measurementId: "G-97QRRJ639P"
+    apiKey: "AIzaSyBDmP8ZRFu1G1IpiD_aYeFq-8EoaeeGwbg",
+    authDomain: "web-video-straming.firebaseapp.com",
+    projectId: "web-video-straming",
+    storageBucket: "web-video-straming.appspot.com",
+    messagingSenderId: "200003565474",
+    appId: "1:200003565474:web:759f6c524639c6e0f7e4fb",
+    measurementId: "G-97QRRJ639P"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -24,7 +24,7 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 const Chats = () => {
-    const [showPopup, setShowPopup] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [messages, setMessages] = useState([]);
     const [text, setText] = useState('');
     const [currentUser, setCurrentUser] = useState(null);
@@ -35,39 +35,32 @@ const Chats = () => {
 
     // Fetch users from API
     useEffect(() => {
-      const fetchUsers = async () => {
-          try {
-              const response = await axios.get('https://ourbrandtv.com/mobile/public/api/get_user');
-              const userEmails = response.data.data.map(user => ({
-                  email: user.email,
-                  name: user.email.split('@')[0]
-              }));
-              setUsers(userEmails);
-          } catch (error) {
-              console.error('Error fetching users from API:', error);
-          }
-      };
+        const fetchUsers = async () => {
+            try {
+                const response = await axios.get('https://ourbrandtv.com/mobile/public/api/get_user');
+                const userEmails = response.data.data.map(user => ({
+                    email: user.email,
+                    name: user.email.split('@')[0]
+                }));
+                setUsers(userEmails);  // Update state with fetched users
+            } catch (error) {
+                console.error('Error fetching users from API:', error);
+            }
+        };
 
-      fetchUsers();
-  }, []);
+        fetchUsers();
+    }, []);
+
 
     useEffect(() => {
-        const unsubscribeUsers = onSnapshot(collection(db, 'users'), snapshot => {
-            const usersData = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-            setUsers(prevUsers => [...prevUsers, ...usersData]);
-        });
-
         let unsubscribeMessages;
         if (selectedUser) {
-            const participants = ['admin', emailPrefix, selectedUser.email].filter(Boolean);
+            const participants = [emailPrefix, selectedUser.email].sort().join('|');
             unsubscribeMessages = onSnapshot(
                 query(
                     collection(db, 'messages'),
                     orderBy('timestamp'),
-                    where('participants', 'array-contains-any', participants)
+                    where('participants', '==', participants)
                 ),
                 snapshot => {
                     const initialMessages = snapshot.docs.map(doc => ({
@@ -79,32 +72,30 @@ const Chats = () => {
             );
         }
 
-        const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setCurrentUser(user);
-            } else {
-                setCurrentUser(null);
-            }
-        });
-
         return () => {
-            unsubscribeUsers();
             if (unsubscribeMessages) unsubscribeMessages();
-            unsubscribeAuth();
         };
-    }, [db, auth, selectedUser, emailPrefix]);
+    }, [db, selectedUser, emailPrefix]);
+
 
     const handleSendMessage = async (e) => {
         e.preventDefault();
         if (text.trim() !== '') {
             try {
-                const participants = selectedUser ? [emailPrefix, selectedUser.email] : [emailPrefix];
-                await addDoc(collection(db, 'messages'), {
+                const participants = selectedUser ? [emailPrefix, selectedUser.email].sort() : [emailPrefix];
+                const newMessage = {
                     message: text,
                     senderName: emailPrefix,
                     participants,
                     timestamp: new Date()
-                });
+                };
+
+                await addDoc(collection(db, 'messages'), newMessage);
+
+                // Note: You might want to optimize how messages are updated in state,
+                // especially if you have a large number of messages.
+                setMessages(prevMessages => [...prevMessages, newMessage]);
+
                 setText('');
             } catch (error) {
                 console.error('Error sending message:', error);
@@ -112,29 +103,32 @@ const Chats = () => {
         }
     };
 
-    const handleClosePopup = () => {
-        setShowPopup(false);
+
+    const handleCloseModal = () => {
+        setShowModal(false);
         setSelectedUser(null);
     };
 
-    const handleOpenPopup = () => {
-        setShowPopup(true);
+    const handleOpenModal = () => {
+        setShowModal(true);
     };
 
     const handleSelectUser = (user) => {
         setSelectedUser(user);
+        // setShowModal(false); // Close the modal after selecting a user (if needed)
     };
+
 
     return (
         <>
-            <Button className="chat-button" onClick={handleOpenPopup}>Start Chat</Button>
-            {showPopup && (
+            <Button className="chat-button" onClick={handleOpenModal}>Start Chat</Button>
+            {showModal && (
                 <div className="chat-popup-overlay">
                     <div className="chat-popup-content">
                         <div className="chat-popup-sidebar">
                             <div className="chat-popup-header">
                                 <h5>Select User to Chat With</h5>
-                                <button className="chat-popup-close-button" onClick={handleClosePopup}>&times;</button>
+                                <button className="chat-popup-close-button" onClick={handleCloseModal}>&times;</button>
                             </div>
                             <div className="chat-popup-list">
                                 <div
@@ -158,34 +152,43 @@ const Chats = () => {
                         <div className="chat-popup-main">
                             {selectedUser && (
                                 <div className="chat-container">
-                                    <div className="chat-header">
-                                        <h2>Chat with {selectedUser.name}</h2>
+                                    <div className="chat-header mb-3">
+                                        <h5>Chat with {selectedUser.name}</h5>
                                     </div>
                                     <ChatFeed
-                                        className="chat-feed"
-                                        messages={messages.map(message => new Message({
-                                            id: message.id,
-                                            message: message.message,
-                                            senderName: message.senderName,
-                                            sender: message.senderName === emailPrefix ? 0 : 1 // sender ID 0 for current user, 1 for others
-                                        }))}
-                                        hasInputField={false}
-                                        showSenderName
-                                        bubblesCentered={false}
-                                        bubbleStyles={{
-                                            text: {
-                                                fontSize: 15,
-                                                color: 'white' // White text color for bubbles
-                                            },
-                                            chatbubble: {
-                                                borderRadius: 20,
-                                                padding: 10,
-                                                marginBottom: 10,
-                                                backgroundColor: '#007bff', // Default bubble color
-                                            }
-                                        }}
-                                    />
-                                    <div className="chat-input-container">
+    className="chat-feed"
+    messages={messages.filter(message => {
+        if (!message.participants) return false; // Handle undefined or null participants
+
+        const sortedParticipants = message.participants.sort(); // Ensure participants is defined before sorting
+        const participants = sortedParticipants.join('|');
+        const selectedParticipants = [emailPrefix, selectedUser.email].sort().join('|');
+
+        return participants === selectedParticipants;
+    }).map(message => new Message({
+        id: message.id,
+        message: message.message,
+        senderName: message.senderName,
+        sender: message.senderName === emailPrefix ? 0 : 1
+    }))}
+    hasInputField={false}
+    showSenderName
+    bubblesCentered={false}
+    bubbleStyles={{
+        text: {
+            fontSize: 15,
+            color: 'white'
+        },
+        chatbubble: {
+            borderRadius: 20,
+            padding: 10,
+            marginBottom: 10,
+            backgroundColor: '#007bff',
+        }
+    }}
+/>
+
+                                    <div className="chat-input-container mt-3">
                                         <Form className="w-100" onSubmit={handleSendMessage}>
                                             <Form.Group controlId="messageInput" className="d-flex">
                                                 <Form.Control

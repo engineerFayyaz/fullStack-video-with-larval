@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Button, Img, RatingBar, Text } from "components";
-import Header from "components/Header";
+import Header1 from "components/Header";
 
 const DetailsOnePage = () => {
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const DetailsOnePage = () => {
   return (
     <>
       <div className="bg-gray-900_02 flex flex-col font-opensans items-center justify-start mx-auto pr-2 py-2 w-full">
-        <Header className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
+        <Header1 className="flex md:flex-col flex-row md:gap-5 items-center justify-center md:px-5 w-full" />
         <div className="h-[924px] md:h-[939px] max-w-[1421px] mt-[15px] mx-auto md:px-5 relative w-full">
           <Img
             className="h-[924px] m-auto object-cover w-full"
