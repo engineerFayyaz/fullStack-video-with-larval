@@ -103,6 +103,8 @@ const DetailsPage = (props) => {
     }
   };
 
+
+  console.log("movieData", movieData)
   return (
     <>
       <div className="bg-gray-900 flex flex-col font-opensans items-center justify-start mx-auto py-2 shadow-bs1 w-full">
@@ -272,13 +274,10 @@ const DetailsPage = (props) => {
                 Genre:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
-                {movieData && movieData.Genre_id
-                  ? movieData.Genre_id
-                  : "Action, Thriller, Survival, Drama"}
-
-                {/* Action, Thriller, Survival, Drama */}
+                {movieData && movieData.genre_id ? movieData.genre_id : "N/A"}
               </span>
             </Text>
+
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">
                 Directed by:{" "}
@@ -289,14 +288,14 @@ const DetailsPage = (props) => {
                   : "Hwang Dong-hyuk"}
               </span>
             </Text>
-            <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
+            {/* <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">
                 Written by:{" "}
               </span>
               <span className="text-gray-100 font-opensans text-left font-bold">
                 Hwang Dong-hyuk
               </span>
-            </Text>
+            </Text> */}
             <Text className="text-gray-100 text-xl" size="txtPoppinsRegular20">
               <span className="text-gray-100 font-opensans text-left font-normal">
                 Starring:{" "}

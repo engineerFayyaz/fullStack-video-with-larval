@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useUser } from "redux/UserContext";
+import { Carousel, Container, Row, Col } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./UpcomingEventTimerBar.css"; // Import custom styles
 
 const UpcomingEventTimerBar = () => {
-  const { user_id } = useUser();
-
   const [upcomingTimes, setUpcomingTimes] = useState([]);
 
   useEffect(() => {
     const fetchUpcomingTimes = async () => {
       try {
-        const userIdToUse = user_id || 67 || 1 || 2 || 3 || 4;
-        const response = await axios.get(`https://ourbrandtv.com/mobile/public/api/upcoming_movie/${userIdToUse}`);
-        
+        const response = await axios.get("https://ourbrandtv.com/mobile/public/api/schedule");
+
         if (response.status === 200) {
           const responseData = response.data;
 
-          if (responseData && responseData.data && Array.isArray(responseData.data) && responseData.data.length > 0) {
+          if (
+            responseData &&
+            responseData.data &&
+            Array.isArray(responseData.data) &&
+            responseData.data.length > 0
+          ) {
             const upcomingTimesData = responseData.data.map((movie) => ({
-              timeonly: movie.timeonly,
-              date: movie.date
+              timeonly: movie.upcoming_datetime.slice(11, 16), // Extract time (HH:MM)
             }));
             setUpcomingTimes(upcomingTimesData);
           } else {
@@ -29,39 +32,55 @@ const UpcomingEventTimerBar = () => {
           generateRandomSchedule();
         }
       } catch (error) {
+        console.error("Error fetching upcoming times:", error);
         generateRandomSchedule();
       }
     };
 
     const generateRandomSchedule = () => {
-      const randomTimes = ["8:00PM", "9:30AM", "12:00PM", "1:00AM", "2:45AM"];
-      const currentDate = new Date();
-      const randomSchedule = Array.from({ length: 10 }, (_, index) => {
-        const randomDate = new Date();
-        randomDate.setDate(currentDate.getDate() + index + 1);
-        const formattedDate = `${randomDate.getMonth() + 1}-${randomDate.getDate()}-${randomDate.getFullYear()}`;
-        return {
-          timeonly: randomTimes[index % randomTimes.length],
-          date: formattedDate,
-        };
-      });
+      const randomTimes = ["08:00", "09:30", "12:00", "13:00", "14:45", "16:00", "17:30"];
+      const randomSchedule = randomTimes.map((time) => ({
+        timeonly: time,
+      }));
       setUpcomingTimes(randomSchedule);
     };
 
     fetchUpcomingTimes();
-  }, [user_id]);
+  }, []);
+
+  // Group times into arrays of 6 without overlap
+  const groupedTimes = [];
+  for (let i = 0; i < upcomingTimes.length; i += 6) {
+    groupedTimes.push(upcomingTimes.slice(i, i + 6));
+  }
 
   return (
-    <div className="row" style={{ margin: "20px 0px 0px 40px " }}>
-      <h4 style={{ color: "white", fontWeight: "700", fontSize: "20px", marginLeft: "-30px", marginTop: "155px", marginBottom: "15px" }}>Upcoming</h4>
-      <div className="step-container upcomong-time">
-        {upcomingTimes && upcomingTimes.length > 0 && upcomingTimes.map((upcomingTime, index) => (
-          <div key={index} className="step" title={`Date: ${upcomingTime.date}`}>
-            {`${upcomingTime.timeonly}`}
-          </div>
-        ))}
-      </div>
-    </div>
+    <Container fluid className="upcoming-container" style={{marginTop:"160px"}}>
+      <h4 className="upcoming-title text-center " style={{color:"white"}}>Upcoming</h4>
+      <Row className="justify-content-center">
+        {groupedTimes.length > 0 ? (
+          <Col xs={12}>
+            <Carousel id="upcomingCarousel" interval={null} indicators={false} controls={true}>
+              {groupedTimes.map((group, index) => (
+                <Carousel.Item key={index}>
+                  <div className="d-flex justify-content-around">
+                    {group.map((upcomingTime, subIndex) => (
+                      <div key={subIndex} className="step d-flex justify-content-center align-items-center">
+                        {upcomingTime.timeonly}
+                      </div>
+                    ))}
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </Col>
+        ) : (
+          <Col xs={12} className="no-times text-center">
+            No upcoming times available
+          </Col>
+        )}
+      </Row>
+    </Container>
   );
 };
 

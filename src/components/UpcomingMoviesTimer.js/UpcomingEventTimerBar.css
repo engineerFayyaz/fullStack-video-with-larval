@@ -1,0 +1,90 @@
+.upcoming-container {
+  /* margin: 20px 0 0 40px; */
+  /* padding: 20px; */
+  border-radius: 10px; /* Rounded corners for the container */
+}
+
+.upcoming-title {
+  color: white;
+  font-weight: 700;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.carousel-item {
+  display: flex;
+  justify-content: space-around; /* Evenly distribute the space between items */
+  align-items: center;
+  min-height: 20px; /* Ensure a consistent height */
+}
+
+.step {
+  background-color: #007bff; /* Blue background */
+  color: #fff; /* White text */
+  padding: 10px 20px; /* Adjusted padding for better spacing */
+  text-align: center;
+  font-size: 20px; /* Slightly larger font */
+  border-radius: 8px; /* Rounded corners */
+  margin: 0 5px; /* Spacing between items */
+  transition: transform 0.3s ease;
+  flex-grow: 1; /* Allow the items to grow and fill the space */
+}
+
+.step:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+.no-times {
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* Carousel controls */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5); /* Darker controls for better visibility */
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+  background-color: #0056b3; /* Darker blue background on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .upcoming-container {
+    margin: 20px 10px; /* Reduced margin for tablets */
+  }
+  
+  .step {
+    font-size: 18px; /* Slightly smaller font for mobile */
+    padding: 12px; /* Less padding for mobile */
+    height: 50px; /* Smaller height for mobile */
+  }
+
+  .upcoming-title {
+    font-size: 20px; /* Adjust title size for mobile */
+  }
+}
+
+@media (max-width: 576px) {
+  .upcoming-container {
+    margin: 20px 5px; /* Further reduced margin for small devices */
+  }
+  
+  .step {
+    font-size: 16px; /* Even smaller font for smaller devices */
+    padding: 10px; /* Less padding for small devices */
+    height: 45px; /* Smaller height for small devices */
+  }
+
+  .upcoming-title {
+    font-size: 18px; /* Adjust title size for small devices */
+  }
+}
